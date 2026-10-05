@@ -44,7 +44,6 @@ input,textarea{user-select:text;}
 .google-btn:active{transform:scale(0.97);}
 .skip-btn{width:100%;padding:15px;margin-top:12px;border-radius:18px;background:transparent;border:1.5px solid var(--glass-border);font-size:14px;font-weight:700;color:var(--text);display:flex;align-items:center;justify-content:center;gap:8px;transition:transform 0.15s,background 0.15s;touch-action:manipulation;}
 .skip-btn:active{transform:scale(0.97);background:var(--glass);}
-.skip-btn .arrow{font-size:16px;opacity:0.7;}
 .skip-hint{font-size:12px;color:var(--text-3);margin-top:10px;font-weight:500;line-height:1.5;}
 .login-terms{font-size:12px;color:var(--text-2);margin-top:24px;line-height:1.6;font-weight:500;}
 .banner-wrap{padding:0 20px 12px;}
@@ -236,7 +235,6 @@ input,textarea{user-select:text;}
 <body>
 
 <div id="app">
-
   <div class="screen active" id="splash">
     <div class="splash-logo">📝</div>
     <div class="splash-title">Notes</div>
@@ -253,9 +251,7 @@ input,textarea{user-select:text;}
         <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20.5H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.6 2.4-7.2 2.4-5.3 0-9.7-3.1-11.3-7.6l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20.5H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6.2 5.2C41.9 35.6 44 30.2 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
         Continue with Google
       </button>
-      <button class="skip-btn" id="skipLogin">
-        <span>Skip for now</span><span class="arrow">→</span>
-      </button>
+      <button class="skip-btn" id="skipLogin"><span>Skip for now</span><span class="arrow">→</span></button>
       <div class="skip-hint">Use offline — notes stay on this device only</div>
       <div class="login-terms">By continuing, you agree to our Terms of Service and Privacy Policy.</div>
     </div>
@@ -264,23 +260,15 @@ input,textarea{user-select:text;}
   <div class="screen" id="home">
     <div class="topbar">
       <div class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></div>
-      <div class="greeting-wrap">
-        <div class="greeting-hi" id="greetTime">Good day</div>
-        <div class="greeting-name" id="homeName">User</div>
-      </div>
+      <div class="greeting-wrap"><div class="greeting-hi" id="greetTime">Good day</div><div class="greeting-name" id="homeName">User</div></div>
       <div class="avatar" id="homeAvatar">👤</div>
     </div>
     <div class="banner-wrap" id="bannerWrap" style="display:none;">
       <span class="offline-pill" id="offlinePill" style="display:none;">📴 Offline mode</span>
       <span class="pending-pill" id="pendingPill" style="display:none;">☁️ <span id="pendingCount">0</span> pending</span>
     </div>
-    <div class="search-wrap">
-      <span class="search-icon">🔍</span>
-      <input type="text" class="search-box" id="searchInput" placeholder="Search notes...">
-    </div>
-    <div class="page-title-bar">
-      <div class="page-title" id="pageTitle">All Notes</div>
-    </div>
+    <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" class="search-box" id="searchInput" placeholder="Search notes..."></div>
+    <div class="page-title-bar"><div class="page-title" id="pageTitle">All Notes</div></div>
     <div class="notes-scroll" id="notesScroll"></div>
     <button class="fab" id="fabNew">+</button>
   </div>
@@ -292,10 +280,7 @@ input,textarea{user-select:text;}
       <button class="save-btn" id="editorSave">💾 Save</button>
       <button class="icon-btn" id="editorMore">⋯</button>
     </div>
-    <div class="editor-meta">
-      <span id="editorStatus">Saved</span>
-      <span id="editorReminderBadge"></span>
-    </div>
+    <div class="editor-meta"><span id="editorStatus">Saved</span><span id="editorReminderBadge"></span></div>
     <div class="editor-content" id="editorContent" contenteditable="true"></div>
     <div class="toolbar" id="editorToolbar">
       <button type="button" class="tool-btn" data-cmd="bold"><b>B</b></button>
@@ -312,128 +297,58 @@ input,textarea{user-select:text;}
   </div>
 
   <div class="screen" id="settings">
-    <div class="settings-header">
-      <button class="icon-btn" id="settingsBack">←</button>
-      <div class="settings-title">Settings</div>
-    </div>
+    <div class="settings-header"><button class="icon-btn" id="settingsBack">←</button><div class="settings-title">Settings</div></div>
     <div class="settings-body">
       <div class="profile-card">
         <div class="avatar" id="settingsAvatar">👤</div>
-        <div class="profile-info">
-          <div class="profile-name" id="settingsName">Guest User</div>
-          <div class="profile-email" id="settingsEmail">Offline mode</div>
-        </div>
+        <div class="profile-info"><div class="profile-name" id="settingsName">Guest User</div><div class="profile-email" id="settingsEmail">Offline mode</div></div>
       </div>
-
       <div class="settings-group-title">Account</div>
       <div class="settings-group">
         <div class="settings-item success" id="signInFromSettings" style="display:none;">
           <div class="settings-item-icon">☁️</div>
-          <div class="settings-item-content">
-            <div class="settings-item-title">Sign In to Sync</div>
-            <div class="settings-item-desc">Your local notes will sync to cloud</div>
-          </div>
+          <div class="settings-item-content"><div class="settings-item-title">Sign In to Sync</div><div class="settings-item-desc">Your local notes will sync to cloud</div></div>
         </div>
         <div class="settings-item" id="syncPendingBtn" style="display:none;">
           <div class="settings-item-icon">🔄</div>
-          <div class="settings-item-content">
-            <div class="settings-item-title">Sync Pending Notes</div>
-            <div class="settings-item-desc" id="pendingSyncDesc">0 notes waiting to upload</div>
-          </div>
+          <div class="settings-item-content"><div class="settings-item-title">Sync Pending Notes</div><div class="settings-item-desc" id="pendingSyncDesc">0 notes waiting</div></div>
         </div>
         <div class="settings-item">
           <div class="settings-item-icon">💾</div>
-          <div class="settings-item-content">
-            <div class="settings-item-title">Data Mode</div>
-            <div class="settings-item-desc" id="dataModeDesc">Offline — local storage only</div>
-          </div>
+          <div class="settings-item-content"><div class="settings-item-title">Data Mode</div><div class="settings-item-desc" id="dataModeDesc">Offline — local storage only</div></div>
         </div>
         <div class="settings-item danger" id="signOutBtn" style="display:none;">
           <div class="settings-item-icon">🚪</div>
-          <div class="settings-item-content">
-            <div class="settings-item-title">Sign Out</div>
-            <div class="settings-item-desc">Notes stay on this device</div>
-          </div>
+          <div class="settings-item-content"><div class="settings-item-title">Sign Out</div><div class="settings-item-desc">Notes stay on this device</div></div>
         </div>
       </div>
-
       <div class="settings-group-title" id="syncGroupTitle" style="display:none;">Sync & Backup</div>
       <div class="settings-group" id="syncGroup" style="display:none;">
-        <div class="settings-item">
-          <div class="settings-item-icon">🔄</div>
-          <div class="settings-item-content">
-            <div class="settings-item-title">Sync Status</div>
-            <div class="settings-item-desc" id="syncStatusDesc">Synced</div>
-          </div>
-        </div>
-        <div class="settings-item">
-          <div class="settings-item-icon">🕐</div>
-          <div class="settings-item-content">
-            <div class="settings-item-title">Last Backup</div>
-            <div class="settings-item-desc" id="lastBackupDesc">—</div>
-          </div>
-        </div>
-        <div class="settings-item" id="backupNowBtn">
-          <div class="settings-item-icon">☁️</div>
-          <div class="settings-item-content">
-            <div class="settings-item-title">Backup Now</div>
-            <div class="settings-item-desc">Force upload all notes to cloud</div>
-          </div>
-        </div>
+        <div class="settings-item"><div class="settings-item-icon">🔄</div><div class="settings-item-content"><div class="settings-item-title">Sync Status</div><div class="settings-item-desc" id="syncStatusDesc">Synced</div></div></div>
+        <div class="settings-item"><div class="settings-item-icon">🕐</div><div class="settings-item-content"><div class="settings-item-title">Last Backup</div><div class="settings-item-desc" id="lastBackupDesc">—</div></div></div>
+        <div class="settings-item" id="backupNowBtn"><div class="settings-item-icon">☁️</div><div class="settings-item-content"><div class="settings-item-title">Backup Now</div><div class="settings-item-desc">Force upload all notes to cloud</div></div></div>
       </div>
-
       <div class="settings-group-title">Appearance</div>
       <div class="settings-group">
-        <div class="settings-item">
-          <div class="settings-item-icon">🎨</div>
-          <div class="settings-item-content">
-            <div class="settings-item-title">Theme</div>
-          </div>
-          <div class="segment" id="themeSegment">
-            <button data-theme="light">Light</button>
-            <button data-theme="dark">Dark</button>
-            <button data-theme="system">Auto</button>
-          </div>
+        <div class="settings-item"><div class="settings-item-icon">🎨</div><div class="settings-item-content"><div class="settings-item-title">Theme</div></div>
+          <div class="segment" id="themeSegment"><button data-theme="light">Light</button><button data-theme="dark">Dark</button><button data-theme="system">Auto</button></div>
         </div>
       </div>
-
       <div class="settings-group-title">Storage</div>
       <div class="settings-group">
-        <div class="settings-item">
-          <div class="settings-item-icon">📊</div>
-          <div class="settings-item-content">
-            <div class="settings-item-title">Notes</div>
-            <div class="settings-item-desc" id="storageDesc">0 notes</div>
-          </div>
-        </div>
-        <div class="settings-item" id="exportBtn">
-          <div class="settings-item-icon">📤</div>
-          <div class="settings-item-content">
-            <div class="settings-item-title">Export Notes</div>
-            <div class="settings-item-desc">Download backup as JSON file</div>
-          </div>
-        </div>
-        <div class="settings-item" id="importBtn">
-          <div class="settings-item-icon">📥</div>
-          <div class="settings-item-content">
-            <div class="settings-item-title">Import Notes</div>
-            <div class="settings-item-desc">Restore from backup file</div>
-          </div>
-        </div>
+        <div class="settings-item"><div class="settings-item-icon">📊</div><div class="settings-item-content"><div class="settings-item-title">Notes</div><div class="settings-item-desc" id="storageDesc">0 notes</div></div></div>
+        <div class="settings-item" id="exportBtn"><div class="settings-item-icon">📤</div><div class="settings-item-content"><div class="settings-item-title">Export Notes</div><div class="settings-item-desc">Download backup as JSON file</div></div></div>
+        <div class="settings-item" id="importBtn"><div class="settings-item-icon">📥</div><div class="settings-item-content"><div class="settings-item-title">Import Notes</div><div class="settings-item-desc">Restore from backup file</div></div></div>
       </div>
     </div>
   </div>
-
 </div>
 
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <div class="avatar" id="sidebarAvatar">👤</div>
-    <div class="sidebar-user">
-      <div class="sidebar-name" id="sidebarName">Guest User</div>
-      <div class="sidebar-email" id="sidebarEmail">Offline mode</div>
-    </div>
+    <div class="sidebar-user"><div class="sidebar-name" id="sidebarName">Guest User</div><div class="sidebar-email" id="sidebarEmail">Offline mode</div></div>
   </div>
   <nav class="sidebar-nav">
     <button class="sidebar-item active" data-filter="all"><span class="sidebar-icon">📝</span><span class="sidebar-label">All Notes</span><span class="sidebar-count" id="countAll">0</span></button>
@@ -462,7 +377,6 @@ input,textarea{user-select:text;}
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
-/* ============ CONFIG ============ */
 const firebaseConfig = {
   apiKey: "AIzaSyCyFBCNPiJubh2w1H5zyMtZSJe0pztyiok",
   authDomain: "all-notes-68a48.firebaseapp.com",
@@ -474,1418 +388,817 @@ const firebaseConfig = {
   measurementId: "G-B3YL24M224"
 };
 
-let auth = null, db = null, firebaseReady = false;
+let auth=null, db=null, firebaseReady=false;
 try {
   firebase.initializeApp(firebaseConfig);
   auth = firebase.auth();
   db = firebase.firestore();
-  db.enablePersistence({ synchronizeTabs: true }).catch(e => console.warn('Persistence:', e.code));
+  db.enablePersistence({synchronizeTabs:true}).catch(e=>console.warn('Persistence:',e.code));
   firebaseReady = true;
-} catch (e) { console.warn('Firebase init failed:', e); }
+} catch(e){ console.warn('Firebase init failed:',e); }
 
-/* ============ STORAGE KEYS ============ */
-const STORAGE_NOTES = 'notes_local_offline_v1';
-const STORAGE_CATS = 'notes_categories_offline_v1';
-const STORAGE_MODE = 'notes_data_mode';
+const STORAGE_NOTES='notes_local_offline_v1';
+const STORAGE_CATS='notes_categories_offline_v1';
+const STORAGE_MODE='notes_data_mode';
 
-/* ============ STATE ============ */
-const State = {
-  user: null,
-  isOfflineMode: false,
-  notes: [],
-  activeFilter: 'all',
-  activeTag: null,
-  searchQuery: '',
-  currentNote: null,
-  unsubscribeNotes: null,
-  saveTimer: null,
-  syncStatus: 'synced'
-};
-
+const State = { user:null, isOfflineMode:false, notes:[], activeFilter:'all', activeTag:null, searchQuery:'', currentNote:null, unsubscribeNotes:null, saveTimer:null, syncStatus:'synced' };
 const unlockedNotes = new Set();
 const notifiedReminders = new Set();
-
 const COLOR_PALETTE = [
-  { name: 'default', hex: '#f8fafc' }, { name: 'yellow', hex: '#fffacd' },
-  { name: 'green', hex: '#d6f8e5' }, { name: 'blue', hex: '#d6eeff' },
-  { name: 'pink', hex: '#ffdeeb' }, { name: 'purple', hex: '#ebdeff' },
-  { name: 'orange', hex: '#ffe6cd' }, { name: 'mint', hex: '#cdfff0' }
+  {name:'default',hex:'#f8fafc'},{name:'yellow',hex:'#fffacd'},{name:'green',hex:'#d6f8e5'},{name:'blue',hex:'#d6eeff'},
+  {name:'pink',hex:'#ffdeeb'},{name:'purple',hex:'#ebdeff'},{name:'orange',hex:'#ffe6cd'},{name:'mint',hex:'#cdfff0'}
 ];
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
 
-const $ = (s) => document.querySelector(s);
-const $$ = (s) => document.querySelectorAll(s);
-
-/* ============ UTILS ============ */
-function showScreen(id) {
-  $$('.screen').forEach(s => s.classList.remove('active'));
-  const t = document.getElementById(id);
-  if (t) t.classList.add('active');
-}
+function showScreen(id){ $$('.screen').forEach(s=>s.classList.remove('active')); const t=document.getElementById(id); if(t)t.classList.add('active'); }
 let toastTimer;
-function toast(msg, duration = 2500) {
-  const t = $('#toast');
-  t.textContent = msg; t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), duration);
-}
-function formatDate(ts) {
-  if (!ts) return '';
-  const d = ts.toDate ? ts.toDate() : new Date(ts);
-  const diff = (new Date() - d) / 1000;
-  if (diff < 60) return 'Just now';
-  if (diff < 3600) return `${Math.floor(diff/60)}m ago`;
-  if (diff < 86400) return `${Math.floor(diff/3600)}h ago`;
-  if (diff < 604800) return `${Math.floor(diff/86400)}d ago`;
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-}
-function formatDateTime(ts) {
-  if (!ts) return '';
-  const d = ts.toDate ? ts.toDate() : new Date(ts);
-  return d.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-}
-function stripHtml(h) { const d = document.createElement('div'); d.innerHTML = h || ''; return d.textContent || ''; }
-function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
-function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 9); }
-function tsToMs(v) { return v && v.toDate ? v.toDate().getTime() : (typeof v === 'number' ? v : (v ? new Date(v).getTime() : 0)); }
+function toast(msg,d=2500){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),d); }
+function formatDate(ts){ if(!ts)return''; const d=ts.toDate?ts.toDate():new Date(ts); const diff=(new Date()-d)/1000; if(diff<60)return'Just now'; if(diff<3600)return`${Math.floor(diff/60)}m ago`; if(diff<86400)return`${Math.floor(diff/3600)}h ago`; if(diff<604800)return`${Math.floor(diff/86400)}d ago`; return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}); }
+function formatDateTime(ts){ if(!ts)return''; const d=ts.toDate?ts.toDate():new Date(ts); return d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}); }
+function stripHtml(h){ const d=document.createElement('div'); d.innerHTML=h||''; return d.textContent||''; }
+function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+function genId(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,9); }
+function tsToMs(v){ return v&&v.toDate?v.toDate().getTime():(typeof v==='number'?v:(v?new Date(v).getTime():0)); }
 
-/* ============ LOCAL STORAGE ============ */
-function loadLocalNotes() { try { return JSON.parse(localStorage.getItem(STORAGE_NOTES) || '[]'); } catch { return []; } }
-function saveLocalNotes() { try { localStorage.setItem(STORAGE_NOTES, JSON.stringify(State.notes)); } catch { toast('Storage full'); } }
-function loadLocalCategories() { try { return JSON.parse(localStorage.getItem(STORAGE_CATS) || '[]'); } catch { return []; } }
-function saveLocalCategories(c) { localStorage.setItem(STORAGE_CATS, JSON.stringify(c)); }
+function loadLocalNotes(){ try{ return JSON.parse(localStorage.getItem(STORAGE_NOTES)||'[]'); }catch{ return[]; } }
+function saveLocalNotes(){ try{ localStorage.setItem(STORAGE_NOTES,JSON.stringify(State.notes)); }catch{ toast('Storage full'); } }
+function loadLocalCategories(){ try{ return JSON.parse(localStorage.getItem(STORAGE_CATS)||'[]'); }catch{ return[]; } }
+function saveLocalCategories(c){ localStorage.setItem(STORAGE_CATS,JSON.stringify(c)); }
 
-/* ============ SYNC STATUS ============ */
-function setSyncStatus(status) {
-  State.syncStatus = status;
-  const pill = $('#syncPill'), text = $('#syncText'), statusDesc = $('#syncStatusDesc');
-  pill.classList.remove('saving', 'synced', 'offline', 'failed');
-  pill.classList.add(status);
-  const labels = { saving: 'Saving…', synced: 'Synced', offline: 'Offline', failed: 'Sync failed' };
-  text.textContent = labels[status];
-  if (statusDesc) statusDesc.textContent = labels[status];
-  if (status === 'saving' || status === 'synced') {
-    pill.classList.add('show');
-    setTimeout(() => { if (State.syncStatus === status) pill.classList.remove('show'); }, 1800);
-  } else pill.classList.add('show');
+function setSyncStatus(status){
+  State.syncStatus=status;
+  const pill=$('#syncPill'),text=$('#syncText'),desc=$('#syncStatusDesc');
+  pill.classList.remove('saving','synced','offline','failed'); pill.classList.add(status);
+  const labels={saving:'Saving…',synced:'Synced',offline:'Offline',failed:'Sync failed'};
+  text.textContent=labels[status]; if(desc)desc.textContent=labels[status];
+  if(status==='saving'||status==='synced'){ pill.classList.add('show'); setTimeout(()=>{ if(State.syncStatus===status)pill.classList.remove('show'); },1800); }
+  else pill.classList.add('show');
 }
-
-/* ============ THEME ============ */
-function applyTheme(pref) {
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const eff = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
-  document.documentElement.setAttribute('data-theme', eff);
-  localStorage.setItem('theme', pref);
-  $$('#themeSegment button').forEach(b => b.classList.toggle('active', b.dataset.theme === pref));
+function applyTheme(pref){
+  const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const eff=pref==='system'?(prefersDark?'dark':'light'):pref;
+  document.documentElement.setAttribute('data-theme',eff);
+  localStorage.setItem('theme',pref);
+  $$('#themeSegment button').forEach(b=>b.classList.toggle('active',b.dataset.theme===pref));
 }
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  if (localStorage.getItem('theme') === 'system') applyTheme('system');
-});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{ if(localStorage.getItem('theme')==='system')applyTheme('system'); });
 
-/* ============ PIN ============ */
-function getPin() { return localStorage.getItem('notes_pin'); }
-function setPin(p) { localStorage.setItem('notes_pin', p); }
+function getPin(){ return localStorage.getItem('notes_pin'); }
+function setPin(p){ localStorage.setItem('notes_pin',p); }
 
-function promptPin(title, subtitle = '') {
-  return new Promise((resolve) => {
+function promptPin(title,subtitle=''){
+  return new Promise(resolve=>{
     openModal(`
       <div class="modal-title">${escapeHtml(title)}</div>
-      ${subtitle ? `<div style="color:var(--text-2);font-size:13px;margin-bottom:14px;">${escapeHtml(subtitle)}</div>` : ''}
+      ${subtitle?`<div style="color:var(--text-2);font-size:13px;margin-bottom:14px;">${escapeHtml(subtitle)}</div>`:''}
       <input type="password" id="pinInput" class="modal-input" placeholder="Enter PIN (min 4 chars)" inputmode="numeric" maxlength="12">
       <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button><button class="btn btn-primary" id="modalConfirm">Confirm</button></div>
     `);
-    const input = $('#pinInput');
-    setTimeout(() => input.focus(), 100);
-    const submit = () => {
-      const val = input.value.trim();
-      if (val.length < 4) { toast('PIN must be at least 4 chars'); return; }
-      closeModal(); resolve(val);
-    };
-    $('#modalConfirm').onclick = submit;
-    $('#modalCancel').onclick = () => { closeModal(); resolve(null); };
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+    const input=$('#pinInput'); setTimeout(()=>input.focus(),100);
+    const submit=()=>{ const val=input.value.trim(); if(val.length<4){toast('PIN must be at least 4 chars');return;} closeModal(); resolve(val); };
+    $('#modalConfirm').onclick=submit;
+    $('#modalCancel').onclick=()=>{ closeModal(); resolve(null); };
+    input.addEventListener('keydown',e=>{ if(e.key==='Enter')submit(); });
   });
 }
-
-async function toggleLock(noteId) {
-  const n = State.notes.find(x => x.id === noteId);
-  if (!n) return;
-  if (n.locked) {
-    const existing = getPin();
-    if (existing) {
-      const entered = await promptPin('Enter PIN to unlock');
-      if (!entered || entered !== existing) { if (entered) toast('Wrong PIN'); return; }
-    }
-    await updateNoteField(noteId, { locked: false });
-    unlockedNotes.delete(noteId);
-    toast('Note unlocked');
+async function toggleLock(noteId){
+  const n=State.notes.find(x=>x.id===noteId); if(!n)return;
+  if(n.locked){
+    const existing=getPin();
+    if(existing){ const entered=await promptPin('Enter PIN to unlock'); if(!entered||entered!==existing){ if(entered)toast('Wrong PIN'); return; } }
+    await updateNoteField(noteId,{locked:false}); unlockedNotes.delete(noteId); toast('Note unlocked');
   } else {
-    let pin = getPin();
-    if (!pin) {
-      pin = await promptPin('Set a PIN', 'You will need this PIN to open locked notes');
-      if (!pin) return;
-      const confirm = await promptPin('Confirm PIN');
-      if (confirm !== pin) { toast('PINs do not match'); return; }
-      setPin(pin);
-    }
-    await updateNoteField(noteId, { locked: true });
-    unlockedNotes.delete(noteId);
-    toast('Note locked');
+    let pin=getPin();
+    if(!pin){ pin=await promptPin('Set a PIN','You will need this PIN to open locked notes'); if(!pin)return;
+      const confirm=await promptPin('Confirm PIN'); if(confirm!==pin){toast('PINs do not match');return;} setPin(pin); }
+    await updateNoteField(noteId,{locked:true}); unlockedNotes.delete(noteId); toast('Note locked');
   }
 }
-async function requestUnlock(noteId) {
-  const n = State.notes.find(x => x.id === noteId);
-  if (!n || !n.locked) return true;
-  if (unlockedNotes.has(noteId)) return true;
-  const existing = getPin();
-  if (!existing) return true;
-  const entered = await promptPin('Enter PIN', n.title ? `"${n.title}" is locked` : '');
-  if (!entered) return false;
-  if (entered !== existing) { toast('Wrong PIN'); return false; }
-  unlockedNotes.add(noteId);
-  return true;
+async function requestUnlock(noteId){
+  const n=State.notes.find(x=>x.id===noteId); if(!n||!n.locked)return true;
+  if(unlockedNotes.has(noteId))return true;
+  const existing=getPin(); if(!existing)return true;
+  const entered=await promptPin('Enter PIN',n.title?`"${n.title}" is locked`:'');
+  if(!entered)return false; if(entered!==existing){toast('Wrong PIN');return false;}
+  unlockedNotes.add(noteId); return true;
 }
+function getCategories(){ return State.isOfflineMode?loadLocalCategories():(()=>{ if(!State.user)return loadLocalCategories(); try{return JSON.parse(localStorage.getItem('categories_'+State.user.uid)||'[]');}catch{return[];} })(); }
+function saveCategories(cats){ if(State.isOfflineMode)saveLocalCategories(cats); else if(State.user)localStorage.setItem('categories_'+State.user.uid,JSON.stringify(cats)); }
 
-/* ============ CATEGORIES ============ */
-function getCategories() {
-  return State.isOfflineMode ? loadLocalCategories() : (() => {
-    if (!State.user) return loadLocalCategories();
-    try { return JSON.parse(localStorage.getItem('categories_' + State.user.uid) || '[]'); }
-    catch { return []; }
-  })();
-}
-function saveCategories(cats) {
-  if (State.isOfflineMode) saveLocalCategories(cats);
-  else if (State.user) localStorage.setItem('categories_' + State.user.uid, JSON.stringify(cats));
-}
-
-/* ============ MODAL ============ */
-function openModal(html) {
-  $('#modalContent').innerHTML = `<div class="modal-handle"></div>${html}`;
-  $('#modalBackdrop').classList.add('show');
-}
-function closeModal() { $('#modalBackdrop').classList.remove('show'); }
-
-function promptInput(title, placeholder = '', val = '') {
-  return new Promise((resolve) => {
+function openModal(html){ $('#modalContent').innerHTML=`<div class="modal-handle"></div>${html}`; $('#modalBackdrop').classList.add('show'); }
+function closeModal(){ $('#modalBackdrop').classList.remove('show'); }
+function promptInput(title,placeholder='',val=''){
+  return new Promise(resolve=>{
     openModal(`
       <div class="modal-title">${escapeHtml(title)}</div>
       <input type="text" id="promptInput" class="modal-input" placeholder="${escapeHtml(placeholder)}" value="${escapeHtml(val)}">
       <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button><button class="btn btn-primary" id="modalConfirm">OK</button></div>
     `);
-    const i = $('#promptInput');
-    setTimeout(() => { i.focus(); i.select(); }, 100);
-    const sub = () => { const v = i.value.trim(); closeModal(); resolve(v || null); };
-    $('#modalConfirm').onclick = sub;
-    $('#modalCancel').onclick = () => { closeModal(); resolve(null); };
-    i.addEventListener('keydown', e => { if (e.key === 'Enter') sub(); });
+    const i=$('#promptInput'); setTimeout(()=>{i.focus();i.select();},100);
+    const sub=()=>{ const v=i.value.trim(); closeModal(); resolve(v||null); };
+    $('#modalConfirm').onclick=sub;
+    $('#modalCancel').onclick=()=>{ closeModal(); resolve(null); };
+    i.addEventListener('keydown',e=>{ if(e.key==='Enter')sub(); });
   });
 }
 
-/* ============ MERGE OFFLINE NOTES TO CLOUD ============ */
-async function mergeOfflineNotesToCloud(uid) {
-  const offlineNotes = loadLocalNotes();
-  if (offlineNotes.length === 0) return { uploaded: 0, merged: 0 };
-
-  let uploaded = 0, merged = 0;
-
-  for (const note of offlineNotes) {
-    try {
-      const ref = db.collection('users').doc(uid).collection('notes').doc(note.id);
-      const existing = await ref.get();
-      const localUpdated = note.updatedAt || note.createdAt || Date.now();
-
-      if (!existing.exists) {
-        // নতুন নোট — আপলোড
+async function mergeOfflineNotesToCloud(uid){
+  const offlineNotes=loadLocalNotes();
+  if(offlineNotes.length===0)return{uploaded:0,merged:0};
+  let uploaded=0,merged=0;
+  for(const note of offlineNotes){
+    try{
+      const ref=db.collection('users').doc(uid).collection('notes').doc(note.id);
+      const existing=await ref.get();
+      const localUpdated=note.updatedAt||note.createdAt||Date.now();
+      if(!existing.exists){
         await ref.set({
-          title: note.title || '',
-          content: note.content || '',
-          pinned: !!note.pinned,
-          archived: !!note.archived,
-          favorite: !!note.favorite,
-          deleted: !!note.deleted,
-          deletedAt: note.deletedAt ? firebase.firestore.Timestamp.fromMillis(tsToMs(note.deletedAt)) : null,
-          locked: !!note.locked,
-          category: note.category || null,
-          color: note.color || null,
-          reminder: note.reminder ? firebase.firestore.Timestamp.fromMillis(tsToMs(note.reminder)) : null,
-          createdAt: firebase.firestore.Timestamp.fromMillis(tsToMs(note.createdAt) || Date.now()),
-          updatedAt: firebase.firestore.Timestamp.fromMillis(localUpdated)
+          title:note.title||'', content:note.content||'',
+          pinned:!!note.pinned, archived:!!note.archived, favorite:!!note.favorite,
+          deleted:!!note.deleted,
+          deletedAt:note.deletedAt?firebase.firestore.Timestamp.fromMillis(tsToMs(note.deletedAt)):null,
+          locked:!!note.locked, category:note.category||null, color:note.color||null,
+          reminder:note.reminder?firebase.firestore.Timestamp.fromMillis(tsToMs(note.reminder)):null,
+          createdAt:firebase.firestore.Timestamp.fromMillis(tsToMs(note.createdAt)||Date.now()),
+          updatedAt:firebase.firestore.Timestamp.fromMillis(localUpdated)
         });
         uploaded++;
       } else {
-        // একই ID-র নোট আছে — নতুন হলে আপডেট
-        const cloudUpdated = tsToMs(existing.data().updatedAt);
-        if (localUpdated > cloudUpdated) {
+        const cloudUpdated=tsToMs(existing.data().updatedAt);
+        if(localUpdated>cloudUpdated){
           await ref.update({
-            title: note.title || '',
-            content: note.content || '',
-            pinned: !!note.pinned,
-            archived: !!note.archived,
-            favorite: !!note.favorite,
-            deleted: !!note.deleted,
-            category: note.category || null,
-            color: note.color || null,
-            updatedAt: firebase.firestore.Timestamp.fromMillis(localUpdated)
+            title:note.title||'', content:note.content||'',
+            pinned:!!note.pinned, archived:!!note.archived, favorite:!!note.favorite,
+            deleted:!!note.deleted, category:note.category||null, color:note.color||null,
+            updatedAt:firebase.firestore.Timestamp.fromMillis(localUpdated)
           });
           merged++;
         }
       }
-    } catch (err) {
-      console.error('Merge error for note', note.id, err);
-    }
+    }catch(err){ console.error('Merge error',note.id,err); }
   }
-
-  // সফলভাবে সব আপলোড হলে লোকাল কপি মুছে দিন
-  if (uploaded + merged > 0 || offlineNotes.length > 0) {
-    localStorage.removeItem(STORAGE_NOTES);
-  }
-
-  return { uploaded, merged };
+  if(uploaded+merged>0||offlineNotes.length>0) localStorage.removeItem(STORAGE_NOTES);
+  return{uploaded,merged};
 }
-
-/* ============ SAVE CLOUD NOTES TO LOCAL (backup) ============ */
-function cacheCloudNotesLocally() {
-  // ক্লাউড মোডেও নোট লোকাল স্টোরেজে রাখুন (সাইন আউটের পর ব্যবহারের জন্য)
-  try {
-    const minimal = State.notes.map(n => ({
-      id: n.id,
-      title: n.title || '',
-      content: n.content || '',
-      pinned: !!n.pinned,
-      archived: !!n.archived,
-      favorite: !!n.favorite,
-      deleted: !!n.deleted,
-      deletedAt: n.deletedAt ? tsToMs(n.deletedAt) : null,
-      locked: !!n.locked,
-      category: n.category || null,
-      color: n.color || null,
-      reminder: n.reminder ? tsToMs(n.reminder) : null,
-      createdAt: tsToMs(n.createdAt),
-      updatedAt: tsToMs(n.updatedAt)
+function cacheCloudNotesLocally(){
+  try{
+    const minimal=State.notes.map(n=>({
+      id:n.id, title:n.title||'', content:n.content||'',
+      pinned:!!n.pinned, archived:!!n.archived, favorite:!!n.favorite, deleted:!!n.deleted,
+      deletedAt:n.deletedAt?tsToMs(n.deletedAt):null, locked:!!n.locked,
+      category:n.category||null, color:n.color||null,
+      reminder:n.reminder?tsToMs(n.reminder):null,
+      createdAt:tsToMs(n.createdAt), updatedAt:tsToMs(n.updatedAt)
     }));
-    localStorage.setItem(STORAGE_NOTES, JSON.stringify(minimal));
-  } catch (e) { console.warn('Cache error:', e); }
+    localStorage.setItem(STORAGE_NOTES,JSON.stringify(minimal));
+  }catch(e){ console.warn('Cache error:',e); }
 }
 
-/* ============ AUTH ============ */
-function signInWithGoogle() {
-  if (!firebaseReady) { toast('Firebase not available'); return; }
-  const provider = new firebase.auth.GoogleAuthProvider();
-  provider.setCustomParameters({ prompt: 'select_account' });
+function signInWithGoogle(){
+  if(!firebaseReady){ toast('Firebase not available'); return; }
+  const provider=new firebase.auth.GoogleAuthProvider();
+  provider.setCustomParameters({prompt:'select_account'});
   $('#fullLoader').classList.add('show');
-  auth.signInWithPopup(provider)
-    .then(r => console.log('✓ Sign-in:', r.user.email))
-    .catch(err => {
-      console.error('Sign-in error:', err);
+  auth.signInWithPopup(provider).then(r=>console.log('✓ Sign-in:',r.user.email))
+    .catch(err=>{
+      console.error('Sign-in error:',err);
       $('#fullLoader').classList.remove('show');
-      if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
-        toast('Popup blocked — trying redirect…');
-        auth.signInWithRedirect(provider).catch(() => toast('Please allow popups'));
-      } else if (err.code === 'auth/unauthorized-domain') toast('Firebase-এ ডোমেইন অনুমোদিত নয়', 5000);
-      else if (err.code === 'auth/operation-not-allowed') toast('Google Sign-In চালু করা হয়নি', 5000);
-      else if (err.code !== 'auth/cancelled-popup-request') toast('Sign-in failed: ' + err.message, 5000);
+      if(err.code==='auth/popup-blocked'||err.code==='auth/popup-closed-by-user'){
+        toast('Popup blocked — trying redirect…'); auth.signInWithRedirect(provider).catch(()=>toast('Please allow popups'));
+      } else if(err.code==='auth/unauthorized-domain') toast('Firebase-এ ডোমেইন অনুমোদিত নয়',5000);
+      else if(err.code==='auth/operation-not-allowed') toast('Google Sign-In চালু করা হয়নি',5000);
+      else if(err.code!=='auth/cancelled-popup-request') toast('Sign-in failed: '+err.message,5000);
     });
 }
-
-function signOut() {
-  // ১. ক্লাউড নোট লোকাল স্টোরেজে সেভ করুন (তাই সাইন আউটের পরে দেখা যাবে)
-  if (State.notes.length > 0) cacheCloudNotesLocally();
-
-  // ২. ক্লাউড থেকে আনসাবস্ক্রাইব
-  if (State.unsubscribeNotes) { State.unsubscribeNotes(); State.unsubscribeNotes = null; }
-
-  // ৩. Firebase থেকে সাইন আউট
-  if (firebaseReady && auth) {
-    auth.signOut().then(() => {
-      State.user = null;
-      State.isOfflineMode = true;
-      localStorage.setItem(STORAGE_MODE, 'offline');
-      State.notes = loadLocalNotes();
-      unlockedNotes.clear();
-
-      updateAccountUI();
-      renderNotes();
-      refreshSidebar();
-      updateStorageInfo();
-      updatePendingIndicator();
-
-      toast('Signed out. ' + State.notes.length + ' notes saved locally.');
+function signOut(){
+  if(State.notes.length>0) cacheCloudNotesLocally();
+  if(State.unsubscribeNotes){ State.unsubscribeNotes(); State.unsubscribeNotes=null; }
+  if(firebaseReady&&auth){
+    auth.signOut().then(()=>{
+      State.user=null; State.isOfflineMode=true;
+      localStorage.setItem(STORAGE_MODE,'offline');
+      State.notes=loadLocalNotes(); unlockedNotes.clear();
+      updateAccountUI(); renderNotes(); refreshSidebar(); updateStorageInfo(); updatePendingIndicator();
+      toast('Signed out. '+State.notes.length+' notes saved locally.');
     });
   }
 }
-
-/* ============ SKIP LOGIN ============ */
-function skipLogin() {
-  State.isOfflineMode = true;
-  State.user = null;
-  localStorage.setItem(STORAGE_MODE, 'offline');
-  State.notes = loadLocalNotes();
-  updateAccountUI();
-  showScreen('home');
-  renderNotes();
-  refreshSidebar();
-  updateStorageInfo();
-  updatePendingIndicator();
+function skipLogin(){
+  State.isOfflineMode=true; State.user=null;
+  localStorage.setItem(STORAGE_MODE,'offline');
+  State.notes=loadLocalNotes();
+  updateAccountUI(); showScreen('home'); renderNotes(); refreshSidebar(); updateStorageInfo(); updatePendingIndicator();
   startReminderChecker();
   toast('Offline mode — notes stored on this device');
 }
-
-/* ============ ACCOUNT UI ============ */
-function updateAccountUI() {
-  const pendingCount = loadLocalNotes().length;
-
-  if (State.isOfflineMode) {
-    $('#homeName').textContent = 'Offline Mode';
-    $('#homeAvatar').innerHTML = '📴';
-    $('#sidebarName').textContent = 'Offline Mode';
-    $('#sidebarEmail').textContent = 'Not signed in';
-    $('#sidebarAvatar').innerHTML = '📴';
-    $('#settingsName').textContent = 'Guest User';
-    $('#settingsEmail').textContent = 'Offline mode — local storage only';
-    $('#settingsAvatar').innerHTML = '📴';
-    $('#dataModeDesc').textContent = 'Offline — local storage only';
-    $('#offlinePill').style.display = 'inline-flex';
-    $('#signInFromSettings').style.display = 'flex';
-    $('#signOutBtn').style.display = 'none';
-    $('#syncGroupTitle').style.display = 'none';
-    $('#syncGroup').style.display = 'none';
-    $('#syncPendingBtn').style.display = pendingCount > 0 ? 'flex' : 'none';
-    $('#pendingSyncDesc').textContent = pendingCount > 0
-      ? `${pendingCount} note${pendingCount > 1 ? 's' : ''} waiting — sign in to sync`
-      : '0 notes waiting';
-    if (pendingCount > 0) {
-      $('#bannerWrap').style.display = 'block';
-    } else {
-      $('#bannerWrap').style.display = 'block';
-    }
-  } else if (State.user) {
-    const u = State.user;
-    const displayName = u.displayName || u.email || 'User';
-    const initial = displayName.charAt(0).toUpperCase();
-    const photoHTML = u.photoURL
-      ? `<img src="${u.photoURL}" alt="">`
-      : initial;
-
-    $('#homeName').textContent = displayName;
-    $('#homeAvatar').innerHTML = photoHTML;
-    $('#sidebarName').textContent = displayName;
-    $('#sidebarEmail').textContent = u.email || '';
-    $('#sidebarAvatar').innerHTML = photoHTML;
-    $('#settingsName').textContent = displayName;
-    $('#settingsEmail').textContent = u.email || '';
-    $('#settingsAvatar').innerHTML = photoHTML;
-    $('#dataModeDesc').textContent = 'Cloud — synced with your Google account';
-    $('#offlinePill').style.display = 'none';
-    $('#signInFromSettings').style.display = 'none';
-    $('#signOutBtn').style.display = 'flex';
-    $('#syncGroupTitle').style.display = 'block';
-    $('#syncGroup').style.display = 'block';
-    $('#syncPendingBtn').style.display = 'none';
-    $('#bannerWrap').style.display = 'block';
+function updateAccountUI(){
+  const pendingCount=loadLocalNotes().length;
+  if(State.isOfflineMode){
+    $('#homeName').textContent='Offline Mode';
+    $('#homeAvatar').innerHTML='📴';
+    $('#sidebarName').textContent='Offline Mode'; $('#sidebarEmail').textContent='Not signed in'; $('#sidebarAvatar').innerHTML='📴';
+    $('#settingsName').textContent='Guest User'; $('#settingsEmail').textContent='Offline mode — local storage only'; $('#settingsAvatar').innerHTML='📴';
+    $('#dataModeDesc').textContent='Offline — local storage only';
+    $('#offlinePill').style.display='inline-flex';
+    $('#signInFromSettings').style.display='flex';
+    $('#signOutBtn').style.display='none';
+    $('#syncGroupTitle').style.display='none'; $('#syncGroup').style.display='none';
+    $('#syncPendingBtn').style.display=pendingCount>0?'flex':'none';
+    $('#pendingSyncDesc').textContent=pendingCount>0?`${pendingCount} note${pendingCount>1?'s':''} waiting — sign in to sync`:'0 notes waiting';
+    $('#bannerWrap').style.display='block';
+  } else if(State.user){
+    const u=State.user;
+    const displayName=u.displayName||u.email||'User';
+    const initial=displayName.charAt(0).toUpperCase();
+    const photoHTML=u.photoURL?`<img src="${u.photoURL}" alt="">`:initial;
+    $('#homeName').textContent=displayName; $('#homeAvatar').innerHTML=photoHTML;
+    $('#sidebarName').textContent=displayName; $('#sidebarEmail').textContent=u.email||''; $('#sidebarAvatar').innerHTML=photoHTML;
+    $('#settingsName').textContent=displayName; $('#settingsEmail').textContent=u.email||''; $('#settingsAvatar').innerHTML=photoHTML;
+    $('#dataModeDesc').textContent='Cloud — synced with your Google account';
+    $('#offlinePill').style.display='none';
+    $('#signInFromSettings').style.display='none';
+    $('#signOutBtn').style.display='flex';
+    $('#syncGroupTitle').style.display='block'; $('#syncGroup').style.display='block';
+    $('#syncPendingBtn').style.display='none';
+    $('#bannerWrap').style.display='block';
   }
 }
-
-function updatePendingIndicator() {
-  const count = loadLocalNotes().length;
-  const pendingPill = $('#pendingPill');
-  const pendingCount = $('#pendingCount');
-  if (State.isOfflineMode && count > 0) {
-    pendingPill.style.display = 'inline-flex';
-    pendingCount.textContent = count;
-  } else {
-    pendingPill.style.display = 'none';
-  }
+function updatePendingIndicator(){
+  const count=loadLocalNotes().length;
+  const pendingPill=$('#pendingPill'),pendingCount=$('#pendingCount');
+  if(State.isOfflineMode&&count>0){ pendingPill.style.display='inline-flex'; pendingCount.textContent=count; }
+  else pendingPill.style.display='none';
 }
-
-/* ============ SIGN-IN HANDLER ============ */
-async function onUserSignedIn(user) {
-  State.user = user;
-  State.isOfflineMode = false;
-  localStorage.setItem(STORAGE_MODE, 'cloud');
-
-  updateAccountUI();
-  $('#fullLoader').classList.remove('show');
-  showScreen('home');
-
-  // Merge offline notes to cloud
-  const pending = loadLocalNotes();
-  if (pending.length > 0) {
+async function onUserSignedIn(user){
+  State.user=user; State.isOfflineMode=false;
+  localStorage.setItem(STORAGE_MODE,'cloud');
+  updateAccountUI(); $('#fullLoader').classList.remove('show'); showScreen('home');
+  const pending=loadLocalNotes();
+  if(pending.length>0){
     setSyncStatus('saving');
-    toast(`Uploading ${pending.length} offline notes…`, 3000);
-    try {
-      const result = await mergeOfflineNotesToCloud(user.uid);
-      if (result.uploaded + result.merged > 0) {
-        toast(`✓ Synced ${result.uploaded} new${result.merged > 0 ? `, merged ${result.merged}` : ''}`, 4000);
-      }
-    } catch (err) {
-      console.error('Merge failed:', err);
-      toast('Some notes could not be synced');
-    }
+    toast(`Uploading ${pending.length} offline notes…`,3000);
+    try{
+      const result=await mergeOfflineNotesToCloud(user.uid);
+      if(result.uploaded+result.merged>0) toast(`✓ Synced ${result.uploaded} new${result.merged>0?`, merged ${result.merged}`:''}`,4000);
+    }catch(err){ console.error('Merge failed:',err); toast('Some notes could not be synced'); }
   }
-
-  // Save user profile
   db.collection('users').doc(user.uid).set({
-    displayName: user.displayName || '',
-    email: user.email || '',
-    photoURL: user.photoURL || '',
-    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-  }, { merge: true }).catch(() => {});
-
-  subscribeNotes();
-  loadLastBackup();
-  startReminderChecker();
-  updatePendingIndicator();
+    displayName:user.displayName||'', email:user.email||'', photoURL:user.photoURL||'',
+    lastLogin:firebase.firestore.FieldValue.serverTimestamp()
+  },{merge:true}).catch(()=>{});
+  subscribeNotes(); loadLastBackup(); startReminderChecker(); updatePendingIndicator();
 }
-
-/* ============ MANUAL SYNC PENDING ============ */
-async function syncPendingNotes() {
-  if (!State.user) { toast('Please sign in first'); return; }
-  const pending = loadLocalNotes();
-  if (pending.length === 0) { toast('No pending notes'); return; }
-  setSyncStatus('saving');
-  toast('Uploading…');
-  try {
-    const result = await mergeOfflineNotesToCloud(State.user.uid);
+async function syncPendingNotes(){
+  if(!State.user){ toast('Please sign in first'); return; }
+  const pending=loadLocalNotes(); if(pending.length===0){ toast('No pending notes'); return; }
+  setSyncStatus('saving'); toast('Uploading…');
+  try{
+    const result=await mergeOfflineNotesToCloud(State.user.uid);
     setSyncStatus('synced');
-    toast(`✓ Uploaded ${result.uploaded}${result.merged > 0 ? `, merged ${result.merged}` : ''}`);
+    toast(`✓ Uploaded ${result.uploaded}${result.merged>0?`, merged ${result.merged}`:''}`);
     updatePendingIndicator();
-  } catch (err) {
-    console.error(err);
-    setSyncStatus('failed');
-    toast('Sync failed');
-  }
+  }catch(err){ console.error(err); setSyncStatus('failed'); toast('Sync failed'); }
+}
+function subscribeNotes(){
+  if(State.unsubscribeNotes) State.unsubscribeNotes();
+  if(!State.user||!firebaseReady)return;
+  const uid=State.user.uid;
+  State.unsubscribeNotes=db.collection('users').doc(uid).collection('notes').orderBy('updatedAt','desc')
+    .onSnapshot({includeMetadataChanges:true},(snapshot)=>{
+      const notes=[];
+      snapshot.forEach(doc=>{ const data=doc.data(); data.id=doc.id; data._pending=doc.metadata.hasPendingWrites; notes.push(data); });
+      State.notes=notes;
+      renderNotes(); updateStorageInfo(); refreshSidebar(); cacheCloudNotesLocally();
+      const inEditor=$('#editor').classList.contains('active');
+      if(snapshot.metadata.hasPendingWrites){ if(!inEditor)setSyncStatus('saving'); }
+      else if(snapshot.metadata.fromCache){ if(!inEditor)setSyncStatus(navigator.onLine?'saving':'offline'); }
+      else { if(!inEditor)setSyncStatus('synced'); updateLastBackupTime(new Date()); }
+    },err=>{ console.error('Snapshot error:',err); setSyncStatus('failed'); });
 }
 
-/* ============ NOTES SUBSCRIPTION ============ */
-function subscribeNotes() {
-  if (State.unsubscribeNotes) State.unsubscribeNotes();
-  if (!State.user || !firebaseReady) return;
-
-  const uid = State.user.uid;
-  State.unsubscribeNotes = db.collection('users').doc(uid).collection('notes')
-    .orderBy('updatedAt', 'desc')
-    .onSnapshot({ includeMetadataChanges: true }, (snapshot) => {
-      const notes = [];
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        data.id = doc.id;
-        data._pending = doc.metadata.hasPendingWrites;
-        notes.push(data);
-      });
-      State.notes = notes;
-      renderNotes();
-      updateStorageInfo();
-      refreshSidebar();
-      cacheCloudNotesLocally();
-
-      const inEditor = $('#editor').classList.contains('active');
-      if (snapshot.metadata.hasPendingWrites) {
-        if (!inEditor) setSyncStatus('saving');
-      } else if (snapshot.metadata.fromCache) {
-        if (!inEditor) setSyncStatus(navigator.onLine ? 'saving' : 'offline');
-      } else {
-        if (!inEditor) setSyncStatus('synced');
-        updateLastBackupTime(new Date());
-      }
-    }, (err) => { console.error('Snapshot error:', err); setSyncStatus('failed'); });
-}
-
-/* ============ RENDER NOTES ============ */
-function renderNotes() {
-  const scroll = $('#notesScroll');
-  const q = State.searchQuery.toLowerCase().trim();
-  const filter = State.activeFilter;
-  let list = State.notes.slice();
-
-  if (filter === 'trash') list = list.filter(n => n.deleted);
+function renderNotes(){
+  const scroll=$('#notesScroll');
+  const q=State.searchQuery.toLowerCase().trim();
+  const filter=State.activeFilter;
+  let list=State.notes.slice();
+  if(filter==='trash') list=list.filter(n=>n.deleted);
   else {
-    list = list.filter(n => !n.deleted && !n.archived);
-    if (filter === 'favorite') list = list.filter(n => n.favorite);
-    if (filter === 'pinned') list = list.filter(n => n.pinned);
-    if (filter === 'reminders') list = list.filter(n => n.reminder);
-    if (filter === 'archived') list = State.notes.filter(n => !n.deleted && n.archived);
-    if (filter === 'tag' && State.activeTag) list = list.filter(n => n.category === State.activeTag);
+    list=list.filter(n=>!n.deleted&&!n.archived);
+    if(filter==='favorite') list=list.filter(n=>n.favorite);
+    if(filter==='pinned') list=list.filter(n=>n.pinned);
+    if(filter==='reminders') list=list.filter(n=>n.reminder);
+    if(filter==='archived') list=State.notes.filter(n=>!n.deleted&&n.archived);
+    if(filter==='tag'&&State.activeTag) list=list.filter(n=>n.category===State.activeTag);
   }
-
-  if (q) {
-    list = list.filter(n =>
-      (n.title || '').toLowerCase().includes(q) ||
-      stripHtml(n.content || '').toLowerCase().includes(q)
-    );
-  }
-
-  if (filter === 'recent') list.sort((a, b) => tsToMs(b.updatedAt) - tsToMs(a.updatedAt));
-  else if (filter !== 'trash') {
-    list.sort((a, b) => {
-      if (a.pinned && !b.pinned) return -1;
-      if (!a.pinned && b.pinned) return 1;
-      return tsToMs(b.updatedAt) - tsToMs(a.updatedAt);
-    });
-  } else list.sort((a, b) => tsToMs(b.deletedAt) - tsToMs(a.deletedAt));
-
-  if (list.length === 0) { scroll.innerHTML = emptyState(filter, q); return; }
-
-  let html = '';
-  if (filter === 'all' && !q) {
-    const pinned = list.filter(n => n.pinned);
-    const others = list.filter(n => !n.pinned);
-    if (pinned.length) html += `<div class="section-title">📌 Pinned</div><div class="notes-grid">${pinned.map(cardHtml).join('')}</div>`;
-    if (others.length) html += `<div class="section-title">All Notes</div><div class="notes-grid">${others.map(cardHtml).join('')}</div>`;
-  } else {
-    html = `<div class="notes-grid">${list.map(cardHtml).join('')}</div>`;
-  }
-  scroll.innerHTML = html;
-
-  scroll.querySelectorAll('.note-card').forEach(card => {
-    const noteId = card.dataset.id;
-    let lpTimer = null, lpDone = false;
-    const start = () => {
-      lpDone = false;
-      card.classList.add('long-pressed');
-      lpTimer = setTimeout(() => {
-        lpDone = true;
-        if (navigator.vibrate) navigator.vibrate(30);
-        card.classList.remove('long-pressed');
-        openContextMenu(noteId);
-      }, 500);
-    };
-    const cancel = () => { clearTimeout(lpTimer); card.classList.remove('long-pressed'); };
-    card.addEventListener('touchstart', start, { passive: true });
-    card.addEventListener('touchend', cancel);
-    card.addEventListener('touchmove', cancel, { passive: true });
-    card.addEventListener('touchcancel', cancel);
-    card.addEventListener('mousedown', start);
-    card.addEventListener('mouseup', cancel);
-    card.addEventListener('mouseleave', cancel);
-    card.addEventListener('contextmenu', e => e.preventDefault());
-    card.addEventListener('click', e => {
-      if (lpDone) { e.preventDefault(); e.stopPropagation(); lpDone = false; return; }
-      const n = State.notes.find(x => x.id === noteId);
-      if (!n) return;
-      if (n.deleted) openContextMenu(noteId);
-      else openEditor(noteId);
+  if(q) list=list.filter(n=>(n.title||'').toLowerCase().includes(q)||stripHtml(n.content||'').toLowerCase().includes(q));
+  if(filter==='recent') list.sort((a,b)=>tsToMs(b.updatedAt)-tsToMs(a.updatedAt));
+  else if(filter!=='trash') list.sort((a,b)=>{ if(a.pinned&&!b.pinned)return -1; if(!a.pinned&&b.pinned)return 1; return tsToMs(b.updatedAt)-tsToMs(a.updatedAt); });
+  else list.sort((a,b)=>tsToMs(b.deletedAt)-tsToMs(a.deletedAt));
+  if(list.length===0){ scroll.innerHTML=emptyState(filter,q); return; }
+  let html='';
+  if(filter==='all'&&!q){
+    const pinned=list.filter(n=>n.pinned), others=list.filter(n=>!n.pinned);
+    if(pinned.length)html+=`<div class="section-title">📌 Pinned</div><div class="notes-grid">${pinned.map(cardHtml).join('')}</div>`;
+    if(others.length)html+=`<div class="section-title">All Notes</div><div class="notes-grid">${others.map(cardHtml).join('')}</div>`;
+  } else html=`<div class="notes-grid">${list.map(cardHtml).join('')}</div>`;
+  scroll.innerHTML=html;
+  scroll.querySelectorAll('.note-card').forEach(card=>{
+    const noteId=card.dataset.id;
+    let lpTimer=null,lpDone=false;
+    const start=()=>{ lpDone=false; card.classList.add('long-pressed'); lpTimer=setTimeout(()=>{ lpDone=true; if(navigator.vibrate)navigator.vibrate(30); card.classList.remove('long-pressed'); openContextMenu(noteId); },500); };
+    const cancel=()=>{ clearTimeout(lpTimer); card.classList.remove('long-pressed'); };
+    card.addEventListener('touchstart',start,{passive:true});
+    card.addEventListener('touchend',cancel);
+    card.addEventListener('touchmove',cancel,{passive:true});
+    card.addEventListener('touchcancel',cancel);
+    card.addEventListener('mousedown',start); card.addEventListener('mouseup',cancel); card.addEventListener('mouseleave',cancel);
+    card.addEventListener('contextmenu',e=>e.preventDefault());
+    card.addEventListener('click',e=>{
+      if(lpDone){ e.preventDefault(); e.stopPropagation(); lpDone=false; return; }
+      const n=State.notes.find(x=>x.id===noteId); if(!n)return;
+      if(n.deleted)openContextMenu(noteId); else openEditor(noteId);
     });
   });
 }
-
-function cardHtml(n) {
-  const title = escapeHtml(n.title || '');
-  const preview = escapeHtml(stripHtml(n.content || '').slice(0, 180));
-  const date = formatDate(n.updatedAt);
-  const pending = n._pending ? ' •' : '';
-  const tag = n.category ? `<span class="note-tag">🏷️ ${escapeHtml(n.category)}</span>` : '';
-  let badges = '';
-  if (n.favorite) badges += '<span>⭐</span>';
-  if (n.pinned) badges += '<span>📌</span>';
-  if (n.locked) badges += '<span>🔒</span>';
-  if (n.reminder) badges += '<span>🔔</span>';
-  const colorAttr = n.color ? ` data-color="${escapeHtml(n.color)}"` : '';
-  const pendingClass = n._pending ? ' pending-sync' : '';
-  return `
-    <div class="note-card${n.pinned ? ' pinned' : ''}${pendingClass}" data-id="${n.id}"${colorAttr}>
-      ${badges ? `<div class="card-badges">${badges}</div>` : ''}
-      <div class="note-title">${title}</div>
-      <div class="note-preview">${preview}</div>
-      <div class="note-meta"><span>${date}${pending}</span>${tag}</div>
-    </div>`;
+function cardHtml(n){
+  const title=escapeHtml(n.title||'');
+  const preview=escapeHtml(stripHtml(n.content||'').slice(0,180));
+  const date=formatDate(n.updatedAt);
+  const pending=n._pending?' •':'';
+  const tag=n.category?`<span class="note-tag">🏷️ ${escapeHtml(n.category)}</span>`:'';
+  let badges='';
+  if(n.favorite)badges+='<span>⭐</span>';
+  if(n.pinned)badges+='<span>📌</span>';
+  if(n.locked)badges+='<span>🔒</span>';
+  if(n.reminder)badges+='<span>🔔</span>';
+  const colorAttr=n.color?` data-color="${escapeHtml(n.color)}"`:'';
+  const pendingClass=n._pending?' pending-sync':'';
+  return `<div class="note-card${n.pinned?' pinned':''}${pendingClass}" data-id="${n.id}"${colorAttr}>${badges?`<div class="card-badges">${badges}</div>`:''}<div class="note-title">${title}</div><div class="note-preview">${preview}</div><div class="note-meta"><span>${date}${pending}</span>${tag}</div></div>`;
 }
-
-function emptyState(filter, q) {
-  if (q) return `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">No results</div><div class="empty-desc">No notes match "${escapeHtml(q)}"</div></div>`;
-  const m = {
-    all: ['📝', 'No notes yet', 'Tap the + button to create your first note'],
-    favorite: ['⭐', 'No favorites', 'Star important notes'],
-    pinned: ['📌', 'No pinned notes', 'Pin important notes'],
-    recent: ['🕐', 'No recent notes', ''],
-    reminders: ['🔔', 'No reminders', 'Set a reminder on any note'],
-    archived: ['📦', 'No archived notes', ''],
-    trash: ['🗑️', 'Trash is empty', ''],
-    tag: ['🏷️', 'Empty tag', '']
-  };
-  const [i, t, d] = m[filter] || m.all;
-  return `<div class="empty"><div class="empty-icon">${i}</div><div class="empty-title">${t}</div><div class="empty-desc">${d}</div></div>`;
+function emptyState(filter,q){
+  if(q)return`<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">No results</div><div class="empty-desc">No notes match "${escapeHtml(q)}"</div></div>`;
+  const m={all:['📝','No notes yet','Tap the + button to create your first note'],favorite:['⭐','No favorites','Star important notes'],pinned:['📌','No pinned notes','Pin important notes'],recent:['🕐','No recent notes',''],reminders:['🔔','No reminders','Set a reminder on any note'],archived:['📦','No archived notes',''],trash:['🗑️','Trash is empty',''],tag:['🏷️','Empty tag','']};
+  const [i,t,d]=m[filter]||m.all;
+  return`<div class="empty"><div class="empty-icon">${i}</div><div class="empty-title">${t}</div><div class="empty-desc">${d}</div></div>`;
 }
+function updateStorageInfo(){ const total=State.notes.filter(n=>!n.deleted).length; const el=$('#storageDesc'); if(el)el.textContent=`${total} note${total!==1?'s':''}`; }
 
-function updateStorageInfo() {
-  const total = State.notes.filter(n => !n.deleted).length;
-  const el = $('#storageDesc');
-  if (el) el.textContent = `${total} note${total !== 1 ? 's' : ''}`;
-}
-
-/* ============ SIDEBAR ============ */
-function openSidebar() {
-  $('#sidebar').classList.add('show');
-  $('#sidebarOverlay').classList.add('show');
-  $('#hamburgerBtn').classList.add('active');
-  refreshSidebar();
-}
-function closeSidebar() {
-  $('#sidebar').classList.remove('show');
-  $('#sidebarOverlay').classList.remove('show');
-  $('#hamburgerBtn').classList.remove('active');
-}
-function refreshSidebar() {
-  const visible = State.notes.filter(n => !n.deleted);
-  $('#countAll').textContent = visible.length;
-  $('#countFav').textContent = visible.filter(n => n.favorite).length;
-  $('#countPin').textContent = visible.filter(n => n.pinned).length;
-  $('#countRem').textContent = visible.filter(n => n.reminder).length;
-  $('#countArch').textContent = visible.filter(n => n.archived).length;
-  $('#countTrash').textContent = State.notes.filter(n => n.deleted).length;
-
-  const tags = getCategories();
-  const container = $('#sidebarTags');
-  if (tags.length === 0) {
-    container.innerHTML = `<div class="sidebar-empty-tags">No tags yet</div>`;
-  } else {
-    const colors = ['#7ad7ff', '#22e0a0', '#ffa940', '#ff6b8a', '#4fb3e8', '#a78bfa'];
-    container.innerHTML = tags.map((t, i) =>
-      `<button class="sidebar-tag ${State.activeTag === t ? 'active' : ''}" data-tag="${escapeHtml(t)}">
-        <span class="sidebar-tag-dot" style="background:${colors[i % colors.length]}"></span>
-        <span>${escapeHtml(t)}</span>
-      </button>`).join('');
-    container.querySelectorAll('.sidebar-tag').forEach(el => {
-      el.onclick = () => {
-        State.activeTag = el.dataset.tag;
-        State.activeFilter = 'tag';
-        closeSidebar();
-        updateSidebarActive();
-        updatePageTitle();
-        renderNotes();
-      };
+function openSidebar(){ $('#sidebar').classList.add('show'); $('#sidebarOverlay').classList.add('show'); $('#hamburgerBtn').classList.add('active'); refreshSidebar(); }
+function closeSidebar(){ $('#sidebar').classList.remove('show'); $('#sidebarOverlay').classList.remove('show'); $('#hamburgerBtn').classList.remove('active'); }
+function refreshSidebar(){
+  const visible=State.notes.filter(n=>!n.deleted);
+  $('#countAll').textContent=visible.length;
+  $('#countFav').textContent=visible.filter(n=>n.favorite).length;
+  $('#countPin').textContent=visible.filter(n=>n.pinned).length;
+  $('#countRem').textContent=visible.filter(n=>n.reminder).length;
+  $('#countArch').textContent=visible.filter(n=>n.archived).length;
+  $('#countTrash').textContent=State.notes.filter(n=>n.deleted).length;
+  const tags=getCategories();
+  const container=$('#sidebarTags');
+  if(tags.length===0){ container.innerHTML=`<div class="sidebar-empty-tags">No tags yet</div>`; }
+  else {
+    const colors=['#7ad7ff','#22e0a0','#ffa940','#ff6b8a','#4fb3e8','#a78bfa'];
+    container.innerHTML=tags.map((t,i)=>`<button class="sidebar-tag ${State.activeTag===t?'active':''}" data-tag="${escapeHtml(t)}"><span class="sidebar-tag-dot" style="background:${colors[i%colors.length]}"></span><span>${escapeHtml(t)}</span></button>`).join('');
+    container.querySelectorAll('.sidebar-tag').forEach(el=>{
+      el.onclick=()=>{ State.activeTag=el.dataset.tag; State.activeFilter='tag'; closeSidebar(); updateSidebarActive(); updatePageTitle(); renderNotes(); };
     });
   }
   updateSidebarActive();
 }
-function updateSidebarActive() {
-  $$('.sidebar-item').forEach(el => el.classList.toggle('active', el.dataset.filter === State.activeFilter && State.activeFilter !== 'tag'));
-}
-function updatePageTitle() {
-  const t = {
-    all: 'All Notes', favorite: '⭐ Favorites', pinned: '📌 Pinned',
-    recent: '🕐 Recent', reminders: '🔔 Reminders', archived: '📦 Archived',
-    trash: '🗑️ Trash', tag: `🏷️ ${State.activeTag || ''}`
-  };
-  $('#pageTitle').textContent = t[State.activeFilter] || 'Notes';
+function updateSidebarActive(){ $$('.sidebar-item').forEach(el=>el.classList.toggle('active',el.dataset.filter===State.activeFilter&&State.activeFilter!=='tag')); }
+function updatePageTitle(){
+  const t={all:'All Notes',favorite:'⭐ Favorites',pinned:'📌 Pinned',recent:'🕐 Recent',reminders:'🔔 Reminders',archived:'📦 Archived',trash:'🗑️ Trash',tag:`🏷️ ${State.activeTag||''}`};
+  $('#pageTitle').textContent=t[State.activeFilter]||'Notes';
 }
 
-/* ============ EDITOR ============ */
-async function openEditor(noteId) {
-  const n = State.notes.find(x => x.id === noteId);
-  if (!n) return;
-  if (n.locked && !unlockedNotes.has(noteId)) {
-    const ok = await requestUnlock(noteId);
-    if (!ok) return;
-  }
-  State.currentNote = n;
-  $('#editorTitle').value = n.title || '';
-  $('#editorContent').innerHTML = n.content || '';
-  $('#editorStatus').textContent = 'Saved';
-  if (n.color) $('#editor').setAttribute('data-color', n.color);
-  else $('#editor').removeAttribute('data-color');
+async function openEditor(noteId){
+  const n=State.notes.find(x=>x.id===noteId); if(!n)return;
+  if(n.locked&&!unlockedNotes.has(noteId)){ const ok=await requestUnlock(noteId); if(!ok)return; }
+  State.currentNote=n;
+  $('#editorTitle').value=n.title||'';
+  $('#editorContent').innerHTML=n.content||'';
+  $('#editorStatus').textContent='Saved';
+  if(n.color)$('#editor').setAttribute('data-color',n.color); else $('#editor').removeAttribute('data-color');
   updateReminderBadge(n);
-  const btn = $('#editorSave');
-  btn.classList.remove('saved', 'saving');
-  btn.innerHTML = '💾 Save';
-  $$('.tool-btn').forEach(b => b.classList.remove('active'));
+  const btn=$('#editorSave'); btn.classList.remove('saved','saving'); btn.innerHTML='💾 Save';
+  $$('.tool-btn').forEach(b=>b.classList.remove('active'));
   showScreen('editor');
 }
-function updateReminderBadge(n) {
-  const el = $('#editorReminderBadge');
-  if (n && n.reminder) {
-    const d = n.reminder.toDate ? n.reminder.toDate() : new Date(n.reminder);
-    el.innerHTML = `<span class="reminder-badge">🔔 ${formatDateTime(d)}</span>`;
-  } else el.innerHTML = '';
+function updateReminderBadge(n){
+  const el=$('#editorReminderBadge');
+  if(n&&n.reminder){ const d=n.reminder.toDate?n.reminder.toDate():new Date(n.reminder); el.innerHTML=`<span class="reminder-badge">🔔 ${formatDateTime(d)}</span>`; }
+  else el.innerHTML='';
 }
-function closeEditor() {
-  if (State.saveTimer) { clearTimeout(State.saveTimer); State.saveTimer = null; flushSave(); }
-  State.currentNote = null;
-  $('#editor').removeAttribute('data-color');
-  $$('.tool-btn').forEach(b => b.classList.remove('active'));
+function closeEditor(){
+  if(State.saveTimer){ clearTimeout(State.saveTimer); State.saveTimer=null; flushSave(); }
+  State.currentNote=null; $('#editor').removeAttribute('data-color');
+  $$('.tool-btn').forEach(b=>b.classList.remove('active'));
   showScreen('home');
 }
-
-async function flushSave() {
-  if (!State.currentNote) return;
-  const title = $('#editorTitle').value;
-  const content = $('#editorContent').innerHTML;
-  const note = State.currentNote;
-  if (title === (note.title || '') && content === (note.content || '')) return;
-
-  if (State.isOfflineMode) {
-    const n = State.notes.find(x => x.id === note.id);
-    if (n) {
-      n.title = title;
-      n.content = content;
-      n.updatedAt = Date.now();
-      saveLocalNotes();
-    }
-    $('#editorStatus').textContent = 'Saved locally';
-  } else if (State.user && firebaseReady) {
+async function flushSave(){
+  if(!State.currentNote)return;
+  const title=$('#editorTitle').value;
+  const content=$('#editorContent').innerHTML;
+  const note=State.currentNote;
+  if(title===(note.title||'')&&content===(note.content||''))return;
+  if(State.isOfflineMode){
+    const n=State.notes.find(x=>x.id===note.id);
+    if(n){ n.title=title; n.content=content; n.updatedAt=Date.now(); saveLocalNotes(); }
+    $('#editorStatus').textContent='Saved locally';
+  } else if(State.user&&firebaseReady){
     setSyncStatus('saving');
-    try {
-      await db.collection('users').doc(State.user.uid).collection('notes').doc(note.id)
-        .update({ title, content, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
-      note.title = title;
-      note.content = content;
-      $('#editorStatus').textContent = 'Saved';
-    } catch (err) {
-      console.error('Save error:', err);
-      if (!navigator.onLine) { setSyncStatus('offline'); $('#editorStatus').textContent = 'Will sync when online'; }
-      else setSyncStatus('failed');
-    }
+    try{
+      await db.collection('users').doc(State.user.uid).collection('notes').doc(note.id).update({title,content,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+      note.title=title; note.content=content; $('#editorStatus').textContent='Saved';
+    }catch(err){ console.error('Save error:',err); if(!navigator.onLine){setSyncStatus('offline');$('#editorStatus').textContent='Will sync when online';}else setSyncStatus('failed'); }
   }
 }
-
-function scheduleSave() {
-  $('#editorStatus').textContent = 'Saving…';
-  const btn = $('#editorSave');
-  if (btn.classList.contains('saved')) { btn.classList.remove('saved'); btn.innerHTML = '💾 Save'; }
+function scheduleSave(){
+  $('#editorStatus').textContent='Saving…';
+  const btn=$('#editorSave'); if(btn.classList.contains('saved')){ btn.classList.remove('saved'); btn.innerHTML='💾 Save'; }
   clearTimeout(State.saveTimer);
-  State.saveTimer = setTimeout(() => flushSave(), 600);
+  State.saveTimer=setTimeout(()=>flushSave(),600);
 }
-
-async function saveNow() {
-  if (!State.currentNote) return;
-  clearTimeout(State.saveTimer);
-  State.saveTimer = null;
-  const btn = $('#editorSave');
-  btn.classList.remove('saved');
-  btn.classList.add('saving');
-  btn.innerHTML = '⏳ Saving';
-
-  try {
+async function saveNow(){
+  if(!State.currentNote)return;
+  clearTimeout(State.saveTimer); State.saveTimer=null;
+  const btn=$('#editorSave');
+  btn.classList.remove('saved'); btn.classList.add('saving'); btn.innerHTML='⏳ Saving';
+  try{
     await flushSave();
-    if (State.isOfflineMode) {
-      btn.classList.remove('saving');
-      btn.classList.add('saved');
-      btn.innerHTML = '✓ Saved';
-      $('#editorStatus').textContent = 'Saved locally';
-      toast('✓ Saved locally');
-      setTimeout(() => { btn.classList.remove('saved', 'saving'); btn.innerHTML = '💾 Save'; }, 1800);
-    } else if (navigator.onLine) {
-      btn.innerHTML = '⏳ Syncing';
-      setSyncStatus('saving');
+    if(State.isOfflineMode){
+      btn.classList.remove('saving'); btn.classList.add('saved'); btn.innerHTML='✓ Saved';
+      $('#editorStatus').textContent='Saved locally'; toast('✓ Saved locally');
+      setTimeout(()=>{ btn.classList.remove('saved','saving'); btn.innerHTML='💾 Save'; },1800);
+    } else if(navigator.onLine){
+      btn.innerHTML='⏳ Syncing'; setSyncStatus('saving');
       await db.waitForPendingWrites();
       setSyncStatus('synced');
-      btn.classList.remove('saving');
-      btn.classList.add('saved');
-      btn.innerHTML = '✓ Synced';
-      $('#editorStatus').textContent = 'Synced to cloud';
-      toast('✓ Synced to cloud');
-      setTimeout(() => { btn.classList.remove('saved', 'saving'); btn.innerHTML = '💾 Save'; }, 1800);
+      btn.classList.remove('saving'); btn.classList.add('saved'); btn.innerHTML='✓ Synced';
+      $('#editorStatus').textContent='Synced to cloud'; toast('✓ Synced to cloud');
+      setTimeout(()=>{ btn.classList.remove('saved','saving'); btn.innerHTML='💾 Save'; },1800);
     } else {
-      setSyncStatus('offline');
-      btn.classList.remove('saving', 'saved');
-      btn.innerHTML = '💾 Save';
-      $('#editorStatus').textContent = 'Saved locally — will sync when online';
-      toast('Will sync when online');
+      setSyncStatus('offline'); btn.classList.remove('saving','saved'); btn.innerHTML='💾 Save';
+      $('#editorStatus').textContent='Saved locally — will sync when online'; toast('Will sync when online');
     }
-  } catch (err) {
-    console.error('Save error:', err);
-    btn.classList.remove('saving', 'saved');
-    btn.innerHTML = '💾 Save';
-    setSyncStatus('failed');
-    toast('Save failed');
-  }
+  }catch(err){ console.error('Save error:',err); btn.classList.remove('saving','saved'); btn.innerHTML='💾 Save'; setSyncStatus('failed'); toast('Save failed'); }
 }
 
-/* ============ CREATE ============ */
-async function createNote() {
-  const now = Date.now();
-  if (State.isOfflineMode) {
-    const n = {
-      id: genId(), title: '', content: '',
-      pinned: false, archived: false, favorite: false,
-      deleted: false, deletedAt: null, locked: false,
-      category: null, color: null, reminder: null,
-      createdAt: now, updatedAt: now
-    };
-    State.notes.unshift(n);
-    saveLocalNotes();
-    updatePendingIndicator();
-    setTimeout(() => openEditor(n.id), 80);
-  } else if (State.user && firebaseReady) {
-    const ref = db.collection('users').doc(State.user.uid).collection('notes').doc();
-    const serverNow = firebase.firestore.FieldValue.serverTimestamp();
-    const note = {
-      title: '', content: '', pinned: false, archived: false, favorite: false,
-      deleted: false, deletedAt: null, locked: false, category: null, tags: [],
-      color: null, reminder: null,
-      createdAt: serverNow, updatedAt: serverNow
-    };
+async function createNote(){
+  const now=Date.now();
+  if(State.isOfflineMode){
+    const n={id:genId(),title:'',content:'',pinned:false,archived:false,favorite:false,deleted:false,deletedAt:null,locked:false,category:null,color:null,reminder:null,createdAt:now,updatedAt:now};
+    State.notes.unshift(n); saveLocalNotes(); updatePendingIndicator();
+    setTimeout(()=>openEditor(n.id),80);
+  } else if(State.user&&firebaseReady){
+    const ref=db.collection('users').doc(State.user.uid).collection('notes').doc();
+    const serverNow=firebase.firestore.FieldValue.serverTimestamp();
+    const note={title:'',content:'',pinned:false,archived:false,favorite:false,deleted:false,deletedAt:null,locked:false,category:null,tags:[],color:null,reminder:null,createdAt:serverNow,updatedAt:serverNow};
     setSyncStatus('saving');
-    try {
-      await ref.set(note);
-      setTimeout(() => openEditor(ref.id), 100);
-    } catch (err) {
-      console.error('Create error:', err);
-      toast('Could not create note: ' + (err.code || err.message), 5000);
-      setSyncStatus('failed');
-    }
+    try{ await ref.set(note); setTimeout(()=>openEditor(ref.id),100); }
+    catch(err){ console.error('Create error:',err); toast('Could not create note: '+(err.code||err.message),5000); setSyncStatus('failed'); }
   }
 }
-
-/* ============ NOTE ACTIONS ============ */
-async function updateNoteField(noteId, fields) {
-  if (State.isOfflineMode) {
-    const n = State.notes.find(x => x.id === noteId);
-    if (!n) return;
-    Object.assign(n, fields);
-    n.updatedAt = Date.now();
-    saveLocalNotes();
-    renderNotes();
-    refreshSidebar();
-  } else if (State.user && firebaseReady) {
-    setSyncStatus('saving');
-    try {
-      await db.collection('users').doc(State.user.uid).collection('notes').doc(noteId)
-        .update({ ...fields, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
-    } catch (err) {
-      console.error('Update error:', err);
-      setSyncStatus(navigator.onLine ? 'failed' : 'offline');
-    }
-  }
-}
-async function updateNote(id, fields) { return updateNoteField(id, fields); }
-
-function deleteNote(id) {
-  updateNoteField(id, { deleted: true, deletedAt: new Date() });
-  toast('Moved to Trash');
-  if (State.currentNote && State.currentNote.id === id) closeEditor();
-}
-function restoreNote(id) { updateNoteField(id, { deleted: false, deletedAt: null }); toast('Restored'); }
-function togglePin(id) {
-  const n = State.notes.find(x => x.id === id);
-  if (!n) return;
-  updateNoteField(id, { pinned: !n.pinned });
-  toast(n.pinned ? 'Unpinned' : 'Pinned');
-}
-function toggleFavorite(id) {
-  const n = State.notes.find(x => x.id === id);
-  if (!n) return;
-  updateNoteField(id, { favorite: !n.favorite });
-  toast(n.favorite ? 'Removed from favorites' : '⭐ Added');
-}
-function toggleArchive(id) {
-  const n = State.notes.find(x => x.id === id);
-  if (!n) return;
-  updateNoteField(id, { archived: !n.archived });
-  toast(n.archived ? 'Unarchived' : 'Archived');
-}
-async function purgeNote(id) {
-  if (State.isOfflineMode) {
-    State.notes = State.notes.filter(x => x.id !== id);
-    saveLocalNotes();
-    renderNotes(); refreshSidebar();
-    toast('Deleted permanently');
-  } else if (State.user && firebaseReady) {
-    try {
-      await db.collection('users').doc(State.user.uid).collection('notes').doc(id).delete();
-      toast('Deleted permanently');
-    } catch (err) { toast('Delete failed'); }
-  }
-}
-async function duplicateNote(id) {
-  const n = State.notes.find(x => x.id === id);
-  if (!n) return;
-  const now = Date.now();
-  if (State.isOfflineMode) {
-    const copy = { ...n, id: genId(), title: (n.title || 'Untitled') + ' (Copy)',
-      pinned: false, archived: false, favorite: false, deleted: false, deletedAt: null,
-      locked: false, reminder: null, createdAt: now, updatedAt: now };
-    State.notes.unshift(copy);
+async function updateNoteField(noteId,fields){
+  if(State.isOfflineMode){
+    const n=State.notes.find(x=>x.id===noteId); if(!n)return;
+    Object.assign(n,fields); n.updatedAt=Date.now();
     saveLocalNotes(); renderNotes(); refreshSidebar();
-    toast('Duplicated');
-  } else if (State.user && firebaseReady) {
-    try {
-      setSyncStatus('saving');
-      const ref = db.collection('users').doc(State.user.uid).collection('notes').doc();
-      const serverNow = firebase.firestore.FieldValue.serverTimestamp();
-      await ref.set({
-        title: (n.title || 'Untitled') + ' (Copy)', content: n.content || '',
-        pinned: false, archived: false, favorite: false, deleted: false, deletedAt: null,
-        locked: false, category: n.category || null, tags: [],
-        color: n.color || null, reminder: null, createdAt: serverNow, updatedAt: serverNow
-      });
-      toast('Duplicated');
-    } catch (err) { console.error(err); toast('Duplicate failed'); setSyncStatus('failed'); }
+  } else if(State.user&&firebaseReady){
+    setSyncStatus('saving');
+    try{ await db.collection('users').doc(State.user.uid).collection('notes').doc(noteId).update({...fields,updatedAt:firebase.firestore.FieldValue.serverTimestamp()}); }
+    catch(err){ console.error('Update error:',err); setSyncStatus(navigator.onLine?'failed':'offline'); }
   }
 }
-async function shareNote(id) {
-  const n = State.notes.find(x => x.id === id);
-  if (!n) return;
-  const text = `${n.title || 'Untitled'}\n\n${stripHtml(n.content)}`;
-  if (navigator.share) {
-    try { await navigator.share({ title: n.title || 'Untitled', text }); toast('Shared'); }
-    catch (e) { if (e.name !== 'AbortError') copy(text); }
-  } else copy(text);
+async function updateNote(id,fields){ return updateNoteField(id,fields); }
+
+function deleteNote(id){ updateNoteField(id,{deleted:true,deletedAt:new Date()}); toast('Moved to Trash'); if(State.currentNote&&State.currentNote.id===id)closeEditor(); }
+function restoreNote(id){ updateNoteField(id,{deleted:false,deletedAt:null}); toast('Restored'); }
+function togglePin(id){ const n=State.notes.find(x=>x.id===id); if(!n)return; updateNoteField(id,{pinned:!n.pinned}); toast(n.pinned?'Unpinned':'Pinned'); }
+function toggleFavorite(id){ const n=State.notes.find(x=>x.id===id); if(!n)return; updateNoteField(id,{favorite:!n.favorite}); toast(n.favorite?'Removed from favorites':'⭐ Added'); }
+function toggleArchive(id){ const n=State.notes.find(x=>x.id===id); if(!n)return; updateNoteField(id,{archived:!n.archived}); toast(n.archived?'Unarchived':'Archived'); }
+async function purgeNote(id){
+  if(State.isOfflineMode){ State.notes=State.notes.filter(x=>x.id!==id); saveLocalNotes(); renderNotes(); refreshSidebar(); toast('Deleted permanently'); }
+  else if(State.user&&firebaseReady){ try{ await db.collection('users').doc(State.user.uid).collection('notes').doc(id).delete(); toast('Deleted permanently'); }catch(err){toast('Delete failed');} }
 }
-function copy(text) {
-  if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => toast('Copied')).catch(() => fallbackCopy(text));
+async function duplicateNote(id){
+  const n=State.notes.find(x=>x.id===id); if(!n)return;
+  const now=Date.now();
+  if(State.isOfflineMode){
+    const copy={...n,id:genId(),title:(n.title||'Untitled')+' (Copy)',pinned:false,archived:false,favorite:false,deleted:false,deletedAt:null,locked:false,reminder:null,createdAt:now,updatedAt:now};
+    State.notes.unshift(copy); saveLocalNotes(); renderNotes(); refreshSidebar(); toast('Duplicated');
+  } else if(State.user&&firebaseReady){
+    try{
+      setSyncStatus('saving');
+      const ref=db.collection('users').doc(State.user.uid).collection('notes').doc();
+      const serverNow=firebase.firestore.FieldValue.serverTimestamp();
+      await ref.set({title:(n.title||'Untitled')+' (Copy)',content:n.content||'',pinned:false,archived:false,favorite:false,deleted:false,deletedAt:null,locked:false,category:n.category||null,tags:[],color:n.color||null,reminder:null,createdAt:serverNow,updatedAt:serverNow});
+      toast('Duplicated');
+    }catch(err){ console.error(err); toast('Duplicate failed'); setSyncStatus('failed'); }
+  }
+}
+async function shareNote(id){
+  const n=State.notes.find(x=>x.id===id); if(!n)return;
+  const text=`${n.title||'Untitled'}\n\n${stripHtml(n.content)}`;
+  if(navigator.share){ try{ await navigator.share({title:n.title||'Untitled',text}); toast('Shared'); }catch(e){ if(e.name!=='AbortError')copy(text); } }
+  else copy(text);
+}
+function copy(text){
+  if(navigator.clipboard)navigator.clipboard.writeText(text).then(()=>toast('Copied')).catch(()=>fallbackCopy(text));
   else fallbackCopy(text);
 }
-function fallbackCopy(t) {
-  const ta = document.createElement('textarea');
-  ta.value = t; document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); toast('Copied'); } catch { toast('Copy failed'); }
+function fallbackCopy(t){
+  const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); toast('Copied'); }catch{ toast('Copy failed'); }
   document.body.removeChild(ta);
 }
-
-/* ============ COLOR PICKER ============ */
-function openColorPicker(id) {
-  const n = State.notes.find(x => x.id === id);
-  if (!n) return;
-  const cur = n.color || 'default';
-  const sw = COLOR_PALETTE.map(c =>
-    `<div class="color-swatch ${cur === c.name ? 'selected' : ''}" data-color="${c.name}" style="background:${c.hex};"></div>`
-  ).join('');
-  openModal(`
-    <div class="modal-title">🎨 Note Color</div>
-    <div style="color:var(--text-2);font-size:13px;margin-bottom:12px;font-weight:500;">Pick a background color</div>
-    <div class="color-picker-grid">${sw}</div>
-    <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Close</button></div>
-  `);
-  $('#modalCancel').onclick = closeModal;
-  $$('#modalContent .color-swatch').forEach(s => {
-    s.onclick = async () => {
-      const c = s.dataset.color;
-      const val = c === 'default' ? null : c;
+function openColorPicker(id){
+  const n=State.notes.find(x=>x.id===id); if(!n)return;
+  const cur=n.color||'default';
+  const sw=COLOR_PALETTE.map(c=>`<div class="color-swatch ${cur===c.name?'selected':''}" data-color="${c.name}" style="background:${c.hex};"></div>`).join('');
+  openModal(`<div class="modal-title">🎨 Note Color</div><div style="color:var(--text-2);font-size:13px;margin-bottom:12px;font-weight:500;">Pick a background color</div><div class="color-picker-grid">${sw}</div><div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Close</button></div>`);
+  $('#modalCancel').onclick=closeModal;
+  $$('#modalContent .color-swatch').forEach(s=>{
+    s.onclick=async()=>{
+      const c=s.dataset.color;
+      const val=c==='default'?null:c;
       closeModal();
-      await updateNoteField(id, { color: val });
-      if (State.currentNote && State.currentNote.id === id) {
-        if (val) $('#editor').setAttribute('data-color', val);
-        else $('#editor').removeAttribute('data-color');
-        State.currentNote.color = val;
+      await updateNoteField(id,{color:val});
+      if(State.currentNote&&State.currentNote.id===id){
+        if(val)$('#editor').setAttribute('data-color',val); else $('#editor').removeAttribute('data-color');
+        State.currentNote.color=val;
       }
       toast('Color updated');
     };
   });
 }
-
-/* ============ REMINDER ============ */
-function openReminderPicker(id) {
-  const n = State.notes.find(x => x.id === id);
-  if (!n) return;
-  let cur = '';
-  const pad = x => String(x).padStart(2, '0');
-  if (n.reminder) {
-    const d = n.reminder.toDate ? n.reminder.toDate() : new Date(n.reminder);
-    cur = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-  } else {
-    const d = new Date(Date.now() + 3600 * 1000);
-    cur = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-  }
-  openModal(`
-    <div class="modal-title">🔔 Set Reminder</div>
-    <input type="datetime-local" id="reminderInput" class="modal-input" value="${cur}">
-    ${n.reminder ? `<div class="modal-option danger" data-action="clear">🗑️ Remove reminder</div>` : ''}
-    <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button><button class="btn btn-primary" id="modalConfirm">Save</button></div>
-  `);
-  $('#modalCancel').onclick = closeModal;
-  if (n.reminder) {
-    $('#modalContent [data-action="clear"]').onclick = async () => {
-      closeModal();
-      await updateNoteField(id, { reminder: null });
-      notifiedReminders.delete(id);
-      if (State.currentNote && State.currentNote.id === id) {
-        State.currentNote.reminder = null;
-        updateReminderBadge(State.currentNote);
-      }
-      toast('Reminder removed');
-    };
-  }
-  $('#modalConfirm').onclick = async () => {
-    const v = $('#reminderInput').value;
-    if (!v) { toast('Pick a date & time'); return; }
-    const d = new Date(v);
-    if (isNaN(d.getTime())) { toast('Invalid date'); return; }
-    closeModal();
-    notifiedReminders.delete(id);
-    const reminderVal = State.isOfflineMode ? d.getTime() : firebase.firestore.Timestamp.fromDate(d);
-    await updateNoteField(id, { reminder: reminderVal });
-    if (State.currentNote && State.currentNote.id === id) {
-      State.currentNote.reminder = reminderVal;
-      updateReminderBadge(State.currentNote);
-    }
-    toast('Reminder set for ' + formatDateTime(d));
+function openReminderPicker(id){
+  const n=State.notes.find(x=>x.id===id); if(!n)return;
+  let cur=''; const pad=x=>String(x).padStart(2,'0');
+  if(n.reminder){ const d=n.reminder.toDate?n.reminder.toDate():new Date(n.reminder); cur=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`; }
+  else { const d=new Date(Date.now()+3600*1000); cur=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`; }
+  openModal(`<div class="modal-title">🔔 Set Reminder</div><input type="datetime-local" id="reminderInput" class="modal-input" value="${cur}">${n.reminder?`<div class="modal-option danger" data-action="clear">🗑️ Remove reminder</div>`:''}<div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button><button class="btn btn-primary" id="modalConfirm">Save</button></div>`);
+  $('#modalCancel').onclick=closeModal;
+  if(n.reminder){ $('#modalContent [data-action="clear"]').onclick=async()=>{ closeModal(); await updateNoteField(id,{reminder:null}); notifiedReminders.delete(id); if(State.currentNote&&State.currentNote.id===id){ State.currentNote.reminder=null; updateReminderBadge(State.currentNote); } toast('Reminder removed'); }; }
+  $('#modalConfirm').onclick=async()=>{
+    const v=$('#reminderInput').value; if(!v){ toast('Pick a date & time'); return; }
+    const d=new Date(v); if(isNaN(d.getTime())){ toast('Invalid date'); return; }
+    closeModal(); notifiedReminders.delete(id);
+    const reminderVal=State.isOfflineMode?d.getTime():firebase.firestore.Timestamp.fromDate(d);
+    await updateNoteField(id,{reminder:reminderVal});
+    if(State.currentNote&&State.currentNote.id===id){ State.currentNote.reminder=reminderVal; updateReminderBadge(State.currentNote); }
+    toast('Reminder set for '+formatDateTime(d));
   };
 }
-
-let reminderInterval = null;
-function startReminderChecker() {
-  if (reminderInterval) clearInterval(reminderInterval);
-  reminderInterval = setInterval(checkReminders, 30000);
-  checkReminders();
-}
-function checkReminders() {
-  const now = Date.now();
-  State.notes.forEach(n => {
-    if (!n.reminder || n.deleted || n.archived) return;
-    const d = n.reminder.toDate ? n.reminder.toDate() : new Date(n.reminder);
-    if (d.getTime() <= now && !notifiedReminders.has(n.id)) {
-      notifiedReminders.add(n.id);
-      showReminderNotification(n);
-    }
+let reminderInterval=null;
+function startReminderChecker(){ if(reminderInterval)clearInterval(reminderInterval); reminderInterval=setInterval(checkReminders,30000); checkReminders(); }
+function checkReminders(){
+  const now=Date.now();
+  State.notes.forEach(n=>{
+    if(!n.reminder||n.deleted||n.archived)return;
+    const d=n.reminder.toDate?n.reminder.toDate():new Date(n.reminder);
+    if(d.getTime()<=now&&!notifiedReminders.has(n.id)){ notifiedReminders.add(n.id); showReminderNotification(n); }
   });
 }
-function showReminderNotification(n) {
-  const title = n.title || 'Untitled note';
-  const body = stripHtml(n.content || '').slice(0, 120);
-  if ('Notification' in window && Notification.permission === 'granted') {
-    try { new Notification('🔔 ' + title, { body }); } catch {}
-  }
-  toast('🔔 Reminder: ' + title, 6000);
-  if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+function showReminderNotification(n){
+  const title=n.title||'Untitled note';
+  const body=stripHtml(n.content||'').slice(0,120);
+  if('Notification' in window&&Notification.permission==='granted'){ try{ new Notification('🔔 '+title,{body}); }catch{} }
+  toast('🔔 Reminder: '+title,6000);
+  if(navigator.vibrate)navigator.vibrate([200,100,200]);
 }
-
-/* ============ MOVE / TAG ============ */
-function openMoveModal(id) {
-  const n = State.notes.find(x => x.id === id);
-  if (!n) return;
-  const cats = getCategories();
-  const cur = n.category || '';
-  const opts = [{ label: 'No tag', value: '' }, ...cats.map(c => ({ label: c, value: c }))];
-  const optsHtml = opts.map(o => {
-    const sel = cur === o.value;
-    return `<div class="modal-option" data-cat="${escapeHtml(o.value)}">🏷️ ${escapeHtml(o.label)} ${sel ? '✓' : ''}</div>`;
-  }).join('');
-  openModal(`
-    <div class="modal-title">Move to Tag</div>
-    <div class="modal-option" data-cat="__new__">➕ New tag…</div>
-    ${optsHtml}
-    <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button></div>
-  `);
-  $('#modalCancel').onclick = closeModal;
-  $$('#modalContent [data-cat]').forEach(el => {
-    el.onclick = async () => {
-      const c = el.dataset.cat;
-      closeModal();
-      if (c === '__new__') {
-        const name = await promptInput('New tag', 'Enter tag name');
-        if (!name) return;
-        const cs = getCategories();
-        if (!cs.includes(name)) { cs.push(name); saveCategories(cs); }
-        await updateNoteField(id, { category: name });
-        toast('Tagged as ' + name);
-      } else {
-        await updateNoteField(id, { category: c || null });
-        toast(c ? 'Tagged as ' + c : 'Tag removed');
-      }
+function openMoveModal(id){
+  const n=State.notes.find(x=>x.id===id); if(!n)return;
+  const cats=getCategories(); const cur=n.category||'';
+  const opts=[{label:'No tag',value:''},...cats.map(c=>({label:c,value:c}))];
+  const optsHtml=opts.map(o=>{ const sel=cur===o.value; return`<div class="modal-option" data-cat="${escapeHtml(o.value)}">🏷️ ${escapeHtml(o.label)} ${sel?'✓':''}</div>`; }).join('');
+  openModal(`<div class="modal-title">Move to Tag</div><div class="modal-option" data-cat="__new__">➕ New tag…</div>${optsHtml}<div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button></div>`);
+  $('#modalCancel').onclick=closeModal;
+  $$('#modalContent [data-cat]').forEach(el=>{
+    el.onclick=async()=>{
+      const c=el.dataset.cat; closeModal();
+      if(c==='__new__'){
+        const name=await promptInput('New tag','Enter tag name');
+        if(!name)return;
+        const cs=getCategories(); if(!cs.includes(name)){ cs.push(name); saveCategories(cs); }
+        await updateNoteField(id,{category:name}); toast('Tagged as '+name);
+      } else { await updateNoteField(id,{category:c||null}); toast(c?'Tagged as '+c:'Tag removed'); }
       refreshSidebar();
     };
   });
 }
-
-/* ============ BACKUP ============ */
-async function backupNow() {
-  if (State.isOfflineMode) { toast('Offline mode — use Export Notes instead'); return; }
-  if (!State.user || !firebaseReady) return;
-  setSyncStatus('saving');
-  toast('Backing up…');
-  try {
-    await db.collection('users').doc(State.user.uid).set({ lastBackup: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
-    await db.waitForPendingWrites();
-    setSyncStatus('synced');
-    toast('Backup complete');
-  } catch (err) { console.error(err); setSyncStatus('failed'); toast('Backup failed'); }
+async function backupNow(){
+  if(State.isOfflineMode){ toast('Offline mode — use Export Notes instead'); return; }
+  if(!State.user||!firebaseReady)return;
+  setSyncStatus('saving'); toast('Backing up…');
+  try{ await db.collection('users').doc(State.user.uid).set({lastBackup:firebase.firestore.FieldValue.serverTimestamp()},{merge:true}); await db.waitForPendingWrites(); setSyncStatus('synced'); toast('Backup complete'); }
+  catch(err){ console.error(err); setSyncStatus('failed'); toast('Backup failed'); }
 }
-function updateLastBackupTime(date) { const el = $('#lastBackupDesc'); if (el) el.textContent = formatDate(date); }
-function loadLastBackup() {
-  if (!State.user || !firebaseReady) return;
-  db.collection('users').doc(State.user.uid).get().then(doc => {
-    if (doc.exists && doc.data().lastBackup) updateLastBackupTime(doc.data().lastBackup.toDate());
-    else $('#lastBackupDesc').textContent = 'Not yet';
-  }).catch(() => {});
+function updateLastBackupTime(date){ const el=$('#lastBackupDesc'); if(el)el.textContent=formatDate(date); }
+function loadLastBackup(){
+  if(!State.user||!firebaseReady)return;
+  db.collection('users').doc(State.user.uid).get().then(doc=>{
+    if(doc.exists&&doc.data().lastBackup)updateLastBackupTime(doc.data().lastBackup.toDate());
+    else $('#lastBackupDesc').textContent='Not yet';
+  }).catch(()=>{});
 }
-
-/* ============ EXPORT / IMPORT ============ */
-function exportNotes() {
-  const data = {
-    notes: State.notes,
-    categories: getCategories(),
-    exportedAt: new Date().toISOString(),
-    mode: State.isOfflineMode ? 'offline' : 'cloud'
-  };
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `notes-backup-${new Date().toISOString().slice(0,10)}.json`;
+function exportNotes(){
+  const data={notes:State.notes,categories:getCategories(),exportedAt:new Date().toISOString(),mode:State.isOfflineMode?'offline':'cloud'};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download=`notes-backup-${new Date().toISOString().slice(0,10)}.json`;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  toast('Backup downloaded');
+  URL.revokeObjectURL(url); toast('Backup downloaded');
 }
-function importNotes() { $('#importFile').click(); }
-
-$('#importFile').addEventListener('change', e => {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    try {
-      const data = JSON.parse(ev.target.result);
-      if (data.notes && Array.isArray(data.notes)) {
-        const existing = new Set(State.notes.map(n => n.id));
-        let added = 0;
-        data.notes.forEach(n => { if (!existing.has(n.id)) { State.notes.push(n); added++; } });
-        if (State.isOfflineMode) saveLocalNotes();
-        if (data.categories && Array.isArray(data.categories)) {
-          const cats = getCategories();
-          data.categories.forEach(c => { if (!cats.includes(c)) cats.push(c); });
-          saveCategories(cats);
-        }
-        renderNotes(); refreshSidebar(); updateStorageInfo();
-        updatePendingIndicator();
+function importNotes(){ $('#importFile').click(); }
+$('#importFile').addEventListener('change',e=>{
+  const file=e.target.files[0]; if(!file)return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{
+      const data=JSON.parse(ev.target.result);
+      if(data.notes&&Array.isArray(data.notes)){
+        const existing=new Set(State.notes.map(n=>n.id));
+        let added=0;
+        data.notes.forEach(n=>{ if(!existing.has(n.id)){ State.notes.push(n); added++; } });
+        if(State.isOfflineMode)saveLocalNotes();
+        if(data.categories&&Array.isArray(data.categories)){ const cats=getCategories(); data.categories.forEach(c=>{ if(!cats.includes(c))cats.push(c); }); saveCategories(cats); }
+        renderNotes(); refreshSidebar(); updateStorageInfo(); updatePendingIndicator();
         toast(`Imported ${added} notes`);
       } else toast('Invalid backup file');
-    } catch { toast('Could not read file'); }
+    }catch{ toast('Could not read file'); }
   };
-  reader.readAsText(file);
-  e.target.value = '';
+  reader.readAsText(file); e.target.value='';
 });
-
-/* ============ CONTEXT MENU ============ */
-function openContextMenu(id) {
-  const n = State.notes.find(x => x.id === id);
-  if (!n) return;
-  if (n.deleted) {
-    openModal(`
-      <div class="modal-title">${escapeHtml(n.title || 'Untitled')}</div>
-      <div class="modal-option" data-action="restore">♻️ Restore</div>
-      <div class="modal-option danger" data-action="purge">🔥 Delete permanently</div>
-      <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button></div>
-    `);
-    $('#modalCancel').onclick = closeModal;
-    $$('#modalContent [data-action]').forEach(el => {
-      el.onclick = () => { const a = el.dataset.action; closeModal(); if (a === 'restore') restoreNote(id); else purgeNote(id); };
-    });
+function openContextMenu(id){
+  const n=State.notes.find(x=>x.id===id); if(!n)return;
+  if(n.deleted){
+    openModal(`<div class="modal-title">${escapeHtml(n.title||'Untitled')}</div><div class="modal-option" data-action="restore">♻️ Restore</div><div class="modal-option danger" data-action="purge">🔥 Delete permanently</div><div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button></div>`);
+    $('#modalCancel').onclick=closeModal;
+    $$('#modalContent [data-action]').forEach(el=>{ el.onclick=()=>{ const a=el.dataset.action; closeModal(); if(a==='restore')restoreNote(id); else purgeNote(id); }; });
     return;
   }
   openModal(`
-    <div class="modal-title">${escapeHtml(n.title || 'Untitled')}</div>
+    <div class="modal-title">${escapeHtml(n.title||'Untitled')}</div>
     <div class="modal-option" data-action="edit">✏️ Edit</div>
-    <div class="modal-option" data-action="favorite">⭐ ${n.favorite ? 'Remove from Favorites' : 'Add to Favorites'}</div>
+    <div class="modal-option" data-action="favorite">⭐ ${n.favorite?'Remove from Favorites':'Add to Favorites'}</div>
     <div class="modal-option" data-action="color">🎨 Change color</div>
-    <div class="modal-option" data-action="reminder">🔔 ${n.reminder ? 'Change reminder' : 'Set reminder'}</div>
-    <div class="modal-option" data-action="pin">📌 ${n.pinned ? 'Unpin' : 'Pin'}</div>
-    <div class="modal-option" data-action="lock">${n.locked ? '🔓 Unlock' : '🔒 Lock'}</div>
+    <div class="modal-option" data-action="reminder">🔔 ${n.reminder?'Change reminder':'Set reminder'}</div>
+    <div class="modal-option" data-action="pin">📌 ${n.pinned?'Unpin':'Pin'}</div>
+    <div class="modal-option" data-action="lock">${n.locked?'🔓 Unlock':'🔒 Lock'}</div>
     <div class="modal-option" data-action="duplicate">📋 Duplicate</div>
-    <div class="modal-option" data-action="move">🏷️ ${n.category ? 'Change tag' : 'Add tag'}</div>
+    <div class="modal-option" data-action="move">🏷️ ${n.category?'Change tag':'Add tag'}</div>
     <div class="modal-option" data-action="share">📤 Share</div>
-    <div class="modal-option" data-action="archive">${n.archived ? '📦 Unarchive' : '📦 Archive'}</div>
+    <div class="modal-option" data-action="archive">${n.archived?'📦 Unarchive':'📦 Archive'}</div>
     <div class="modal-option danger" data-action="delete">🗑️ Delete</div>
     <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button></div>
   `);
-  $('#modalCancel').onclick = closeModal;
-  $$('#modalContent [data-action]').forEach(el => {
-    el.onclick = () => {
-      const a = el.dataset.action;
-      closeModal();
-      if (a === 'edit') openEditor(id);
-      else if (a === 'favorite') toggleFavorite(id);
-      else if (a === 'color') openColorPicker(id);
-      else if (a === 'reminder') openReminderPicker(id);
-      else if (a === 'pin') togglePin(id);
-      else if (a === 'lock') toggleLock(id);
-      else if (a === 'duplicate') duplicateNote(id);
-      else if (a === 'move') openMoveModal(id);
-      else if (a === 'share') shareNote(id);
-      else if (a === 'archive') toggleArchive(id);
-      else if (a === 'delete') deleteNote(id);
+  $('#modalCancel').onclick=closeModal;
+  $$('#modalContent [data-action]').forEach(el=>{
+    el.onclick=()=>{
+      const a=el.dataset.action; closeModal();
+      if(a==='edit')openEditor(id);
+      else if(a==='favorite')toggleFavorite(id);
+      else if(a==='color')openColorPicker(id);
+      else if(a==='reminder')openReminderPicker(id);
+      else if(a==='pin')togglePin(id);
+      else if(a==='lock')toggleLock(id);
+      else if(a==='duplicate')duplicateNote(id);
+      else if(a==='move')openMoveModal(id);
+      else if(a==='share')shareNote(id);
+      else if(a==='archive')toggleArchive(id);
+      else if(a==='delete')deleteNote(id);
     };
   });
 }
-
-function openEditorMore() {
-  const n = State.currentNote;
-  if (!n) return;
+function openEditorMore(){
+  const n=State.currentNote; if(!n)return;
   openModal(`
     <div class="modal-title">Note Options</div>
-    <div class="modal-option" data-action="favorite">⭐ ${n.favorite ? 'Remove from Favorites' : 'Add to Favorites'}</div>
+    <div class="modal-option" data-action="favorite">⭐ ${n.favorite?'Remove from Favorites':'Add to Favorites'}</div>
     <div class="modal-option" data-action="color">🎨 Change color</div>
-    <div class="modal-option" data-action="reminder">🔔 ${n.reminder ? 'Change reminder' : 'Set reminder'}</div>
-    <div class="modal-option" data-action="pin">📌 ${n.pinned ? 'Unpin' : 'Pin'}</div>
-    <div class="modal-option" data-action="lock">${n.locked ? '🔓 Unlock' : '🔒 Lock'}</div>
+    <div class="modal-option" data-action="reminder">🔔 ${n.reminder?'Change reminder':'Set reminder'}</div>
+    <div class="modal-option" data-action="pin">📌 ${n.pinned?'Unpin':'Pin'}</div>
+    <div class="modal-option" data-action="lock">${n.locked?'🔓 Unlock':'🔒 Lock'}</div>
     <div class="modal-option" data-action="duplicate">📋 Duplicate</div>
-    <div class="modal-option" data-action="move">🏷️ ${n.category ? 'Change tag' : 'Add tag'}</div>
+    <div class="modal-option" data-action="move">🏷️ ${n.category?'Change tag':'Add tag'}</div>
     <div class="modal-option" data-action="share">📤 Share</div>
-    <div class="modal-option" data-action="archive">📦 ${n.archived ? 'Unarchive' : 'Archive'}</div>
+    <div class="modal-option" data-action="archive">📦 ${n.archived?'Unarchive':'Archive'}</div>
     <div class="modal-option danger" data-action="delete">🗑️ Move to Trash</div>
     <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button></div>
   `);
-  $('#modalCancel').onclick = closeModal;
-  $$('#modalContent [data-action]').forEach(el => {
-    el.onclick = () => {
-      const a = el.dataset.action;
-      closeModal();
-      if (a === 'favorite') toggleFavorite(n.id);
-      else if (a === 'color') openColorPicker(n.id);
-      else if (a === 'reminder') openReminderPicker(n.id);
-      else if (a === 'pin') togglePin(n.id);
-      else if (a === 'lock') toggleLock(n.id);
-      else if (a === 'duplicate') { duplicateNote(n.id); closeEditor(); }
-      else if (a === 'move') openMoveModal(n.id);
-      else if (a === 'share') shareNote(n.id);
-      else if (a === 'archive') { toggleArchive(n.id); closeEditor(); }
-      else if (a === 'delete') deleteNote(n.id);
+  $('#modalCancel').onclick=closeModal;
+  $$('#modalContent [data-action]').forEach(el=>{
+    el.onclick=()=>{
+      const a=el.dataset.action; closeModal();
+      if(a==='favorite')toggleFavorite(n.id);
+      else if(a==='color')openColorPicker(n.id);
+      else if(a==='reminder')openReminderPicker(n.id);
+      else if(a==='pin')togglePin(n.id);
+      else if(a==='lock')toggleLock(n.id);
+      else if(a==='duplicate'){ duplicateNote(n.id); closeEditor(); }
+      else if(a==='move')openMoveModal(n.id);
+      else if(a==='share')shareNote(n.id);
+      else if(a==='archive'){ toggleArchive(n.id); closeEditor(); }
+      else if(a==='delete')deleteNote(n.id);
     };
   });
 }
-
-/* ============ TOOLBAR ============ */
-function updateToolbarState() {
-  if (!$('#editor').classList.contains('active')) return;
-  ['bold', 'italic', 'underline', 'strikeThrough', 'insertUnorderedList', 'insertOrderedList'].forEach(cmd => {
-    const btn = document.querySelector(`.tool-btn[data-cmd="${cmd}"]`);
-    if (!btn) return;
-    let active = false;
-    try { active = document.queryCommandState(cmd); } catch {}
-    btn.classList.toggle('active', active);
+function updateToolbarState(){
+  if(!$('#editor').classList.contains('active'))return;
+  ['bold','italic','underline','strikeThrough','insertUnorderedList','insertOrderedList'].forEach(cmd=>{
+    const btn=document.querySelector(`.tool-btn[data-cmd="${cmd}"]`); if(!btn)return;
+    let active=false; try{ active=document.queryCommandState(cmd); }catch{}
+    btn.classList.toggle('active',active);
   });
 }
-document.addEventListener('selectionchange', updateToolbarState);
-
-function setupToolbar() {
-  const tb = $('#editorToolbar');
-  if (!tb) return;
-  tb.querySelectorAll('.tool-btn').forEach(btn => {
-    btn.addEventListener('touchstart', e => { e.preventDefault(); applyFormat(btn.dataset.cmd); }, { passive: false });
-    btn.addEventListener('click', e => {
-      e.preventDefault();
-      if (e.pointerType === 'touch') return;
-      applyFormat(btn.dataset.cmd);
-    });
+document.addEventListener('selectionchange',updateToolbarState);
+function setupToolbar(){
+  const tb=$('#editorToolbar'); if(!tb)return;
+  tb.querySelectorAll('.tool-btn').forEach(btn=>{
+    btn.addEventListener('touchstart',e=>{ e.preventDefault(); applyFormat(btn.dataset.cmd); },{passive:false});
+    btn.addEventListener('click',e=>{ e.preventDefault(); if(e.pointerType==='touch')return; applyFormat(btn.dataset.cmd); });
   });
 }
-function applyFormat(cmd) {
-  const ed = $('#editorContent');
-  if (!ed) return;
-  const sel = window.getSelection();
-  let range = null;
-  if (sel && sel.rangeCount > 0) range = sel.getRangeAt(0);
-  ed.focus({ preventScroll: true });
-  if (range && ed.contains(range.commonAncestorContainer)) {
-    sel.removeAllRanges(); sel.addRange(range);
-  }
-  if (cmd === 'checklist') document.execCommand('insertHTML', false, '<div>☐ </div>');
-  else document.execCommand(cmd, false, null);
-  updateToolbarState();
-  scheduleSave();
+function applyFormat(cmd){
+  const ed=$('#editorContent'); if(!ed)return;
+  const sel=window.getSelection();
+  let range=null;
+  if(sel&&sel.rangeCount>0)range=sel.getRangeAt(0);
+  ed.focus({preventScroll:true});
+  if(range&&ed.contains(range.commonAncestorContainer)){ sel.removeAllRanges(); sel.addRange(range); }
+  if(cmd==='checklist')document.execCommand('insertHTML',false,'<div>☐ </div>');
+  else document.execCommand(cmd,false,null);
+  updateToolbarState(); scheduleSave();
 }
 
-/* ============ EVENT LISTENERS ============ */
-$('#searchInput').addEventListener('input', e => { State.searchQuery = e.target.value; renderNotes(); });
-$('#hamburgerBtn').addEventListener('click', () => {
-  if ($('#sidebar').classList.contains('show')) closeSidebar();
-  else openSidebar();
-});
-$('#sidebarOverlay').addEventListener('click', closeSidebar);
-$$('.sidebar-item').forEach(item => {
-  item.addEventListener('click', () => {
-    const f = item.dataset.filter;
-    if (!f) return;
-    State.activeFilter = f;
-    State.activeTag = null;
-    closeSidebar();
-    updateSidebarActive();
-    updatePageTitle();
-    renderNotes();
+$('#searchInput').addEventListener('input',e=>{ State.searchQuery=e.target.value; renderNotes(); });
+$('#hamburgerBtn').addEventListener('click',()=>{ if($('#sidebar').classList.contains('show'))closeSidebar(); else openSidebar(); });
+$('#sidebarOverlay').addEventListener('click',closeSidebar);
+$$('.sidebar-item').forEach(item=>{
+  item.addEventListener('click',()=>{
+    const f=item.dataset.filter; if(!f)return;
+    State.activeFilter=f; State.activeTag=null;
+    closeSidebar(); updateSidebarActive(); updatePageTitle(); renderNotes();
   });
 });
-$('#sidebarSettings').addEventListener('click', () => { closeSidebar(); showScreen('settings'); loadLastBackup(); updateAccountUI(); updatePendingIndicator(); });
-
-$('#editorTitle').addEventListener('input', scheduleSave);
-$('#editorContent').addEventListener('input', scheduleSave);
-$('#editorContent').addEventListener('keyup', updateToolbarState);
-$('#editorContent').addEventListener('mouseup', updateToolbarState);
-
-$('#googleSignIn').addEventListener('click', signInWithGoogle);
-$('#skipLogin').addEventListener('click', skipLogin);
-$('#fabNew').addEventListener('click', createNote);
-$('#editorBack').addEventListener('click', closeEditor);
-$('#editorSave').addEventListener('click', saveNow);
-$('#editorMore').addEventListener('click', openEditorMore);
-$('#settingsBack').addEventListener('click', () => showScreen('home'));
-$('#signInFromSettings').addEventListener('click', signInWithGoogle);
-$('#syncPendingBtn').addEventListener('click', syncPendingNotes);
-
-$('#signOutBtn').addEventListener('click', () => {
-  const count = State.notes.filter(n => !n.deleted).length;
+$('#sidebarSettings').addEventListener('click',()=>{ closeSidebar(); showScreen('settings'); loadLastBackup(); updateAccountUI(); updatePendingIndicator(); });
+$('#editorTitle').addEventListener('input',scheduleSave);
+$('#editorContent').addEventListener('input',scheduleSave);
+$('#editorContent').addEventListener('keyup',updateToolbarState);
+$('#editorContent').addEventListener('mouseup',updateToolbarState);
+$('#googleSignIn').addEventListener('click',signInWithGoogle);
+$('#skipLogin').addEventListener('click',skipLogin);
+$('#fabNew').addEventListener('click',createNote);
+$('#editorBack').addEventListener('click',closeEditor);
+$('#editorSave').addEventListener('click',saveNow);
+$('#editorMore').addEventListener('click',openEditorMore);
+$('#settingsBack').addEventListener('click',()=>showScreen('home'));
+$('#signInFromSettings').addEventListener('click',signInWithGoogle);
+$('#syncPendingBtn').addEventListener('click',syncPendingNotes);
+$('#signOutBtn').addEventListener('click',()=>{
+  const count=State.notes.filter(n=>!n.deleted).length;
   openModal(`
     <div class="modal-title">Sign out?</div>
-    <div style="color:var(--text-2);font-size:14px;margin-bottom:20px;font-weight:500;line-height:1.5;">
-      Your ${count} note${count !== 1 ? 's' : ''} will stay on this device.<br>
-      You can sign back in anytime — they'll sync automatically.
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-outline" id="modalCancel">Cancel</button>
-      <button class="btn btn-primary" id="modalConfirm" style="background:linear-gradient(135deg,#ff4d6d,#ff6b8a);">Sign Out</button>
-    </div>
+    <div style="color:var(--text-2);font-size:14px;margin-bottom:20px;font-weight:500;line-height:1.5;">Your ${count} note${count!==1?'s':''} will stay on this device.<br>You can sign back in anytime — they'll sync automatically.</div>
+    <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button><button class="btn btn-primary" id="modalConfirm" style="background:linear-gradient(135deg,#ff4d6d,#ff6b8a);">Sign Out</button></div>
   `);
-  $('#modalCancel').onclick = closeModal;
-  $('#modalConfirm').onclick = () => { closeModal(); signOut(); };
+  $('#modalCancel').onclick=closeModal;
+  $('#modalConfirm').onclick=()=>{ closeModal(); signOut(); };
 });
+$('#backupNowBtn').addEventListener('click',backupNow);
+$('#exportBtn').addEventListener('click',exportNotes);
+$('#importBtn').addEventListener('click',importNotes);
+$('#modalBackdrop').addEventListener('click',e=>{ if(e.target.id==='modalBackdrop')closeModal(); });
+$$('#themeSegment button').forEach(btn=>btn.addEventListener('click',()=>applyTheme(btn.dataset.theme)));
+window.addEventListener('online',()=>{ if(State.user&&!State.isOfflineMode)setSyncStatus('saving'); });
+window.addEventListener('offline',()=>{ if(State.user&&!State.isOfflineMode)setSyncStatus('offline'); });
+document.addEventListener('backbutton',()=>{
+  if($('#modalBackdrop').classList.contains('show')){ closeModal(); return; }
+  if($('#sidebar').classList.contains('show')){ closeSidebar(); return; }
+  if($('#editor').classList.contains('active')){ closeEditor(); return; }
+  if($('#settings').classList.contains('active')){ showScreen('home'); return; }
+},false);
 
-$('#backupNowBtn').addEventListener('click', backupNow);
-$('#exportBtn').addEventListener('click', exportNotes);
-$('#importBtn').addEventListener('click', importNotes);
-$('#modalBackdrop').addEventListener('click', e => { if (e.target.id === 'modalBackdrop') closeModal(); });
-$$('#themeSegment button').forEach(btn => btn.addEventListener('click', () => applyTheme(btn.dataset.theme)));
-
-window.addEventListener('online', () => {
-  if (State.user && !State.isOfflineMode) setSyncStatus('saving');
-});
-window.addEventListener('offline', () => {
-  if (State.user && !State.isOfflineMode) setSyncStatus('offline');
-});
-
-document.addEventListener('backbutton', () => {
-  if ($('#modalBackdrop').classList.contains('show')) { closeModal(); return; }
-  if ($('#sidebar').classList.contains('show')) { closeSidebar(); return; }
-  if ($('#editor').classList.contains('active')) { closeEditor(); return; }
-  if ($('#settings').classList.contains('active')) { showScreen('home'); return; }
-}, false);
-
-/* ============ BOOT ============ */
-function boot() {
-  applyTheme(localStorage.getItem('theme') || 'system');
+function boot(){
+  applyTheme(localStorage.getItem('theme')||'system');
   setupToolbar();
-
-  if ('Notification' in window && Notification.permission === 'default') {
-    setTimeout(() => { Notification.requestPermission().catch(() => {}); }, 3000);
-  }
-
-  const savedMode = localStorage.getItem(STORAGE_MODE);
-
-  if (firebaseReady) {
-    auth.getRedirectResult().then(r => {
-      if (r && r.user) console.log('✓ Redirect sign-in:', r.user.email);
-    }).catch(err => {
-      console.error('Redirect error:', err.code);
-      $('#fullLoader').classList.remove('show');
-    });
-
-    auth.onAuthStateChanged(user => {
-      setTimeout(() => {
-        if (user) {
-          onUserSignedIn(user);
-        } else if (savedMode === 'offline') {
-          skipLogin();
-        } else {
-          showScreen('login');
-          $('#fullLoader').classList.remove('show');
-        }
-      }, 1000);
+  if('Notification' in window&&Notification.permission==='default'){ setTimeout(()=>{ Notification.requestPermission().catch(()=>{}); },3000); }
+  const savedMode=localStorage.getItem(STORAGE_MODE);
+  if(firebaseReady){
+    auth.getRedirectResult().then(r=>{ if(r&&r.user)console.log('✓ Redirect sign-in:',r.user.email); }).catch(err=>{ console.error('Redirect error:',err.code); $('#fullLoader').classList.remove('show'); });
+    auth.onAuthStateChanged(user=>{
+      setTimeout(()=>{
+        if(user)onUserSignedIn(user);
+        else if(savedMode==='offline')skipLogin();
+        else { showScreen('login'); $('#fullLoader').classList.remove('show'); }
+      },1000);
     });
   } else {
-    setTimeout(() => {
-      if (savedMode === 'offline') skipLogin();
-      else showScreen('login');
-    }, 1000);
+    setTimeout(()=>{ if(savedMode==='offline')skipLogin(); else showScreen('login'); },1000);
   }
 }
-
 boot();
 </script>
 </body>
