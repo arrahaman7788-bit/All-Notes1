@@ -4,14 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#7ad7ff">
-<title>Notes — Premium Notes App</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Notes</title>
 <style>
 :root{--crystal-1:#d4f0ff;--crystal-2:#c2e5f7;--crystal-3:#e8f6fc;--crystal-4:#b8e0f5;--bg-base:#e3f2fa;--glass:rgba(255,255,255,0.42);--glass-strong:rgba(255,255,255,0.72);--glass-border:rgba(255,255,255,0.88);--glass-shine:rgba(255,255,255,0.95);--text:#0f2233;--text-2:#57708a;--text-3:#8ba3b8;--accent:#2f8fd8;--accent-2:#4fb3e8;--accent-glow:rgba(79,179,232,0.35);--mint:#00c48c;--mint-light:#22e0a0;--coral:#ff6b8a;--orange:#ffa940;--danger:#ff4d6d;--border:rgba(79,179,232,0.18);--border-2:rgba(0,0,0,0.05);--shadow-sm:0 2px 6px rgba(60,130,180,0.08);--shadow-md:0 6px 18px rgba(60,130,180,0.12);--shadow-lg:0 14px 36px rgba(60,130,180,0.18);--radius:22px;--radius-md:18px;--radius-sm:14px;}
 [data-theme="dark"]{--crystal-1:#1a3a52;--crystal-2:#0f2d42;--crystal-3:#1e4058;--crystal-4:#0a2438;--bg-base:#08161f;--glass:rgba(20,45,65,0.5);--glass-strong:rgba(25,50,72,0.75);--glass-border:rgba(120,200,240,0.18);--glass-shine:rgba(180,230,255,0.15);--text:#eaf6ff;--text-2:#8ab0c8;--text-3:#5a7a92;--accent:#4fb3e8;--accent-2:#7ad7ff;--accent-glow:rgba(79,179,232,0.45);--mint:#22e0a0;--mint-light:#7dffd1;--border:rgba(120,200,240,0.15);--border-2:rgba(255,255,255,0.05);--shadow-sm:0 2px 6px rgba(0,0,0,0.3);--shadow-md:0 6px 18px rgba(0,0,0,0.4);--shadow-lg:0 14px 36px rgba(0,0,0,0.5);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{height:100%;overflow:hidden;overscroll-behavior:none;}
+html,body{height:100%;overflow:hidden;overscroll-behavior:none;overscroll-behavior-y:none;position:fixed;width:100%;}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-base);color:var(--text);-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;user-select:none;letter-spacing:-0.01em;}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 50% at 15% 8%,rgba(212,240,255,0.85) 0%,transparent 70%),radial-gradient(ellipse 55% 45% at 85% 25%,rgba(194,229,247,0.75) 0%,transparent 70%),radial-gradient(ellipse 55% 50% at 25% 78%,rgba(232,246,252,0.85) 0%,transparent 70%),radial-gradient(ellipse 60% 50% at 78% 88%,rgba(184,224,245,0.7) 0%,transparent 70%),linear-gradient(160deg,#e8f4fb 0%,#d8ecf7 50%,#e0eef8 100%);z-index:-2;pointer-events:none;}
 [data-theme="dark"] body::before{background:radial-gradient(ellipse 60% 50% at 15% 8%,rgba(26,58,82,0.9) 0%,transparent 70%),radial-gradient(ellipse 55% 45% at 85% 25%,rgba(15,45,66,0.85) 0%,transparent 70%),radial-gradient(ellipse 55% 50% at 25% 78%,rgba(30,64,88,0.85) 0%,transparent 70%),radial-gradient(ellipse 60% 50% at 78% 88%,rgba(10,36,56,0.8) 0%,transparent 70%),linear-gradient(160deg,#08161f 0%,#0a1f2c 50%,#08161f 100%);}
@@ -55,35 +53,39 @@ input,textarea{user-select:text;}
 .login-terms{font-size:11px;color:var(--text-2);margin-top:20px;line-height:1.6;font-weight:500;}
 .auth-error{background:rgba(255,77,109,0.12);border:1px solid rgba(255,77,109,0.3);color:var(--danger);padding:11px 14px;border-radius:12px;font-size:12px;font-weight:600;margin-bottom:10px;text-align:left;display:none;}
 .auth-error.show{display:block;}
-.banner-wrap{padding:0 20px 12px;}
-.offline-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:14px;background:rgba(255,169,64,0.15);border:1px solid rgba(255,169,64,0.35);color:#d97706;font-size:11px;font-weight:700;}
+.banner-wrap{padding:0 16px 8px;}
+.offline-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:12px;background:rgba(255,169,64,0.15);border:1px solid rgba(255,169,64,0.35);color:#d97706;font-size:10px;font-weight:700;}
 [data-theme="dark"] .offline-pill{background:rgba(255,169,64,0.2);color:#ffb84d;}
-.pending-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:14px;background:rgba(79,179,232,0.15);border:1px solid rgba(79,179,232,0.35);color:#0c7bc4;font-size:11px;font-weight:700;margin-left:6px;}
+.pending-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:12px;background:rgba(79,179,232,0.15);border:1px solid rgba(79,179,232,0.35);color:#0c7bc4;font-size:10px;font-weight:700;margin-left:6px;}
 [data-theme="dark"] .pending-pill{background:rgba(79,179,232,0.2);color:#7ad7ff;}
-.topbar{padding:18px 20px 12px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
-.avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));flex-shrink:0;border:2px solid rgba(255,255,255,0.95);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;overflow:hidden;}
+
+/* ============ THINNER TOPBAR ============ */
+.topbar{padding:10px 16px 6px;display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));flex-shrink:0;border:1.5px solid rgba(255,255,255,0.95);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;overflow:hidden;}
 .avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
-.hamburger-btn{width:42px;height:42px;border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:var(--glass-strong);border:1px solid var(--glass-border);box-shadow:var(--shadow-sm);transition:transform 0.12s;flex-shrink:0;touch-action:manipulation;}
+.hamburger-btn{width:36px;height:36px;border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:var(--glass-strong);border:1px solid var(--glass-border);box-shadow:var(--shadow-sm);transition:transform 0.12s;flex-shrink:0;touch-action:manipulation;}
 .hamburger-btn:active{transform:scale(0.92);}
-.hamburger-btn span{display:block;width:18px;height:2px;background:var(--text);border-radius:2px;transition:transform 0.25s,opacity 0.2s;}
-.hamburger-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.hamburger-btn span{display:block;width:16px;height:1.8px;background:var(--text);border-radius:2px;transition:transform 0.25s,opacity 0.2s;}
+.hamburger-btn.active span:nth-child(1){transform:translateY(5px) rotate(45deg);}
 .hamburger-btn.active span:nth-child(2){opacity:0;}
-.hamburger-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+.hamburger-btn.active span:nth-child(3){transform:translateY(-5px) rotate(-45deg);}
 .greeting-wrap{flex:1;min-width:0;}
-.greeting-hi{font-size:12px;color:var(--text-2);font-weight:600;}
-.greeting-name{font-size:19px;font-weight:800;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:-0.3px;}
-.icon-btn{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:var(--glass-strong);border:1px solid var(--glass-border);box-shadow:var(--shadow-sm);transition:transform 0.12s;font-size:17px;flex-shrink:0;touch-action:manipulation;}
+.greeting-hi{font-size:10px;color:var(--text-2);font-weight:600;letter-spacing:0.2px;}
+.greeting-name{font-size:15px;font-weight:800;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:-0.3px;}
+.icon-btn{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:var(--glass-strong);border:1px solid var(--glass-border);box-shadow:var(--shadow-sm);transition:transform 0.12s;font-size:15px;flex-shrink:0;touch-action:manipulation;}
 .icon-btn:active{transform:scale(0.92);}
+
+/* SIDEBAR */
 .sidebar-overlay{position:fixed;inset:0;background:rgba(10,30,50,0.4);opacity:0;visibility:hidden;transition:opacity 0.25s,visibility 0.25s;z-index:90;}
 .sidebar-overlay.show{opacity:1;visibility:visible;}
 .sidebar{position:fixed;top:0;left:0;bottom:0;width:300px;max-width:88vw;background:linear-gradient(165deg,#2d5a7a 0%,#1a3a52 55%,#0e2538 100%);z-index:95;transform:translateX(-100%);transition:transform 0.3s cubic-bezier(.2,.9,.3,1);display:flex;flex-direction:column;overflow:hidden;box-shadow:12px 0 40px rgba(0,0,0,0.3);}
 .sidebar.show{transform:translateX(0);}
 .sidebar-header{padding:28px 22px 20px;display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(255,255,255,0.08);}
-.sidebar-header .avatar{width:54px;height:54px;border:2px solid rgba(255,255,255,0.3);}
+.sidebar-header .avatar{width:54px;height:54px;border:2px solid rgba(255,255,255,0.3);font-size:20px;}
 .sidebar-user{flex:1;min-width:0;}
 .sidebar-name{font-size:16px;font-weight:800;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:-0.3px;}
 .sidebar-email{font-size:12px;color:rgba(255,255,255,0.6);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500;}
-.sidebar-nav{flex:1;overflow-y:auto;padding:14px 12px 30px;}
+.sidebar-nav{flex:1;overflow-y:auto;padding:14px 12px 30px;overscroll-behavior:contain;}
 .sidebar-item{width:100%;display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:14px;color:rgba(255,255,255,0.78);font-size:14px;font-weight:600;transition:background 0.15s;margin-bottom:3px;text-align:left;touch-action:manipulation;}
 .sidebar-item:hover{background:rgba(255,255,255,0.08);color:#fff;}
 .sidebar-item.active{background:linear-gradient(135deg,rgba(122,215,255,0.4),rgba(79,179,232,0.28));color:#fff;box-shadow:inset 0 0 0 1px rgba(122,215,255,0.5);}
@@ -98,27 +100,41 @@ input,textarea{user-select:text;}
 .sidebar-tag.active{background:rgba(122,215,255,0.3);color:#fff;}
 .sidebar-tag-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 .sidebar-empty-tags{padding:10px 16px;font-size:12px;color:rgba(255,255,255,0.4);font-style:italic;font-weight:500;}
-.sync-pill{position:fixed;top:14px;left:50%;transform:translateX(-50%) translateY(-70px);padding:9px 16px;border-radius:22px;font-size:12px;font-weight:700;background:var(--glass-strong);color:var(--text);box-shadow:var(--shadow-md);transition:transform 0.3s cubic-bezier(.2,.9,.3,1.2),opacity 0.25s;z-index:100;opacity:0;display:flex;align-items:center;gap:8px;border:1px solid var(--glass-border);}
+
+/* SYNC PILL */
+.sync-pill{position:fixed;top:10px;left:50%;transform:translateX(-50%) translateY(-70px);padding:7px 14px;border-radius:20px;font-size:11px;font-weight:700;background:var(--glass-strong);color:var(--text);box-shadow:var(--shadow-md);transition:transform 0.3s cubic-bezier(.2,.9,.3,1.2),opacity 0.25s;z-index:100;opacity:0;display:flex;align-items:center;gap:7px;border:1px solid var(--glass-border);}
 .sync-pill.show{transform:translateX(-50%) translateY(0);opacity:1;}
-.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--text-2);}
+.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--text-2);}
 .sync-pill.saving .sync-dot{background:var(--orange);}
 .sync-pill.synced .sync-dot{background:var(--mint);box-shadow:0 0 6px var(--mint);}
 .sync-pill.offline .sync-dot{background:var(--text-3);}
 .sync-pill.failed .sync-dot{background:var(--danger);}
-.search-wrap{padding:0 20px 14px;flex-shrink:0;position:relative;}
-.search-box{width:100%;padding:14px 16px 14px 46px;border-radius:15px;border:1.5px solid var(--glass-border);background:var(--glass-strong);font-size:14px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;color:var(--text);box-shadow:var(--shadow-sm);font-weight:500;}
+
+/* ============ THINNER SEARCH ============ */
+.search-wrap{padding:0 16px 8px;flex-shrink:0;position:relative;}
+.search-box{width:100%;padding:10px 14px 10px 40px;border-radius:13px;border:1.5px solid var(--glass-border);background:var(--glass-strong);font-size:13px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;color:var(--text);box-shadow:var(--shadow-sm);font-weight:500;}
 .search-box::placeholder{color:var(--text-3);font-weight:500;}
 .search-box:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow),var(--shadow-sm);}
-.search-icon{position:absolute;left:36px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none;opacity:0.55;}
-.page-title-bar{padding:0 22px 14px;display:flex;align-items:center;justify-content:space-between;}
-.page-title{font-size:24px;font-weight:800;letter-spacing:-0.6px;color:var(--text);}
-.notes-scroll{flex:1;overflow-y:auto;padding:0 18px 110px;-webkit-overflow-scrolling:touch;}
-.section-title{font-size:12px;font-weight:800;color:var(--text-2);text-transform:uppercase;letter-spacing:1.2px;margin:20px 4px 12px;}
-.section-title:first-child{margin-top:4px;}
+.search-icon{position:absolute;left:30px;top:50%;transform:translateY(-50%);font-size:13px;pointer-events:none;opacity:0.55;}
+
+/* ============ THINNER PAGE TITLE + VIEW TOGGLE ============ */
+.page-title-bar{padding:0 16px 8px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.page-title{font-size:15px;font-weight:800;letter-spacing:-0.3px;color:var(--text-2);text-transform:uppercase;}
+.view-toggle{display:flex;gap:2px;background:rgba(79,179,232,0.1);border-radius:10px;padding:2px;}
+.view-btn{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text-2);transition:all 0.18s;touch-action:manipulation;font-weight:700;}
+.view-btn:active{transform:scale(0.9);}
+.view-btn.active{background:var(--glass-strong);color:var(--accent);box-shadow:0 2px 6px rgba(79,179,232,0.2);}
+
+/* NOTES SCROLL — pull-to-refresh বন্ধ */
+.notes-scroll{flex:1;overflow-y:auto;overflow-x:hidden;padding:0 16px 110px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;overscroll-behavior-y:contain;touch-action:pan-y;}
+.section-title{font-size:11px;font-weight:800;color:var(--text-2);text-transform:uppercase;letter-spacing:1.1px;margin:14px 4px 8px;}
+.section-title:first-child{margin-top:2px;}
+
+/* ============ VIEW MODE: GRID (Box) ============ */
 .notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
-.note-card{border-radius:var(--radius-md);padding:16px;transition:transform 0.15s;position:relative;cursor:pointer;min-height:106px;display:flex;flex-direction:column;border:1px solid var(--glass-border);overflow:hidden;background:var(--glass-strong);box-shadow:0 4px 14px rgba(60,130,180,0.1),inset 0 1px 0 var(--glass-shine);touch-action:manipulation;}
+.note-card{border-radius:var(--radius-md);padding:14px;transition:transform 0.15s;position:relative;cursor:pointer;min-height:100px;display:flex;flex-direction:column;border:1px solid var(--glass-border);overflow:hidden;background:var(--glass-strong);box-shadow:0 4px 14px rgba(60,130,180,0.1),inset 0 1px 0 var(--glass-shine);touch-action:manipulation;}
 .note-card::before{content:'';position:absolute;top:0;left:0;right:0;height:48%;background:linear-gradient(180deg,rgba(255,255,255,0.65) 0%,transparent 100%);pointer-events:none;border-radius:inherit;}
-.note-card::after{content:'';position:absolute;top:8%;left:10%;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,1) 0%,rgba(255,255,255,0.4) 40%,transparent 70%);pointer-events:none;opacity:0.85;}
+.note-card::after{content:'';position:absolute;top:8%;left:10%;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,1) 0%,rgba(255,255,255,0.4) 40%,transparent 70%);pointer-events:none;opacity:0.85;}
 .note-card:active{transform:scale(0.97);}
 .note-card.pinned{border-color:var(--accent-2);box-shadow:0 6px 20px var(--accent-glow),inset 0 1px 0 var(--glass-shine);}
 .note-card.long-pressed{transform:scale(0.95);border-color:var(--accent);}
@@ -133,31 +149,54 @@ input,textarea{user-select:text;}
 .note-card[data-color="gray"]{background:linear-gradient(160deg,rgba(235,238,242,0.85) 0%,rgba(215,220,228,0.75) 100%);border-color:rgba(180,190,200,0.5);}
 [data-theme="dark"] .note-card[data-color]{color:#eaf6ff;}
 [data-theme="dark"] .note-card[data-color] .note-preview{color:rgba(234,246,255,0.7);}
-.note-title{font-size:15px;font-weight:800;margin-bottom:6px;line-height:1.35;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word;letter-spacing:-0.2px;position:relative;}
+.note-title{font-size:14px;font-weight:800;margin-bottom:5px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word;letter-spacing:-0.2px;position:relative;}
 .note-title:empty::before{content:'Untitled';color:var(--text-3);font-style:italic;font-weight:600;}
-.note-preview{font-size:13px;color:var(--text-2);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;word-break:break-word;flex:1;position:relative;font-weight:500;}
-.note-meta{display:flex;align-items:center;justify-content:space-between;margin-top:10px;font-size:11px;color:var(--text-3);gap:6px;position:relative;font-weight:600;}
-.card-badges{position:absolute;top:10px;right:10px;display:flex;gap:3px;font-size:12px;z-index:2;}
-.note-tag{padding:3px 8px;border-radius:10px;background:rgba(79,179,232,0.12);font-size:10px;font-weight:700;color:var(--accent);display:inline-flex;align-items:center;gap:4px;}
+.note-preview{font-size:12px;color:var(--text-2);line-height:1.45;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;word-break:break-word;flex:1;position:relative;font-weight:500;}
+.note-meta{display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:10px;color:var(--text-3);gap:6px;position:relative;font-weight:600;}
+.card-badges{position:absolute;top:8px;right:8px;display:flex;gap:2px;font-size:11px;z-index:2;}
+.note-tag{padding:2px 7px;border-radius:9px;background:rgba(79,179,232,0.12);font-size:9px;font-weight:700;color:var(--accent);display:inline-flex;align-items:center;gap:3px;}
 [data-theme="dark"] .note-tag{background:rgba(122,215,255,0.15);color:var(--accent-2);}
+
+/* ============ VIEW MODE: HORIZONTAL (thin rows) ============ */
+.notes-grid.mode-horizontal{grid-template-columns:1fr;gap:8px;}
+.notes-grid.mode-horizontal .note-card{min-height:auto;padding:11px 14px;border-radius:14px;}
+.notes-grid.mode-horizontal .note-card::before{height:50%;}
+.notes-grid.mode-horizontal .note-card .note-title{font-size:14px;margin-bottom:3px;-webkit-line-clamp:1;display:-webkit-box;padding-right:60px;}
+.notes-grid.mode-horizontal .note-card .note-preview{font-size:11px;-webkit-line-clamp:1;color:var(--text-3);}
+.notes-grid.mode-horizontal .note-card .note-meta{margin-top:4px;font-size:9px;}
+.notes-grid.mode-horizontal .note-card .card-badges{top:50%;transform:translateY(-50%);right:12px;font-size:12px;}
+.notes-grid.mode-horizontal .note-card .note-tag{display:none;}
+
+/* ============ VIEW MODE: TITLE ONLY ============ */
+.notes-grid.mode-title{grid-template-columns:1fr;gap:5px;}
+.notes-grid.mode-title .note-card{min-height:auto;padding:11px 14px;border-radius:12px;flex-direction:row;align-items:center;gap:10px;}
+.notes-grid.mode-title .note-card::before{height:55%;opacity:0.7;}
+.notes-grid.mode-title .note-card::after{display:none;}
+.notes-grid.mode-title .note-card .note-title{font-size:13px;margin-bottom:0;-webkit-line-clamp:1;flex:1;padding-right:0;font-weight:700;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.notes-grid.mode-title .note-card .note-preview{display:none;}
+.notes-grid.mode-title .note-card .note-meta{margin-top:0;flex-shrink:0;font-size:10px;}
+.notes-grid.mode-title .note-card .note-meta > span:first-child{display:none;}
+.notes-grid.mode-title .note-card .card-badges{position:static;transform:none;flex-shrink:0;font-size:12px;}
+.notes-grid.mode-title .note-card .note-tag{display:none;}
+
 .empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;}
-.empty-icon{font-size:68px;opacity:0.4;margin-bottom:22px;}
-.empty-title{font-size:17px;font-weight:800;margin-bottom:6px;letter-spacing:-0.3px;}
-.empty-desc{font-size:14px;color:var(--text-2);line-height:1.5;max-width:260px;font-weight:500;}
-.fab{position:fixed;bottom:24px;right:22px;width:60px;height:60px;border-radius:20px;background:linear-gradient(135deg,#22e0a0 0%,#00c48c 50%,#00a86b 100%);color:#fff;font-size:28px;font-weight:300;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,196,140,0.5),0 0 40px rgba(34,224,160,0.3),inset 0 1.5px 0 rgba(255,255,255,0.55);transition:transform 0.15s;z-index:50;overflow:hidden;touch-action:manipulation;}
+.empty-icon{font-size:60px;opacity:0.4;margin-bottom:18px;}
+.empty-title{font-size:16px;font-weight:800;margin-bottom:5px;letter-spacing:-0.3px;}
+.empty-desc{font-size:13px;color:var(--text-2);line-height:1.5;max-width:260px;font-weight:500;}
+.fab{position:fixed;bottom:22px;right:20px;width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,#22e0a0 0%,#00c48c 50%,#00a86b 100%);color:#fff;font-size:26px;font-weight:300;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,196,140,0.5),0 0 40px rgba(34,224,160,0.3),inset 0 1.5px 0 rgba(255,255,255,0.55);transition:transform 0.15s;z-index:50;overflow:hidden;touch-action:manipulation;}
 .fab::before{content:'';position:absolute;top:0;left:0;right:0;height:50%;background:linear-gradient(180deg,rgba(255,255,255,0.5) 0%,transparent 100%);pointer-events:none;}
 .fab:active{transform:scale(0.9);}
-.editor-topbar{padding:14px 12px 10px;display:flex;align-items:center;gap:8px;flex-shrink:0;}
-.editor-title-input{flex:1;font-size:19px;font-weight:800;padding:8px 6px;border:none;background:transparent;outline:none;color:var(--text);letter-spacing:-0.5px;min-width:0;}
+.editor-topbar{padding:12px 10px 8px;display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.editor-title-input{flex:1;font-size:18px;font-weight:800;padding:6px 4px;border:none;background:transparent;outline:none;color:var(--text);letter-spacing:-0.5px;min-width:0;}
 .editor-title-input::placeholder{color:var(--text-3);opacity:0.7;}
-.save-btn{padding:0 14px;height:42px;border-radius:13px;background:linear-gradient(135deg,#22e0a0 0%,#00c48c 50%,#00a86b 100%);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:5px;box-shadow:0 6px 20px rgba(0,196,140,0.5),inset 0 1.5px 0 rgba(255,255,255,0.5);transition:transform 0.15s;flex-shrink:0;white-space:nowrap;min-width:88px;position:relative;overflow:hidden;touch-action:manipulation;}
+.save-btn{padding:0 12px;height:38px;border-radius:11px;background:linear-gradient(135deg,#22e0a0 0%,#00c48c 50%,#00a86b 100%);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:4px;box-shadow:0 6px 20px rgba(0,196,140,0.5),inset 0 1.5px 0 rgba(255,255,255,0.5);transition:transform 0.15s;flex-shrink:0;white-space:nowrap;min-width:80px;position:relative;overflow:hidden;touch-action:manipulation;}
 .save-btn::before{content:'';position:absolute;top:0;left:0;right:0;height:55%;background:linear-gradient(180deg,rgba(255,255,255,0.5) 0%,transparent 100%);pointer-events:none;}
 .save-btn:active{transform:scale(0.94);}
 .save-btn.saving{background:linear-gradient(135deg,#ffc266 0%,#ff9f43 50%,#e67e22 100%);}
 .save-btn.saved{background:linear-gradient(135deg,#7dffd1 0%,#22e0a0 50%,#00c48c 100%);box-shadow:0 6px 26px rgba(34,224,160,0.65);}
-.editor-meta{padding:0 20px 10px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-2);flex-shrink:0;flex-wrap:wrap;font-weight:600;}
-.editor-meta .reminder-badge{padding:3px 10px;border-radius:10px;background:rgba(255,169,64,0.15);border:1px solid rgba(255,169,64,0.3);color:#d97706;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:4px;}
-.editor-content{flex:1;overflow-y:auto;padding:16px 20px 80px;font-size:15px;line-height:1.7;outline:none;color:var(--text);-webkit-overflow-scrolling:touch;user-select:text;word-break:break-word;font-weight:500;}
+.editor-meta{padding:0 18px 8px;display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text-2);flex-shrink:0;flex-wrap:wrap;font-weight:600;}
+.editor-meta .reminder-badge{padding:2px 9px;border-radius:9px;background:rgba(255,169,64,0.15);border:1px solid rgba(255,169,64,0.3);color:#d97706;font-size:10px;font-weight:700;display:inline-flex;align-items:center;gap:3px;}
+.editor-content{flex:1;overflow-y:auto;padding:14px 18px 80px;font-size:15px;line-height:1.7;outline:none;color:var(--text);-webkit-overflow-scrolling:touch;user-select:text;word-break:break-word;font-weight:500;overscroll-behavior:contain;}
 .editor-content:empty::before{content:'Start writing your thoughts…';color:var(--text-3);opacity:0.6;pointer-events:none;font-weight:500;}
 .editor-content ul,.editor-content ol{padding-left:22px;margin:6px 0;}
 .editor-content li{margin:4px 0;}
@@ -170,53 +209,53 @@ input,textarea{user-select:text;}
 #editor[data-color="orange"] .editor-content,#editor[data-color="orange"] .editor-title-input{background:linear-gradient(160deg,rgba(255,230,205,0.5) 0%,rgba(255,214,168,0.35) 100%);}
 #editor[data-color="mint"] .editor-content,#editor[data-color="mint"] .editor-title-input{background:linear-gradient(160deg,rgba(205,255,240,0.5) 0%,rgba(168,255,225,0.35) 100%);}
 #editor[data-color="gray"] .editor-content,#editor[data-color="gray"] .editor-title-input{background:linear-gradient(160deg,rgba(235,238,242,0.5) 0%,rgba(215,220,228,0.35) 100%);}
-.toolbar{position:fixed;bottom:0;left:0;right:0;height:46px;padding:4px 10px;display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;align-items:center;background:rgba(255,255,255,0.94);border-top:1px solid var(--glass-border);box-shadow:0 -4px 20px rgba(60,130,180,0.1);z-index:40;-webkit-overflow-scrolling:touch;}
+.toolbar{position:fixed;bottom:0;left:0;right:0;height:44px;padding:4px 10px;display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;align-items:center;background:rgba(255,255,255,0.94);border-top:1px solid var(--glass-border);box-shadow:0 -4px 20px rgba(60,130,180,0.1);z-index:40;-webkit-overflow-scrolling:touch;}
 [data-theme="dark"] .toolbar{background:rgba(15,35,52,0.94);}
 .toolbar::-webkit-scrollbar{display:none;}
-.tool-btn{min-width:34px;height:34px;padding:0 8px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-2);transition:background 0.12s,color 0.12s,transform 0.1s;flex-shrink:0;font-weight:700;touch-action:manipulation;user-select:none;-webkit-user-select:none;background:transparent;}
+.tool-btn{min-width:32px;height:32px;padding:0 8px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text-2);transition:background 0.12s,color 0.12s,transform 0.1s;flex-shrink:0;font-weight:700;touch-action:manipulation;user-select:none;-webkit-user-select:none;background:transparent;}
 .tool-btn:active{transform:scale(0.92);}
 .tool-btn.active{background:linear-gradient(135deg,#22e0a0 0%,#00c48c 100%);color:#fff;box-shadow:0 3px 10px rgba(0,196,140,0.4);}
-.tool-divider{width:1px;height:20px;background:var(--border);margin:0 4px;flex-shrink:0;}
-#settings{overflow-y:auto;}
-.settings-header{padding:20px 20px 8px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
-.settings-title{font-size:24px;font-weight:800;letter-spacing:-0.5px;}
-.settings-body{padding:8px 20px 60px;}
-.profile-card{background:var(--glass-strong);border:1px solid var(--glass-border);border-radius:var(--radius);padding:18px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-md),inset 0 1px 0 var(--glass-shine);margin-bottom:20px;}
-.profile-card .avatar{width:58px;height:58px;font-size:22px;}
+.tool-divider{width:1px;height:18px;background:var(--border);margin:0 4px;flex-shrink:0;}
+#settings{overflow-y:auto;overscroll-behavior:contain;}
+.settings-header{padding:16px 18px 6px;display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.settings-title{font-size:20px;font-weight:800;letter-spacing:-0.5px;}
+.settings-body{padding:6px 18px 60px;}
+.profile-card{background:var(--glass-strong);border:1px solid var(--glass-border);border-radius:var(--radius);padding:16px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-md),inset 0 1px 0 var(--glass-shine);margin-bottom:18px;}
+.profile-card .avatar{width:52px;height:52px;font-size:20px;}
 .profile-info{flex:1;min-width:0;}
-.profile-name{font-size:16px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.profile-email{font-size:13px;color:var(--text-2);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500;}
+.profile-name{font-size:15px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.profile-email{font-size:12px;color:var(--text-2);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500;}
 .settings-group{background:var(--glass-strong);border:1px solid var(--glass-border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md),inset 0 1px 0 var(--glass-shine);margin-bottom:14px;}
-.settings-item{display:flex;align-items:center;gap:14px;padding:15px 18px;border-bottom:1px solid var(--border-2);transition:background 0.12s;cursor:pointer;touch-action:manipulation;}
+.settings-item{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--border-2);transition:background 0.12s;cursor:pointer;touch-action:manipulation;}
 .settings-item:last-child{border-bottom:none;}
 .settings-item:active{background:rgba(79,179,232,0.08);}
-.settings-item-icon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,rgba(122,215,255,0.2),rgba(79,179,232,0.12));display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.settings-item-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,rgba(122,215,255,0.2),rgba(79,179,232,0.12));display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
 .settings-item-content{flex:1;min-width:0;}
-.settings-item-title{font-size:14px;font-weight:700;}
-.settings-item-desc{font-size:12px;color:var(--text-2);margin-top:3px;font-weight:500;}
-.settings-group-title{font-size:12px;font-weight:800;color:var(--text-2);text-transform:uppercase;letter-spacing:1.2px;margin:20px 6px 10px;}
+.settings-item-title{font-size:13px;font-weight:700;}
+.settings-item-desc{font-size:11px;color:var(--text-2);margin-top:2px;font-weight:500;}
+.settings-group-title{font-size:11px;font-weight:800;color:var(--text-2);text-transform:uppercase;letter-spacing:1.1px;margin:18px 4px 8px;}
 .settings-item.danger .settings-item-title{color:var(--danger);}
 .settings-item.success .settings-item-title{color:var(--mint);}
-.segment{display:flex;background:rgba(79,179,232,0.1);border-radius:11px;padding:3px;gap:2px;}
-.segment button{padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700;color:var(--text-2);transition:all 0.18s;touch-action:manipulation;}
+.segment{display:flex;background:rgba(79,179,232,0.1);border-radius:10px;padding:3px;gap:2px;}
+.segment button{padding:6px 11px;border-radius:7px;font-size:11px;font-weight:700;color:var(--text-2);transition:all 0.18s;touch-action:manipulation;}
 .segment button.active{background:var(--glass-strong);color:var(--accent);box-shadow:0 2px 6px rgba(79,179,232,0.2);}
-#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);padding:13px 20px;border-radius:14px;background:var(--glass-strong);color:var(--text);border:1px solid var(--glass-border);font-size:13px;font-weight:700;z-index:200;transition:transform 0.3s cubic-bezier(.2,.9,.3,1.3);max-width:90%;text-align:center;box-shadow:var(--shadow-lg),inset 0 1px 0 var(--glass-shine);}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(120px);padding:11px 18px;border-radius:13px;background:var(--glass-strong);color:var(--text);border:1px solid var(--glass-border);font-size:12px;font-weight:700;z-index:200;transition:transform 0.3s cubic-bezier(.2,.9,.3,1.3);max-width:90%;text-align:center;box-shadow:var(--shadow-lg),inset 0 1px 0 var(--glass-shine);}
 #toast.show{transform:translateX(-50%) translateY(0);}
-.modal-backdrop{position:fixed;inset:0;background:rgba(10,30,50,0.45);display:none;align-items:flex-end;justify-content:center;z-index:150;animation:fade 0.2s ease;}
+.modal-backdrop{position:fixed;inset:0;background:rgba(10,30,50,0.45);display:none;align-items:flex-end;justify-content:center;z-index:150;animation:fade 0.2s ease;overscroll-behavior:contain;}
 .modal-backdrop.show{display:flex;}
 @keyframes fade{from{opacity:0;}to{opacity:1;}}
-.modal{background:var(--glass-strong);border:1px solid var(--glass-border);border-radius:26px 26px 0 0;width:100%;max-width:500px;padding:20px;max-height:85vh;overflow-y:auto;animation:slideUp 0.3s cubic-bezier(.2,.9,.3,1.1);box-shadow:0 -16px 48px rgba(0,0,0,0.2),inset 0 1px 0 var(--glass-shine);}
+.modal{background:var(--glass-strong);border:1px solid var(--glass-border);border-radius:26px 26px 0 0;width:100%;max-width:500px;padding:20px;max-height:85vh;overflow-y:auto;animation:slideUp 0.3s cubic-bezier(.2,.9,.3,1.1);box-shadow:0 -16px 48px rgba(0,0,0,0.2),inset 0 1px 0 var(--glass-shine);overscroll-behavior:contain;}
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
-.modal-handle{width:38px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;}
-.modal-title{font-size:17px;font-weight:800;margin-bottom:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:-0.3px;}
-.modal-option{padding:14px 15px;border-radius:13px;display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;transition:background 0.12s;cursor:pointer;margin-bottom:2px;touch-action:manipulation;}
+.modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;}
+.modal-title{font-size:16px;font-weight:800;margin-bottom:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:-0.3px;}
+.modal-option{padding:13px 14px;border-radius:12px;display:flex;align-items:center;gap:11px;font-size:13px;font-weight:600;transition:background 0.12s;cursor:pointer;margin-bottom:2px;touch-action:manipulation;}
 .modal-option:active{background:rgba(79,179,232,0.12);}
 .modal-option.danger{color:var(--danger);}
-.modal-input{width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid var(--glass-border);background:var(--glass);font-size:14px;outline:none;margin-bottom:12px;color:var(--text);font-weight:600;}
+.modal-input{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--glass-border);background:var(--glass);font-size:13px;outline:none;margin-bottom:12px;color:var(--text);font-weight:600;}
 .modal-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow);}
 .modal-actions{display:flex;gap:10px;margin-top:8px;}
-.modal-actions .btn{padding:12px;}
-.btn{padding:14px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;transition:transform 0.15s;display:flex;align-items:center;justify-content:center;gap:8px;touch-action:manipulation;flex:1;}
+.modal-actions .btn{padding:11px;}
+.btn{padding:13px 18px;border-radius:var(--radius-sm);font-size:13px;font-weight:700;transition:transform 0.15s;display:flex;align-items:center;justify-content:center;gap:8px;touch-action:manipulation;flex:1;}
 .btn:active{transform:scale(0.96);}
 .btn-primary{background:linear-gradient(135deg,#7ad7ff 0%,#4fb3e8 100%);color:#fff;box-shadow:0 6px 20px rgba(79,179,232,0.4);}
 .btn-outline{background:var(--glass);border:1.5px solid var(--glass-border);color:var(--text);}
@@ -251,26 +290,20 @@ input,textarea{user-select:text;}
     <div class="splash-loader"></div>
   </div>
 
-  <!-- LOGIN with Email/Password -->
   <div class="screen" id="login">
     <div class="login-card">
       <div class="login-logo">📝</div>
       <div class="login-title" id="authTitle">Welcome to Notes</div>
       <div class="login-sub" id="authSub">Sign in to sync your notes everywhere</div>
-
       <div class="auth-error" id="authError"></div>
-
       <div class="auth-form">
         <input type="email" id="emailInput" class="auth-input" placeholder="ইমেইল" autocomplete="email" inputmode="email">
         <input type="password" id="passwordInput" class="auth-input" placeholder="পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)" autocomplete="current-password">
         <button class="auth-btn" id="authSubmitBtn">📧 লগইন</button>
       </div>
-
       <button class="auth-toggle" id="authToggleBtn">নতুন অ্যাকাউন্ট তৈরি করুন</button>
-
       <button class="skip-btn" id="skipLogin">Skip — অফলাইনে ব্যবহার করুন</button>
       <div class="skip-hint">নোট শুধু এই ফোনে সেভ থাকবে</div>
-
       <div class="login-terms">আপনার নোট শুধু আপনি দেখতে পাবেন।</div>
     </div>
   </div>
@@ -282,11 +315,18 @@ input,textarea{user-select:text;}
       <div class="avatar" id="homeAvatar">👤</div>
     </div>
     <div class="banner-wrap" id="bannerWrap" style="display:none;">
-      <span class="offline-pill" id="offlinePill" style="display:none;">📴 Offline mode</span>
-      <span class="pending-pill" id="pendingPill" style="display:none;">☁️ <span id="pendingCount">0</span> pending</span>
+      <span class="offline-pill" id="offlinePill" style="display:none;">📴 Offline</span>
+      <span class="pending-pill" id="pendingPill" style="display:none;">☁️ <span id="pendingCount">0</span></span>
     </div>
     <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" class="search-box" id="searchInput" placeholder="Search notes..."></div>
-    <div class="page-title-bar"><div class="page-title" id="pageTitle">All Notes</div></div>
+    <div class="page-title-bar">
+      <div class="page-title" id="pageTitle">All Notes</div>
+      <div class="view-toggle" id="viewToggle">
+        <button class="view-btn active" data-view="grid" title="Box view">▦</button>
+        <button class="view-btn" data-view="horizontal" title="List view">☰</button>
+        <button class="view-btn" data-view="title" title="Title only">≡</button>
+      </div>
+    </div>
     <div class="notes-scroll" id="notesScroll"></div>
     <button class="fab" id="fabNew">+</button>
   </div>
@@ -409,11 +449,13 @@ try{firebase.initializeApp(firebaseConfig);auth=firebase.auth();db=firebase.fire
 const STORAGE_NOTES='notes_local_offline_v1';
 const STORAGE_CATS='notes_categories_offline_v1';
 const STORAGE_MODE='notes_data_mode';
+const STORAGE_VIEW='notes_view_mode';
 
-const State={user:null,isOfflineMode:false,notes:[],activeFilter:'all',activeTag:null,searchQuery:'',currentNote:null,unsubscribeNotes:null,saveTimer:null,syncStatus:'synced'};
+const State={user:null,isOfflineMode:false,notes:[],activeFilter:'all',activeTag:null,searchQuery:'',currentNote:null,unsubscribeNotes:null,saveTimer:null,syncStatus:'synced',viewMode:localStorage.getItem(STORAGE_VIEW)||'grid'};
 const unlockedNotes=new Set();
 const notifiedReminders=new Set();
-let authMode='signin'; // 'signin' or 'signup'
+let authMode='signin';
+let isNewNoteSession=false;
 
 const COLOR_PALETTE=[{name:'default',hex:'#f8fafc'},{name:'yellow',hex:'#fffacd'},{name:'green',hex:'#d6f8e5'},{name:'blue',hex:'#d6eeff'},{name:'pink',hex:'#ffdeeb'},{name:'purple',hex:'#ebdeff'},{name:'orange',hex:'#ffe6cd'},{name:'mint',hex:'#cdfff0'}];
 const $=s=>document.querySelector(s);
@@ -450,38 +492,36 @@ function openModal(html){$('#modalContent').innerHTML=`<div class="modal-handle"
 function closeModal(){$('#modalBackdrop').classList.remove('show');}
 function promptInput(title,placeholder='',val=''){return new Promise(resolve=>{openModal(`<div class="modal-title">${escapeHtml(title)}</div><input type="text" id="promptInput" class="modal-input" placeholder="${escapeHtml(placeholder)}" value="${escapeHtml(val)}"><div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button><button class="btn btn-primary" id="modalConfirm">OK</button></div>`);const i=$('#promptInput');setTimeout(()=>{i.focus();i.select();},100);const sub=()=>{const v=i.value.trim();closeModal();resolve(v||null);};$('#modalConfirm').onclick=sub;$('#modalCancel').onclick=()=>{closeModal();resolve(null);};i.addEventListener('keydown',e=>{if(e.key==='Enter')sub();});});}
 
+/* ============ VIEW MODE ============ */
+function setViewMode(mode){
+  State.viewMode=mode;
+  localStorage.setItem(STORAGE_VIEW,mode);
+  $$('#viewToggle .view-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===mode));
+  renderNotes();
+}
+function applyViewClass(){
+  const grid=$('#notesScroll').querySelector('.notes-grid');
+  if(!grid)return;
+  grid.classList.remove('mode-horizontal','mode-title');
+  if(State.viewMode==='horizontal')grid.classList.add('mode-horizontal');
+  else if(State.viewMode==='title')grid.classList.add('mode-title');
+}
+
 /* ============ EMAIL / PASSWORD AUTH ============ */
 function showAuthError(msg){const el=$('#authError');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),6000);}
 function clearAuthError(){$('#authError').classList.remove('show');}
-
-function getFriendlyError(code){
-  const map={
-    'auth/invalid-email':'ইমেইলটি সঠিক নয়',
-    'auth/user-disabled':'এই অ্যাকাউন্ট নিষ্ক্রিয় করা হয়েছে',
-    'auth/user-not-found':'এই ইমেইলে কোনো অ্যাকাউন্ট নেই। নতুন অ্যাকাউন্ট তৈরি করুন',
-    'auth/wrong-password':'পাসওয়ার্ড ভুল',
-    'auth/invalid-credential':'ইমেইল বা পাসওয়ার্ড ভুল',
-    'auth/email-already-in-use':'এই ইমেইলে আগেই অ্যাকাউন্ট আছে। লগইন করুন',
-    'auth/weak-password':'পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে',
-    'auth/network-request-failed':'ইন্টারনেট সমস্যা',
-    'auth/too-many-requests':'অনেকবার চেষ্টা করা হয়েছে। কিছুক্ষণ পর চেষ্টা করুন',
-    'auth/operation-not-allowed':'Firebase-এ Email/Password চালু করা হয়নি'
-  };
-  return map[code]||('এরর: '+code);
-}
+function getFriendlyError(code){const map={'auth/invalid-email':'ইমেইলটি সঠিক নয়','auth/user-disabled':'এই অ্যাকাউন্ট নিষ্ক্রিয় করা হয়েছে','auth/user-not-found':'এই ইমেইলে কোনো অ্যাকাউন্ট নেই। নতুন অ্যাকাউন্ট তৈরি করুন','auth/wrong-password':'পাসওয়ার্ড ভুল','auth/invalid-credential':'ইমেইল বা পাসওয়ার্ড ভুল','auth/email-already-in-use':'এই ইমেইলে আগেই অ্যাকাউন্ট আছে। লগইন করুন','auth/weak-password':'পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে','auth/network-request-failed':'ইন্টারনেট সমস্যা','auth/too-many-requests':'অনেকবার চেষ্টা করা হয়েছে। কিছুক্ষণ পর চেষ্টা করুন','auth/operation-not-allowed':'Firebase-এ Email/Password চালু করা হয়নি'};return map[code]||('এরর: '+code);}
 
 async function handleAuthSubmit(){
   clearAuthError();
   const email=$('#emailInput').value.trim();
   const password=$('#passwordInput').value;
-  if(!email){ showAuthError('ইমেইল দিন'); return; }
-  if(!password||password.length<6){ showAuthError('পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের দিন'); return; }
-  if(!firebaseReady){ showAuthError('Firebase লোড হয়নি'); return; }
-
+  if(!email){showAuthError('ইমেইল দিন');return;}
+  if(!password||password.length<6){showAuthError('পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের দিন');return;}
+  if(!firebaseReady){showAuthError('Firebase লোড হয়নি');return;}
   const btn=$('#authSubmitBtn');
   btn.disabled=true;
   btn.textContent='⏳ অপেক্ষা করুন…';
-
   try{
     if(authMode==='signup'){
       await auth.createUserWithEmailAndPassword(email,password);
@@ -491,11 +531,10 @@ async function handleAuthSubmit(){
     }
   } catch(err){
     console.error('Auth error:',err);
-    if(authMode==='signin'&&err.code==='auth/user-not-found'){
-      // Auto switch to signup
+    if(authMode==='signin'&&(err.code==='auth/user-not-found'||err.code==='auth/invalid-credential')){
       authMode='signup';
       updateAuthUI();
-      showAuthError('এই ইমেইলে অ্যাকাউন্ট নেই। আবার চাপুন — নতুন অ্যাকাউন্ট তৈরি হবে।');
+      showAuthError('অ্যাকাউন্ট নেই বা পাসওয়ার্ড ভুল। "অ্যাকাউন্ট তৈরি করুন" চেপে নতুন অ্যাকাউন্ট বানান।');
     } else {
       showAuthError(getFriendlyError(err.code));
     }
@@ -518,69 +557,60 @@ function updateAuthUI(){
     $('#authToggleBtn').textContent='নতুন অ্যাকাউন্ট তৈরি করুন';
   }
 }
-
-function toggleAuthMode(){
-  clearAuthError();
-  authMode=authMode==='signin'?'signup':'signin';
-  updateAuthUI();
-}
+function toggleAuthMode(){clearAuthError();authMode=authMode==='signin'?'signup':'signin';updateAuthUI();}
 
 async function mergeOfflineNotesToCloud(uid){const offlineNotes=loadLocalNotes();if(offlineNotes.length===0)return{uploaded:0,merged:0};let uploaded=0,merged=0;for(const note of offlineNotes){try{const ref=db.collection('users').doc(uid).collection('notes').doc(note.id);const existing=await ref.get();const localUpdated=note.updatedAt||note.createdAt||Date.now();if(!existing.exists){await ref.set({title:note.title||'',content:note.content||'',pinned:!!note.pinned,archived:!!note.archived,favorite:!!note.favorite,deleted:!!note.deleted,deletedAt:note.deletedAt?firebase.firestore.Timestamp.fromMillis(tsToMs(note.deletedAt)):null,locked:!!note.locked,category:note.category||null,color:note.color||null,reminder:note.reminder?firebase.firestore.Timestamp.fromMillis(tsToMs(note.reminder)):null,createdAt:firebase.firestore.Timestamp.fromMillis(tsToMs(note.createdAt)||Date.now()),updatedAt:firebase.firestore.Timestamp.fromMillis(localUpdated)});uploaded++;}else{const cloudUpdated=tsToMs(existing.data().updatedAt);if(localUpdated>cloudUpdated){await ref.update({title:note.title||'',content:note.content||'',pinned:!!note.pinned,archived:!!note.archived,favorite:!!note.favorite,deleted:!!note.deleted,category:note.category||null,color:note.color||null,updatedAt:firebase.firestore.Timestamp.fromMillis(localUpdated)});merged++;}}}catch(err){console.error('Merge error',note.id,err);}}if(uploaded+merged>0||offlineNotes.length>0)localStorage.removeItem(STORAGE_NOTES);return{uploaded,merged};}
 function cacheCloudNotesLocally(){try{const minimal=State.notes.map(n=>({id:n.id,title:n.title||'',content:n.content||'',pinned:!!n.pinned,archived:!!n.archived,favorite:!!n.favorite,deleted:!!n.deleted,deletedAt:n.deletedAt?tsToMs(n.deletedAt):null,locked:!!n.locked,category:n.category||null,color:n.color||null,reminder:n.reminder?tsToMs(n.reminder):null,createdAt:tsToMs(n.createdAt),updatedAt:tsToMs(n.updatedAt)}));localStorage.setItem(STORAGE_NOTES,JSON.stringify(minimal));}catch(e){console.warn('Cache error:',e);}}
 
 function signOut(){if(State.notes.length>0)cacheCloudNotesLocally();if(State.unsubscribeNotes){State.unsubscribeNotes();State.unsubscribeNotes=null;}if(firebaseReady&&auth){auth.signOut().then(()=>{State.user=null;State.isOfflineMode=true;localStorage.setItem(STORAGE_MODE,'offline');State.notes=loadLocalNotes();unlockedNotes.clear();updateAccountUI();renderNotes();refreshSidebar();updateStorageInfo();updatePendingIndicator();toast('সাইন আউট। '+State.notes.length+' নোট ফোনে সেভ আছে।');});}}
 function skipLogin(){State.isOfflineMode=true;State.user=null;localStorage.setItem(STORAGE_MODE,'offline');State.notes=loadLocalNotes();updateAccountUI();showScreen('home');renderNotes();refreshSidebar();updateStorageInfo();updatePendingIndicator();startReminderChecker();toast('অফলাইন মোড — নোট এই ফোনে সেভ থাকবে');}
-
-function updateAccountUI(){
-  const pendingCount=loadLocalNotes().length;
-  if(State.isOfflineMode){
-    $('#homeName').textContent='Offline Mode';
-    $('#homeAvatar').innerHTML='📴';
-    $('#sidebarName').textContent='Offline Mode';
-    $('#sidebarEmail').textContent='সাইন ইন করা নেই';
-    $('#sidebarAvatar').innerHTML='📴';
-    $('#settingsName').textContent='Guest User';
-    $('#settingsEmail').textContent='অফলাইন মোড';
-    $('#settingsAvatar').innerHTML='📴';
-    $('#dataModeDesc').textContent='Offline — local storage only';
-    $('#offlinePill').style.display='inline-flex';
-    $('#signInFromSettings').style.display='flex';
-    $('#signOutBtn').style.display='none';
-    $('#syncGroupTitle').style.display='none';
-    $('#syncGroup').style.display='none';
-    $('#syncPendingBtn').style.display=pendingCount>0?'flex':'none';
-    $('#pendingSyncDesc').textContent=pendingCount>0?`${pendingCount} নোট সিঙ্ক বাকি`:'0 notes waiting';
-    $('#bannerWrap').style.display='block';
-  } else if(State.user){
-    const u=State.user;
-    const displayName=u.displayName||u.email||'User';
-    const email=u.email||'';
-    const initial=displayName.charAt(0).toUpperCase();
-    const photoHTML=u.photoURL?`<img src="${u.photoURL}" alt="">`:initial;
-    $('#homeName').textContent=displayName;
-    $('#homeAvatar').innerHTML=photoHTML;
-    $('#sidebarName').textContent=displayName;
-    $('#sidebarEmail').textContent=email;
-    $('#sidebarAvatar').innerHTML=photoHTML;
-    $('#settingsName').textContent=displayName;
-    $('#settingsEmail').textContent=email;
-    $('#settingsAvatar').innerHTML=photoHTML;
-    $('#dataModeDesc').textContent='Cloud — synced with your account';
-    $('#offlinePill').style.display='none';
-    $('#signInFromSettings').style.display='none';
-    $('#signOutBtn').style.display='flex';
-    $('#syncGroupTitle').style.display='block';
-    $('#syncGroup').style.display='block';
-    $('#syncPendingBtn').style.display='none';
-    $('#bannerWrap').style.display='block';
-  }
-}
+function updateAccountUI(){const pendingCount=loadLocalNotes().length;if(State.isOfflineMode){$('#homeName').textContent='Offline Mode';$('#homeAvatar').innerHTML='📴';$('#sidebarName').textContent='Offline Mode';$('#sidebarEmail').textContent='সাইন ইন করা নেই';$('#sidebarAvatar').innerHTML='📴';$('#settingsName').textContent='Guest User';$('#settingsEmail').textContent='অফলাইন মোড';$('#settingsAvatar').innerHTML='📴';$('#dataModeDesc').textContent='Offline — local storage only';$('#offlinePill').style.display='inline-flex';$('#signInFromSettings').style.display='flex';$('#signOutBtn').style.display='none';$('#syncGroupTitle').style.display='none';$('#syncGroup').style.display='none';$('#syncPendingBtn').style.display=pendingCount>0?'flex':'none';$('#pendingSyncDesc').textContent=pendingCount>0?`${pendingCount} নোট সিঙ্ক বাকি`:'0 notes waiting';$('#bannerWrap').style.display='block';}else if(State.user){const u=State.user;const displayName=u.displayName||u.email||'User';const email=u.email||'';const initial=displayName.charAt(0).toUpperCase();const photoHTML=u.photoURL?`<img src="${u.photoURL}" alt="">`:initial;$('#homeName').textContent=displayName;$('#homeAvatar').innerHTML=photoHTML;$('#sidebarName').textContent=displayName;$('#sidebarEmail').textContent=email;$('#sidebarAvatar').innerHTML=photoHTML;$('#settingsName').textContent=displayName;$('#settingsEmail').textContent=email;$('#settingsAvatar').innerHTML=photoHTML;$('#dataModeDesc').textContent='Cloud — synced with your account';$('#offlinePill').style.display='none';$('#signInFromSettings').style.display='none';$('#signOutBtn').style.display='flex';$('#syncGroupTitle').style.display='block';$('#syncGroup').style.display='block';$('#syncPendingBtn').style.display='none';$('#bannerWrap').style.display='block';}}
 function updatePendingIndicator(){const count=loadLocalNotes().length;const pendingPill=$('#pendingPill'),pendingCount=$('#pendingCount');if(State.isOfflineMode&&count>0){pendingPill.style.display='inline-flex';pendingCount.textContent=count;}else pendingPill.style.display='none';}
 async function onUserSignedIn(user){State.user=user;State.isOfflineMode=false;localStorage.setItem(STORAGE_MODE,'cloud');updateAccountUI();$('#fullLoader').classList.remove('show');showScreen('home');$('#passwordInput').value='';const pending=loadLocalNotes();if(pending.length>0){setSyncStatus('saving');toast(`${pending.length} টি অফলাইন নোট আপলোড হচ্ছে…`,3000);try{const result=await mergeOfflineNotesToCloud(user.uid);if(result.uploaded+result.merged>0)toast(`✓ ${result.uploaded} নতুন${result.merged>0?`, ${result.merged} মার্জ`:''}`,4000);}catch(err){console.error('Merge failed:',err);toast('কিছু নোট সিঙ্ক হয়নি');}}db.collection('users').doc(user.uid).set({email:user.email||'',lastLogin:firebase.firestore.FieldValue.serverTimestamp()},{merge:true}).catch(()=>{});subscribeNotes();loadLastBackup();startReminderChecker();updatePendingIndicator();}
 async function syncPendingNotes(){if(!State.user){toast('প্রথমে সাইন ইন করুন');return;}const pending=loadLocalNotes();if(pending.length===0){toast('No pending notes');return;}setSyncStatus('saving');toast('Uploading…');try{const result=await mergeOfflineNotesToCloud(State.user.uid);setSyncStatus('synced');toast(`✓ ${result.uploaded} টি আপলোড হয়েছে`);updatePendingIndicator();}catch(err){console.error(err);setSyncStatus('failed');toast('Sync failed');}}
 function subscribeNotes(){if(State.unsubscribeNotes)State.unsubscribeNotes();if(!State.user||!firebaseReady)return;const uid=State.user.uid;State.unsubscribeNotes=db.collection('users').doc(uid).collection('notes').orderBy('updatedAt','desc').onSnapshot({includeMetadataChanges:true},snapshot=>{const notes=[];snapshot.forEach(doc=>{const data=doc.data();data.id=doc.id;data._pending=doc.metadata.hasPendingWrites;notes.push(data);});State.notes=notes;renderNotes();updateStorageInfo();refreshSidebar();cacheCloudNotesLocally();const inEditor=$('#editor').classList.contains('active');if(snapshot.metadata.hasPendingWrites){if(!inEditor)setSyncStatus('saving');}else if(snapshot.metadata.fromCache){if(!inEditor)setSyncStatus(navigator.onLine?'saving':'offline');}else{if(!inEditor)setSyncStatus('synced');updateLastBackupTime(new Date());}},err=>{console.error('Snapshot error:',err);setSyncStatus('failed');});}
 
-function renderNotes(){const scroll=$('#notesScroll');const q=State.searchQuery.toLowerCase().trim();const filter=State.activeFilter;let list=State.notes.slice();if(filter==='trash')list=list.filter(n=>n.deleted);else{list=list.filter(n=>!n.deleted&&!n.archived);if(filter==='favorite')list=list.filter(n=>n.favorite);if(filter==='pinned')list=list.filter(n=>n.pinned);if(filter==='reminders')list=list.filter(n=>n.reminder);if(filter==='archived')list=State.notes.filter(n=>!n.deleted&&n.archived);if(filter==='tag'&&State.activeTag)list=list.filter(n=>n.category===State.activeTag);}if(q)list=list.filter(n=>(n.title||'').toLowerCase().includes(q)||stripHtml(n.content||'').toLowerCase().includes(q));if(filter==='recent')list.sort((a,b)=>tsToMs(b.updatedAt)-tsToMs(a.updatedAt));else if(filter!=='trash')list.sort((a,b)=>{if(a.pinned&&!b.pinned)return-1;if(!a.pinned&&b.pinned)return 1;return tsToMs(b.updatedAt)-tsToMs(a.updatedAt);});else list.sort((a,b)=>tsToMs(b.deletedAt)-tsToMs(a.deletedAt));if(list.length===0){scroll.innerHTML=emptyState(filter,q);return;}let html='';if(filter==='all'&&!q){const pinned=list.filter(n=>n.pinned),others=list.filter(n=>!n.pinned);if(pinned.length)html+=`<div class="section-title">📌 Pinned</div><div class="notes-grid">${pinned.map(cardHtml).join('')}</div>`;if(others.length)html+=`<div class="section-title">All Notes</div><div class="notes-grid">${others.map(cardHtml).join('')}</div>`;}else html=`<div class="notes-grid">${list.map(cardHtml).join('')}</div>`;scroll.innerHTML=html;scroll.querySelectorAll('.note-card').forEach(card=>{const noteId=card.dataset.id;let lpTimer=null,lpDone=false;const start=()=>{lpDone=false;card.classList.add('long-pressed');lpTimer=setTimeout(()=>{lpDone=true;if(navigator.vibrate)navigator.vibrate(30);card.classList.remove('long-pressed');openContextMenu(noteId);},500);};const cancel=()=>{clearTimeout(lpTimer);card.classList.remove('long-pressed');};card.addEventListener('touchstart',start,{passive:true});card.addEventListener('touchend',cancel);card.addEventListener('touchmove',cancel,{passive:true});card.addEventListener('touchcancel',cancel);card.addEventListener('mousedown',start);card.addEventListener('mouseup',cancel);card.addEventListener('mouseleave',cancel);card.addEventListener('contextmenu',e=>e.preventDefault());card.addEventListener('click',e=>{if(lpDone){e.preventDefault();e.stopPropagation();lpDone=false;return;}const n=State.notes.find(x=>x.id===noteId);if(!n)return;if(n.deleted)openContextMenu(noteId);else openEditor(noteId);});});}
+function renderNotes(){
+  const scroll=$('#notesScroll');
+  const q=State.searchQuery.toLowerCase().trim();
+  const filter=State.activeFilter;
+  let list=State.notes.slice();
+  if(filter==='trash')list=list.filter(n=>n.deleted);
+  else{list=list.filter(n=>!n.deleted&&!n.archived);if(filter==='favorite')list=list.filter(n=>n.favorite);if(filter==='pinned')list=list.filter(n=>n.pinned);if(filter==='reminders')list=list.filter(n=>n.reminder);if(filter==='archived')list=State.notes.filter(n=>!n.deleted&&n.archived);if(filter==='tag'&&State.activeTag)list=list.filter(n=>n.category===State.activeTag);}
+  if(q)list=list.filter(n=>(n.title||'').toLowerCase().includes(q)||stripHtml(n.content||'').toLowerCase().includes(q));
+  if(filter==='recent')list.sort((a,b)=>tsToMs(b.updatedAt)-tsToMs(a.updatedAt));
+  else if(filter!=='trash')list.sort((a,b)=>{if(a.pinned&&!b.pinned)return-1;if(!a.pinned&&b.pinned)return 1;return tsToMs(b.updatedAt)-tsToMs(a.updatedAt);});
+  else list.sort((a,b)=>tsToMs(b.deletedAt)-tsToMs(a.deletedAt));
+  if(list.length===0){scroll.innerHTML=emptyState(filter,q);return;}
+  let html='';
+  if(filter==='all'&&!q){const pinned=list.filter(n=>n.pinned),others=list.filter(n=>!n.pinned);if(pinned.length)html+=`<div class="section-title">📌 Pinned</div><div class="notes-grid">${pinned.map(cardHtml).join('')}</div>`;if(others.length)html+=`<div class="section-title">All Notes</div><div class="notes-grid">${others.map(cardHtml).join('')}</div>`;}
+  else html=`<div class="notes-grid">${list.map(cardHtml).join('')}</div>`;
+  scroll.innerHTML=html;
+  // Apply view mode class to all note grids
+  scroll.querySelectorAll('.notes-grid').forEach(g=>{
+    if(State.viewMode==='horizontal')g.classList.add('mode-horizontal');
+    else if(State.viewMode==='title')g.classList.add('mode-title');
+  });
+  // Bind card events
+  scroll.querySelectorAll('.note-card').forEach(card=>{
+    const noteId=card.dataset.id;let lpTimer=null,lpDone=false;
+    const start=()=>{lpDone=false;card.classList.add('long-pressed');lpTimer=setTimeout(()=>{lpDone=true;if(navigator.vibrate)navigator.vibrate(30);card.classList.remove('long-pressed');openContextMenu(noteId);},500);};
+    const cancel=()=>{clearTimeout(lpTimer);card.classList.remove('long-pressed');};
+    card.addEventListener('touchstart',start,{passive:true});
+    card.addEventListener('touchend',cancel);
+    card.addEventListener('touchmove',cancel,{passive:true});
+    card.addEventListener('touchcancel',cancel);
+    card.addEventListener('mousedown',start);
+    card.addEventListener('mouseup',cancel);
+    card.addEventListener('mouseleave',cancel);
+    card.addEventListener('contextmenu',e=>e.preventDefault());
+    card.addEventListener('click',e=>{
+      if(lpDone){e.preventDefault();e.stopPropagation();lpDone=false;return;}
+      const n=State.notes.find(x=>x.id===noteId);if(!n)return;
+      if(n.deleted)openContextMenu(noteId);else openEditor(noteId);
+    });
+  });
+}
 function cardHtml(n){const title=escapeHtml(n.title||'');const preview=escapeHtml(stripHtml(n.content||'').slice(0,180));const date=formatDate(n.updatedAt);const pending=n._pending?' •':'';const tag=n.category?`<span class="note-tag">🏷️ ${escapeHtml(n.category)}</span>`:'';let badges='';if(n.favorite)badges+='<span>⭐</span>';if(n.pinned)badges+='<span>📌</span>';if(n.locked)badges+='<span>🔒</span>';if(n.reminder)badges+='<span>🔔</span>';const colorAttr=n.color?` data-color="${escapeHtml(n.color)}"`:'';const pendingClass=n._pending?' pending-sync':'';return`<div class="note-card${n.pinned?' pinned':''}${pendingClass}" data-id="${n.id}"${colorAttr}>${badges?`<div class="card-badges">${badges}</div>`:''}<div class="note-title">${title}</div><div class="note-preview">${preview}</div><div class="note-meta"><span>${date}${pending}</span>${tag}</div></div>`;}
 function emptyState(filter,q){if(q)return`<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">No results</div><div class="empty-desc">No notes match "${escapeHtml(q)}"</div></div>`;const m={all:['📝','No notes yet','Tap the + button to create your first note'],favorite:['⭐','No favorites','Star important notes'],pinned:['📌','No pinned notes','Pin important notes'],recent:['🕐','No recent notes',''],reminders:['🔔','No reminders','Set a reminder on any note'],archived:['📦','No archived notes',''],trash:['🗑️','Trash is empty',''],tag:['🏷️','Empty tag','']};const[i,t,d]=m[filter]||m.all;return`<div class="empty"><div class="empty-icon">${i}</div><div class="empty-title">${t}</div><div class="empty-desc">${d}</div></div>`;}
 function updateStorageInfo(){const total=State.notes.filter(n=>!n.deleted).length;const el=$('#storageDesc');if(el)el.textContent=`${total} note${total!==1?'s':''}`;}
@@ -593,12 +623,46 @@ function updatePageTitle(){const t={all:'All Notes',favorite:'⭐ Favorites',pin
 
 async function openEditor(noteId){const n=State.notes.find(x=>x.id===noteId);if(!n)return;if(n.locked&&!unlockedNotes.has(noteId)){const ok=await requestUnlock(noteId);if(!ok)return;}State.currentNote=n;$('#editorTitle').value=n.title||'';$('#editorContent').innerHTML=n.content||'';$('#editorStatus').textContent='Saved';if(n.color)$('#editor').setAttribute('data-color',n.color);else $('#editor').removeAttribute('data-color');updateReminderBadge(n);const btn=$('#editorSave');btn.classList.remove('saved','saving');btn.innerHTML='💾 Save';$$('.tool-btn').forEach(b=>b.classList.remove('active'));showScreen('editor');}
 function updateReminderBadge(n){const el=$('#editorReminderBadge');if(n&&n.reminder){const d=n.reminder.toDate?n.reminder.toDate():new Date(n.reminder);el.innerHTML=`<span class="reminder-badge">🔔 ${formatDateTime(d)}</span>`;}else el.innerHTML='';}
-function closeEditor(){if(State.saveTimer){clearTimeout(State.saveTimer);State.saveTimer=null;flushSave();}State.currentNote=null;$('#editor').removeAttribute('data-color');$$('.tool-btn').forEach(b=>b.classList.remove('active'));showScreen('home');}
+function closeEditor(){if(State.saveTimer){clearTimeout(State.saveTimer);State.saveTimer=null;flushSave();}State.currentNote=null;isNewNoteSession=false;$('#editor').removeAttribute('data-color');$$('.tool-btn').forEach(b=>b.classList.remove('active'));showScreen('home');renderNotes();refreshSidebar();}
 async function flushSave(){if(!State.currentNote)return;const title=$('#editorTitle').value;const content=$('#editorContent').innerHTML;const note=State.currentNote;if(title===(note.title||'')&&content===(note.content||''))return;if(State.isOfflineMode){const n=State.notes.find(x=>x.id===note.id);if(n){n.title=title;n.content=content;n.updatedAt=Date.now();saveLocalNotes();}$('#editorStatus').textContent='Saved locally';}else if(State.user&&firebaseReady){setSyncStatus('saving');try{await db.collection('users').doc(State.user.uid).collection('notes').doc(note.id).update({title,content,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});note.title=title;note.content=content;$('#editorStatus').textContent='Saved';}catch(err){console.error('Save error:',err);if(!navigator.onLine){setSyncStatus('offline');$('#editorStatus').textContent='Will sync when online';}else setSyncStatus('failed');}}}
 function scheduleSave(){$('#editorStatus').textContent='Saving…';const btn=$('#editorSave');if(btn.classList.contains('saved')){btn.classList.remove('saved');btn.innerHTML='💾 Save';}clearTimeout(State.saveTimer);State.saveTimer=setTimeout(()=>flushSave(),600);}
-async function saveNow(){if(!State.currentNote)return;clearTimeout(State.saveTimer);State.saveTimer=null;const btn=$('#editorSave');btn.classList.remove('saved');btn.classList.add('saving');btn.innerHTML='⏳ Saving';try{await flushSave();if(State.isOfflineMode){btn.classList.remove('saving');btn.classList.add('saved');btn.innerHTML='✓ Saved';$('#editorStatus').textContent='Saved locally';toast('✓ Saved locally');setTimeout(()=>{btn.classList.remove('saved','saving');btn.innerHTML='💾 Save';},1800);}else if(navigator.onLine){btn.innerHTML='⏳ Syncing';setSyncStatus('saving');await db.waitForPendingWrites();setSyncStatus('synced');btn.classList.remove('saving');btn.classList.add('saved');btn.innerHTML='✓ Synced';$('#editorStatus').textContent='Synced to cloud';toast('✓ Synced to cloud');setTimeout(()=>{btn.classList.remove('saved','saving');btn.innerHTML='💾 Save';},1800);}else{setSyncStatus('offline');btn.classList.remove('saving','saved');btn.innerHTML='💾 Save';$('#editorStatus').textContent='Saved locally — will sync when online';toast('Will sync when online');}}catch(err){console.error('Save error:',err);btn.classList.remove('saving','saved');btn.innerHTML='💾 Save';setSyncStatus('failed');toast('Save failed');}}
 
-async function createNote(){const now=Date.now();if(State.isOfflineMode){const n={id:genId(),title:'',content:'',pinned:false,archived:false,favorite:false,deleted:false,deletedAt:null,locked:false,category:null,color:null,reminder:null,createdAt:now,updatedAt:now};State.notes.unshift(n);saveLocalNotes();updatePendingIndicator();setTimeout(()=>openEditor(n.id),80);}else if(State.user&&firebaseReady){const ref=db.collection('users').doc(State.user.uid).collection('notes').doc();const serverNow=firebase.firestore.FieldValue.serverTimestamp();const note={title:'',content:'',pinned:false,archived:false,favorite:false,deleted:false,deletedAt:null,locked:false,category:null,tags:[],color:null,reminder:null,createdAt:serverNow,updatedAt:serverNow};setSyncStatus('saving');try{await ref.set(note);setTimeout(()=>openEditor(ref.id),100);}catch(err){console.error('Create error:',err);toast('Could not create note: '+(err.code||err.message),5000);setSyncStatus('failed');}}}
+async function saveNow(){
+  if(!State.currentNote)return;
+  clearTimeout(State.saveTimer);State.saveTimer=null;
+  const btn=$('#editorSave');
+  btn.classList.remove('saved');btn.classList.add('saving');btn.innerHTML='⏳ Saving';
+  try{
+    await flushSave();
+    if(State.isOfflineMode){
+      btn.classList.remove('saving');btn.classList.add('saved');btn.innerHTML='✓ Saved';
+      $('#editorStatus').textContent='Saved locally';toast('✓ Saved locally');
+      setTimeout(()=>{btn.classList.remove('saved','saving');btn.innerHTML='💾 Save';},900);
+    } else if(navigator.onLine){
+      btn.innerHTML='⏳ Syncing';setSyncStatus('saving');
+      await db.waitForPendingWrites();setSyncStatus('synced');
+      btn.classList.remove('saving');btn.classList.add('saved');btn.innerHTML='✓ Synced';
+      $('#editorStatus').textContent='Synced to cloud';toast('✓ Synced to cloud');
+      setTimeout(()=>{btn.classList.remove('saved','saving');btn.innerHTML='💾 Save';},900);
+    } else {
+      setSyncStatus('offline');btn.classList.remove('saving','saved');btn.innerHTML='💾 Save';
+      $('#editorStatus').textContent='Saved locally — will sync when online';toast('Will sync when online');
+    }
+    // ⭐ নতুন নোট সেভ হলে অটো Home-এ ফিরে যাবে
+    if(isNewNoteSession){
+      setTimeout(()=>{
+        isNewNoteSession=false;
+        closeEditor();
+      }, 1100);
+    }
+  }catch(err){
+    console.error('Save error:',err);
+    btn.classList.remove('saving','saved');btn.innerHTML='💾 Save';
+    setSyncStatus('failed');toast('Save failed');
+  }
+}
+
+async function createNote(){const now=Date.now();if(State.isOfflineMode){const n={id:genId(),title:'',content:'',pinned:false,archived:false,favorite:false,deleted:false,deletedAt:null,locked:false,category:null,color:null,reminder:null,createdAt:now,updatedAt:now};State.notes.unshift(n);saveLocalNotes();updatePendingIndicator();isNewNoteSession=true;setTimeout(()=>openEditor(n.id),80);}else if(State.user&&firebaseReady){const ref=db.collection('users').doc(State.user.uid).collection('notes').doc();const serverNow=firebase.firestore.FieldValue.serverTimestamp();const note={title:'',content:'',pinned:false,archived:false,favorite:false,deleted:false,deletedAt:null,locked:false,category:null,tags:[],color:null,reminder:null,createdAt:serverNow,updatedAt:serverNow};setSyncStatus('saving');try{await ref.set(note);isNewNoteSession=true;setTimeout(()=>openEditor(ref.id),100);}catch(err){console.error('Create error:',err);toast('Could not create note: '+(err.code||err.message),5000);setSyncStatus('failed');}}}
 async function updateNoteField(noteId,fields){if(State.isOfflineMode){const n=State.notes.find(x=>x.id===noteId);if(!n)return;Object.assign(n,fields);n.updatedAt=Date.now();saveLocalNotes();renderNotes();refreshSidebar();}else if(State.user&&firebaseReady){setSyncStatus('saving');try{await db.collection('users').doc(State.user.uid).collection('notes').doc(noteId).update({...fields,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});}catch(err){console.error('Update error:',err);setSyncStatus(navigator.onLine?'failed':'offline');}}}
 async function updateNote(id,fields){return updateNoteField(id,fields);}
 function deleteNote(id){updateNoteField(id,{deleted:true,deletedAt:new Date()});toast('Moved to Trash');if(State.currentNote&&State.currentNote.id===id)closeEditor();}
@@ -642,6 +706,11 @@ $('#editorContent').addEventListener('input',scheduleSave);
 $('#editorContent').addEventListener('keyup',updateToolbarState);
 $('#editorContent').addEventListener('mouseup',updateToolbarState);
 
+/* VIEW TOGGLE */
+$$('#viewToggle .view-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>setViewMode(btn.dataset.view));
+});
+
 /* AUTH UI */
 $('#authSubmitBtn').addEventListener('click',handleAuthSubmit);
 $('#authToggleBtn').addEventListener('click',toggleAuthMode);
@@ -670,6 +739,8 @@ function boot(){
   applyTheme(localStorage.getItem('theme')||'system');
   setupToolbar();
   updateAuthUI();
+  // Restore view mode
+  $$('#viewToggle .view-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===State.viewMode));
   if('Notification' in window&&Notification.permission==='default'){setTimeout(()=>{Notification.requestPermission().catch(()=>{});},3000);}
   const savedMode=localStorage.getItem(STORAGE_MODE);
   if(firebaseReady){
