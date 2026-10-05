@@ -8,597 +8,229 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
-  --crystal-1: #d4f0ff;
-  --crystal-2: #c2e5f7;
-  --crystal-3: #e8f6fc;
-  --crystal-4: #b8e0f5;
-  --bg-base: #e3f2fa;
-  --glass: rgba(255, 255, 255, 0.42);
-  --glass-strong: rgba(255, 255, 255, 0.68);
-  --glass-border: rgba(255, 255, 255, 0.88);
-  --glass-shine: rgba(255, 255, 255, 0.95);
-  --text: #0f2233;
-  --text-2: #57708a;
-  --text-3: #8ba3b8;
-  --accent: #2f8fd8;
-  --accent-2: #4fb3e8;
-  --accent-glow: rgba(79, 179, 232, 0.35);
-  --mint: #00c48c;
-  --mint-light: #22e0a0;
-  --coral: #ff6b8a;
-  --orange: #ffa940;
-  --danger: #ff4d6d;
-  --border: rgba(79, 179, 232, 0.18);
-  --border-2: rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 2px 6px rgba(60, 130, 180, 0.08);
-  --shadow-md: 0 6px 18px rgba(60, 130, 180, 0.12);
-  --shadow-lg: 0 14px 36px rgba(60, 130, 180, 0.18);
-  --radius: 22px;
-  --radius-md: 18px;
-  --radius-sm: 14px;
-}
-[data-theme="dark"] {
-  --crystal-1: #1a3a52;
-  --crystal-2: #0f2d42;
-  --crystal-3: #1e4058;
-  --crystal-4: #0a2438;
-  --bg-base: #08161f;
-  --glass: rgba(20, 45, 65, 0.5);
-  --glass-strong: rgba(25, 50, 72, 0.75);
-  --glass-border: rgba(120, 200, 240, 0.18);
-  --glass-shine: rgba(180, 230, 255, 0.15);
-  --text: #eaf6ff;
-  --text-2: #8ab0c8;
-  --text-3: #5a7a92;
-  --accent: #4fb3e8;
-  --accent-2: #7ad7ff;
-  --accent-glow: rgba(79, 179, 232, 0.45);
-  --mint: #22e0a0;
-  --mint-light: #7dffd1;
-  --border: rgba(120, 200, 240, 0.15);
-  --border-2: rgba(255, 255, 255, 0.05);
-  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 14px 36px rgba(0, 0, 0, 0.5);
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg-base);
-  color: var(--text);
-  -webkit-tap-highlight-color: transparent;
-  -webkit-font-smoothing: antialiased;
-  user-select: none;
-  letter-spacing: -0.01em;
-}
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 15% 8%, rgba(212, 240, 255, 0.85) 0%, transparent 70%),
-    radial-gradient(ellipse 55% 45% at 85% 25%, rgba(194, 229, 247, 0.75) 0%, transparent 70%),
-    radial-gradient(ellipse 55% 50% at 25% 78%, rgba(232, 246, 252, 0.85) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 78% 88%, rgba(184, 224, 245, 0.7) 0%, transparent 70%),
-    linear-gradient(160deg, #e8f4fb 0%, #d8ecf7 50%, #e0eef8 100%);
-  z-index: -2;
-  pointer-events: none;
-}
-[data-theme="dark"] body::before {
-  background:
-    radial-gradient(ellipse 60% 50% at 15% 8%, rgba(26, 58, 82, 0.9) 0%, transparent 70%),
-    radial-gradient(ellipse 55% 45% at 85% 25%, rgba(15, 45, 66, 0.85) 0%, transparent 70%),
-    radial-gradient(ellipse 55% 50% at 25% 78%, rgba(30, 64, 88, 0.85) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 78% 88%, rgba(10, 36, 56, 0.8) 0%, transparent 70%),
-    linear-gradient(160deg, #08161f 0%, #0a1f2c 50%, #08161f 100%);
-}
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle 2px at 20% 30%, rgba(255,255,255,0.9) 0%, transparent 100%),
-    radial-gradient(circle 1.5px at 75% 15%, rgba(255,255,255,0.8) 0%, transparent 100%),
-    radial-gradient(circle 2px at 85% 65%, rgba(255,255,255,0.7) 0%, transparent 100%),
-    radial-gradient(circle 1.5px at 30% 85%, rgba(255,255,255,0.85) 0%, transparent 100%),
-    radial-gradient(circle 2px at 55% 45%, rgba(255,255,255,0.6) 0%, transparent 100%);
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.7;
-}
-[data-theme="dark"] body::after { opacity: 0.25; }
-button, input, textarea { font-family: inherit; font-size: inherit; color: inherit; }
-button { cursor: pointer; border: none; background: none; }
-input, textarea { user-select: text; }
-::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-::-webkit-scrollbar-track { background: transparent; }
-
-#app { position: fixed; inset: 0; display: flex; flex-direction: column; overflow: hidden; }
-.screen { position: absolute; inset: 0; display: none; flex-direction: column; overflow: hidden; animation: fadeSlide 0.28s ease-out; }
-.screen.active { display: flex; }
-@keyframes fadeSlide { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-/* SPLASH */
-#splash { align-items: center; justify-content: center; background: linear-gradient(160deg, #7ad7ff 0%, #4fb3e8 50%, #2f8fd8 100%); }
-.splash-logo {
-  width: 120px; height: 120px; border-radius: 32px;
-  background: linear-gradient(135deg, #ffffff 0%, #e8f6ff 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 60px;
-  box-shadow: 0 24px 64px rgba(30, 100, 150, 0.35), inset 0 2px 0 rgba(255,255,255,0.95);
-  animation: pop 0.7s cubic-bezier(.2,.9,.3,1.3);
-}
-@keyframes pop { 0% { transform: scale(0.3); opacity: 0; } 60% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
-.splash-title { color: #fff; font-size: 28px; font-weight: 800; margin-top: 28px; text-shadow: 0 4px 16px rgba(0,0,0,0.2); }
-.splash-sub { color: rgba(255,255,255,0.95); font-size: 15px; margin-top: 8px; font-weight: 500; }
-.splash-loader { margin-top: 44px; width: 44px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.3); overflow: hidden; }
-.splash-loader::after { content: ''; display: block; height: 100%; width: 40%; background: #fff; border-radius: 2px; animation: load 1.2s ease infinite; }
-@keyframes load { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
-
-/* LOGIN */
-#login { align-items: center; justify-content: center; padding: 24px; background: transparent; }
-.login-card { width: 100%; max-width: 380px; text-align: center; }
-.login-logo {
-  width: 96px; height: 96px; border-radius: 28px;
-  background: linear-gradient(135deg, #7ad7ff 0%, #4fb3e8 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 48px;
-  margin: 0 auto 28px;
-  box-shadow: 0 20px 44px rgba(79, 179, 232, 0.4), inset 0 2px 0 rgba(255,255,255,0.45);
-}
-.login-title { font-size: 28px; font-weight: 800; letter-spacing: -0.7px; }
-.login-sub { color: var(--text-2); margin-top: 10px; margin-bottom: 40px; font-size: 15px; font-weight: 500; }
-.google-btn {
-  width: 100%; padding: 16px;
-  border-radius: 18px;
-  background: var(--glass-strong);
-  border: 1.5px solid var(--glass-border);
-  font-size: 15px; font-weight: 700;
-  display: flex; align-items: center; justify-content: center; gap: 12px;
-  box-shadow: var(--shadow-md);
-  transition: transform 0.15s;
-  position: relative;
-  overflow: hidden;
-  touch-action: manipulation;
-}
-.google-btn::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; height: 50%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, transparent 100%);
-  pointer-events: none;
-}
-.google-btn:active { transform: scale(0.97); }
-.login-terms { font-size: 12px; color: var(--text-2); margin-top: 28px; line-height: 1.6; font-weight: 500; }
-
-/* TOPBAR */
-.topbar { padding: 18px 20px 12px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-.avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); object-fit: cover; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.95); box-shadow: var(--shadow-md); }
-.hamburger-btn {
-  width: 42px; height: 42px; border-radius: 13px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 4px;
-  background: var(--glass-strong);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.12s;
-  flex-shrink: 0;
-  touch-action: manipulation;
-}
-.hamburger-btn:active { transform: scale(0.92); }
-.hamburger-btn span { display: block; width: 18px; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.25s, opacity 0.2s; }
-.hamburger-btn.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-.hamburger-btn.active span:nth-child(2) { opacity: 0; }
-.hamburger-btn.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-.greeting-wrap { flex: 1; min-width: 0; }
-.greeting-hi { font-size: 12px; color: var(--text-2); font-weight: 600; }
-.greeting-name { font-size: 19px; font-weight: 800; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; letter-spacing: -0.3px; }
-.icon-btn {
-  width: 42px; height: 42px; border-radius: 13px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--glass-strong);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.12s;
-  font-size: 17px;
-  flex-shrink: 0;
-  touch-action: manipulation;
-}
-.icon-btn:active { transform: scale(0.92); }
-
-/* SIDEBAR */
-.sidebar-overlay { position: fixed; inset: 0; background: rgba(10, 30, 50, 0.4); opacity: 0; visibility: hidden; transition: opacity 0.25s, visibility 0.25s; z-index: 90; }
-.sidebar-overlay.show { opacity: 1; visibility: visible; }
-.sidebar {
-  position: fixed; top: 0; left: 0; bottom: 0;
-  width: 300px; max-width: 88vw;
-  background: linear-gradient(165deg, #2d5a7a 0%, #1a3a52 55%, #0e2538 100%);
-  z-index: 95;
-  transform: translateX(-100%);
-  transition: transform 0.3s cubic-bezier(.2,.9,.3,1);
-  display: flex; flex-direction: column;
-  overflow: hidden;
-  box-shadow: 12px 0 40px rgba(0,0,0,0.3);
-}
-.sidebar.show { transform: translateX(0); }
-.sidebar-header {
-  padding: 28px 22px 20px;
-  display: flex; align-items: center; gap: 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.sidebar-header .avatar { width: 54px; height: 54px; border: 2px solid rgba(255,255,255,0.3); }
-.sidebar-user { flex: 1; min-width: 0; }
-.sidebar-name { font-size: 16px; font-weight: 800; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; letter-spacing: -0.3px; }
-.sidebar-email { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
-.sidebar-nav { flex: 1; overflow-y: auto; padding: 14px 12px 30px; }
-.sidebar-item {
-  width: 100%;
-  display: flex; align-items: center; gap: 14px;
-  padding: 13px 16px;
-  border-radius: 14px;
-  color: rgba(255,255,255,0.78);
-  font-size: 14px; font-weight: 600;
-  transition: background 0.15s;
-  margin-bottom: 3px;
-  text-align: left;
-  touch-action: manipulation;
-}
-.sidebar-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
-.sidebar-item.active {
-  background: linear-gradient(135deg, rgba(122,215,255,0.4), rgba(79,179,232,0.28));
-  color: #fff;
-  box-shadow: inset 0 0 0 1px rgba(122,215,255,0.5);
-}
-.sidebar-icon { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
-.sidebar-label { flex: 1; }
-.sidebar-count { font-size: 11px; padding: 3px 9px; border-radius: 10px; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.75); font-weight: 700; }
-.sidebar-item.active .sidebar-count { background: rgba(255,255,255,0.3); color: #fff; }
-.sidebar-section-title { padding: 18px 16px 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.3px; color: rgba(255,255,255,0.4); }
-.sidebar-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 12px 16px; }
-.sidebar-tag {
-  width: 100%;
-  display: flex; align-items: center; gap: 12px;
-  padding: 11px 16px;
-  border-radius: 12px;
-  color: rgba(255,255,255,0.75);
-  font-size: 13px; font-weight: 600;
-  transition: background 0.15s;
-  text-align: left;
-  touch-action: manipulation;
-}
-.sidebar-tag:hover { background: rgba(255,255,255,0.08); color: #fff; }
-.sidebar-tag.active { background: rgba(122,215,255,0.3); color: #fff; }
-.sidebar-tag-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.sidebar-empty-tags { padding: 10px 16px; font-size: 12px; color: rgba(255,255,255,0.4); font-style: italic; font-weight: 500; }
-
-/* SYNC PILL */
-.sync-pill {
-  position: fixed; top: 14px; left: 50%;
-  transform: translateX(-50%) translateY(-70px);
-  padding: 9px 16px;
-  border-radius: 22px;
-  font-size: 12px; font-weight: 700;
-  background: var(--glass-strong);
-  color: var(--text);
-  box-shadow: var(--shadow-md);
-  transition: transform 0.3s cubic-bezier(.2,.9,.3,1.2), opacity 0.25s;
-  z-index: 100;
-  opacity: 0;
-  display: flex; align-items: center; gap: 8px;
-  border: 1px solid var(--glass-border);
-}
-.sync-pill.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-.sync-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-2); }
-.sync-pill.saving .sync-dot { background: var(--orange); }
-.sync-pill.synced .sync-dot { background: var(--mint); box-shadow: 0 0 6px var(--mint); }
-.sync-pill.offline .sync-dot { background: var(--text-3); }
-.sync-pill.failed .sync-dot { background: var(--danger); }
-
-/* SEARCH */
-.search-wrap { padding: 0 20px 14px; flex-shrink: 0; position: relative; }
-.search-box {
-  width: 100%;
-  padding: 14px 16px 14px 46px;
-  border-radius: 15px;
-  border: 1.5px solid var(--glass-border);
-  background: var(--glass-strong);
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  color: var(--text);
-  box-shadow: var(--shadow-sm);
-  font-weight: 500;
-}
-.search-box::placeholder { color: var(--text-3); font-weight: 500; }
-.search-box:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow), var(--shadow-sm); }
-.search-icon { position: absolute; left: 36px; top: 50%; transform: translateY(-50%); font-size: 15px; pointer-events: none; opacity: 0.55; }
-
-.page-title-bar { padding: 0 22px 14px; display: flex; align-items: center; justify-content: space-between; }
-.page-title { font-size: 24px; font-weight: 800; letter-spacing: -0.6px; color: var(--text); }
-
-/* NOTES */
-.notes-scroll { flex: 1; overflow-y: auto; padding: 0 18px 110px; -webkit-overflow-scrolling: touch; }
-.section-title { font-size: 12px; font-weight: 800; color: var(--text-2); text-transform: uppercase; letter-spacing: 1.2px; margin: 20px 4px 12px; }
-.section-title:first-child { margin-top: 4px; }
-.notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
-
-.note-card {
-  border-radius: var(--radius-md);
-  padding: 16px;
-  transition: transform 0.15s;
-  position: relative;
-  cursor: pointer;
-  min-height: 106px;
-  display: flex; flex-direction: column;
-  border: 1px solid var(--glass-border);
-  overflow: hidden;
-  background: var(--glass-strong);
-  box-shadow: 0 4px 14px rgba(60, 130, 180, 0.1), inset 0 1px 0 var(--glass-shine);
-  touch-action: manipulation;
-}
-.note-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 48%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.65) 0%, transparent 100%);
-  pointer-events: none;
-  border-radius: inherit;
-}
-.note-card::after {
-  content: '';
-  position: absolute;
-  top: 8%; left: 10%;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.4) 40%, transparent 70%);
-  pointer-events: none;
-  opacity: 0.85;
-}
-.note-card:active { transform: scale(0.97); }
-.note-card.pinned { border-color: var(--accent-2); box-shadow: 0 6px 20px var(--accent-glow), inset 0 1px 0 var(--glass-shine); }
-.note-card.long-pressed { transform: scale(0.95); border-color: var(--accent); }
-
-.note-card[data-color="yellow"] { background: linear-gradient(160deg, rgba(255,250,205,0.85) 0%, rgba(255,242,168,0.75) 100%); border-color: rgba(255,220,120,0.6); }
-.note-card[data-color="green"]  { background: linear-gradient(160deg, rgba(214,248,229,0.85) 0%, rgba(180,240,214,0.75) 100%); border-color: rgba(120,220,180,0.55); }
-.note-card[data-color="blue"]   { background: linear-gradient(160deg, rgba(214,238,255,0.85) 0%, rgba(180,220,255,0.75) 100%); border-color: rgba(120,190,240,0.55); }
-.note-card[data-color="pink"]   { background: linear-gradient(160deg, rgba(255,222,235,0.85) 0%, rgba(255,200,220,0.75) 100%); border-color: rgba(255,170,200,0.55); }
-.note-card[data-color="purple"] { background: linear-gradient(160deg, rgba(235,222,255,0.85) 0%, rgba(215,195,255,0.75) 100%); border-color: rgba(190,170,240,0.55); }
-.note-card[data-color="orange"] { background: linear-gradient(160deg, rgba(255,230,205,0.85) 0%, rgba(255,214,168,0.75) 100%); border-color: rgba(255,190,130,0.55); }
-.note-card[data-color="mint"]   { background: linear-gradient(160deg, rgba(205,255,240,0.85) 0%, rgba(168,255,225,0.75) 100%); border-color: rgba(120,235,200,0.55); }
-.note-card[data-color="gray"]   { background: linear-gradient(160deg, rgba(235,238,242,0.85) 0%, rgba(215,220,228,0.75) 100%); border-color: rgba(180,190,200,0.5); }
-
-[data-theme="dark"] .note-card[data-color="yellow"] { background: linear-gradient(160deg, rgba(80,72,30,0.75) 0%, rgba(60,52,20,0.7) 100%); border-color: rgba(255,220,120,0.3); }
-[data-theme="dark"] .note-card[data-color="green"]  { background: linear-gradient(160deg, rgba(30,70,50,0.75) 0%, rgba(20,55,38,0.7) 100%); border-color: rgba(120,220,180,0.3); }
-[data-theme="dark"] .note-card[data-color="blue"]   { background: linear-gradient(160deg, rgba(28,58,88,0.75) 0%, rgba(18,42,68,0.7) 100%); border-color: rgba(120,190,240,0.3); }
-[data-theme="dark"] .note-card[data-color="pink"]   { background: linear-gradient(160deg, rgba(80,36,58,0.75) 0%, rgba(60,25,42,0.7) 100%); border-color: rgba(255,170,200,0.3); }
-[data-theme="dark"] .note-card[data-color="purple"] { background: linear-gradient(160deg, rgba(55,42,90,0.75) 0%, rgba(40,30,70,0.7) 100%); border-color: rgba(190,170,240,0.3); }
-[data-theme="dark"] .note-card[data-color="orange"] { background: linear-gradient(160deg, rgba(80,54,30,0.75) 0%, rgba(60,38,18,0.7) 100%); border-color: rgba(255,190,130,0.3); }
-[data-theme="dark"] .note-card[data-color="mint"]   { background: linear-gradient(160deg, rgba(28,72,62,0.75) 0%, rgba(18,54,46,0.7) 100%); border-color: rgba(120,235,200,0.3); }
-[data-theme="dark"] .note-card[data-color="gray"]   { background: linear-gradient(160deg, rgba(48,52,60,0.75) 0%, rgba(34,38,46,0.7) 100%); border-color: rgba(180,190,200,0.2); }
-
-.note-title { font-size: 15px; font-weight: 800; margin-bottom: 6px; line-height: 1.35; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; word-break: break-word; letter-spacing: -0.2px; position: relative; }
-.note-title:empty::before { content: 'Untitled'; color: var(--text-3); font-style: italic; font-weight: 600; }
-.note-preview { font-size: 13px; color: var(--text-2); line-height: 1.5; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; word-break: break-word; flex: 1; position: relative; font-weight: 500; }
-[data-theme="dark"] .note-card[data-color] .note-title { color: #eaf6ff; }
-[data-theme="dark"] .note-card[data-color] .note-preview { color: rgba(234,246,255,0.7); }
-.note-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-size: 11px; color: var(--text-3); gap: 6px; position: relative; font-weight: 600; }
-.card-badges { position: absolute; top: 10px; right: 10px; display: flex; gap: 3px; font-size: 12px; z-index: 2; }
-.note-tag { padding: 3px 8px; border-radius: 10px; background: rgba(79, 179, 232, 0.12); font-size: 10px; font-weight: 700; color: var(--accent); display: inline-flex; align-items: center; gap: 4px; }
-[data-theme="dark"] .note-tag { background: rgba(122,215,255,0.15); color: var(--accent-2); }
-
-.empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; text-align: center; }
-.empty-icon { font-size: 68px; opacity: 0.4; margin-bottom: 22px; }
-.empty-title { font-size: 17px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.3px; }
-.empty-desc { font-size: 14px; color: var(--text-2); line-height: 1.5; max-width: 260px; font-weight: 500; }
-
-/* FAB */
-.fab {
-  position: fixed; bottom: 24px; right: 22px;
-  width: 60px; height: 60px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #22e0a0 0%, #00c48c 50%, #00a86b 100%);
-  color: #fff;
-  font-size: 28px; font-weight: 300;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 10px 26px rgba(0, 196, 140, 0.5), 0 0 40px rgba(34, 224, 160, 0.3), inset 0 1.5px 0 rgba(255, 255, 255, 0.55);
-  transition: transform 0.15s;
-  z-index: 50;
-  overflow: hidden;
-  touch-action: manipulation;
-}
-.fab::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%; background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, transparent 100%); pointer-events: none; }
-.fab:active { transform: scale(0.9); }
-
-/* EDITOR */
-.editor-topbar { padding: 14px 12px 10px; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.editor-title-input {
-  flex: 1; font-size: 19px; font-weight: 800;
-  padding: 8px 6px; border: none; background: transparent;
-  outline: none; color: var(--text);
-  letter-spacing: -0.5px;
-  min-width: 0;
-}
-.editor-title-input::placeholder { color: var(--text-3); opacity: 0.7; }
-
-.save-btn {
-  padding: 0 14px;
-  height: 42px;
-  border-radius: 13px;
-  background: linear-gradient(135deg, #22e0a0 0%, #00c48c 50%, #00a86b 100%);
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 800;
-  display: flex; align-items: center; justify-content: center;
-  gap: 5px;
-  box-shadow: 0 6px 20px rgba(0, 196, 140, 0.5), inset 0 1.5px 0 rgba(255, 255, 255, 0.5);
-  transition: transform 0.15s;
-  flex-shrink: 0;
-  white-space: nowrap;
-  min-width: 88px;
-  position: relative;
-  overflow: hidden;
-  touch-action: manipulation;
-}
-.save-btn::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 55%; background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, transparent 100%); pointer-events: none; }
-.save-btn:active { transform: scale(0.94); }
-.save-btn.saving { background: linear-gradient(135deg, #ffc266 0%, #ff9f43 50%, #e67e22 100%); }
-.save-btn.saved { background: linear-gradient(135deg, #7dffd1 0%, #22e0a0 50%, #00c48c 100%); box-shadow: 0 6px 26px rgba(34, 224, 160, 0.65); }
-
-.editor-meta { padding: 0 20px 10px; display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-2); flex-shrink: 0; flex-wrap: wrap; font-weight: 600; }
-.editor-meta .reminder-badge { padding: 3px 10px; border-radius: 10px; background: rgba(255,169,64,0.15); border: 1px solid rgba(255,169,64,0.3); color: #d97706; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
-
-.editor-content {
-  flex: 1; overflow-y: auto;
-  padding: 16px 20px 80px;
-  font-size: 15px; line-height: 1.7;
-  outline: none;
-  color: var(--text);
-  -webkit-overflow-scrolling: touch;
-  user-select: text;
-  word-break: break-word;
-  font-weight: 500;
-}
-.editor-content:empty::before { content: 'Start writing your thoughts…'; color: var(--text-3); opacity: 0.6; pointer-events: none; font-weight: 500; }
-.editor-content ul, .editor-content ol { padding-left: 22px; margin: 6px 0; }
-.editor-content li { margin: 4px 0; }
-.editor-content p { margin: 4px 0; }
-
-#editor[data-color="yellow"] .editor-content, #editor[data-color="yellow"] .editor-title-input { background: linear-gradient(160deg, rgba(255,250,205,0.5) 0%, rgba(255,242,168,0.35) 100%); }
-#editor[data-color="green"] .editor-content,  #editor[data-color="green"] .editor-title-input  { background: linear-gradient(160deg, rgba(214,248,229,0.5) 0%, rgba(180,240,214,0.35) 100%); }
-#editor[data-color="blue"] .editor-content,   #editor[data-color="blue"] .editor-title-input   { background: linear-gradient(160deg, rgba(214,238,255,0.5) 0%, rgba(180,220,255,0.35) 100%); }
-#editor[data-color="pink"] .editor-content,   #editor[data-color="pink"] .editor-title-input   { background: linear-gradient(160deg, rgba(255,222,235,0.5) 0%, rgba(255,200,220,0.35) 100%); }
-#editor[data-color="purple"] .editor-content, #editor[data-color="purple"] .editor-title-input { background: linear-gradient(160deg, rgba(235,222,255,0.5) 0%, rgba(215,195,255,0.35) 100%); }
-#editor[data-color="orange"] .editor-content, #editor[data-color="orange"] .editor-title-input { background: linear-gradient(160deg, rgba(255,230,205,0.5) 0%, rgba(255,214,168,0.35) 100%); }
-#editor[data-color="mint"] .editor-content,   #editor[data-color="mint"] .editor-title-input   { background: linear-gradient(160deg, rgba(205,255,240,0.5) 0%, rgba(168,255,225,0.35) 100%); }
-#editor[data-color="gray"] .editor-content,   #editor[data-color="gray"] .editor-title-input   { background: linear-gradient(160deg, rgba(235,238,242,0.5) 0%, rgba(215,220,228,0.35) 100%); }
-
-/* SLIM BOTTOM TOOLBAR */
-.toolbar {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  height: 46px;
-  padding: 4px 10px;
-  display: flex; gap: 3px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.94);
-  border-top: 1px solid var(--glass-border);
-  box-shadow: 0 -4px 20px rgba(60, 130, 180, 0.1);
-  z-index: 40;
-  -webkit-overflow-scrolling: touch;
-}
-[data-theme="dark"] .toolbar { background: rgba(15, 35, 52, 0.94); }
-.toolbar::-webkit-scrollbar { display: none; }
-.tool-btn {
-  min-width: 34px; height: 34px;
-  padding: 0 8px;
-  border-radius: 9px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
-  color: var(--text-2);
-  transition: background 0.12s, color 0.12s, transform 0.1s;
-  flex-shrink: 0;
-  font-weight: 700;
-  touch-action: manipulation;
-  user-select: none;
-  -webkit-user-select: none;
-  background: transparent;
-}
-.tool-btn:active { transform: scale(0.92); }
-.tool-btn.active {
-  background: linear-gradient(135deg, #22e0a0 0%, #00c48c 100%);
-  color: #fff;
-  box-shadow: 0 3px 10px rgba(0, 196, 140, 0.4);
-}
-.tool-divider { width: 1px; height: 20px; background: var(--border); margin: 0 4px; flex-shrink: 0; }
-
-/* SETTINGS */
-#settings { overflow-y: auto; }
-.settings-header { padding: 20px 20px 8px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-.settings-title { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
-.settings-body { padding: 8px 20px 60px; }
-.profile-card { background: var(--glass-strong); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 18px; display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow-md), inset 0 1px 0 var(--glass-shine); margin-bottom: 20px; }
-.profile-card .avatar { width: 58px; height: 58px; }
-.profile-info { flex: 1; min-width: 0; }
-.profile-name { font-size: 16px; font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.profile-email { font-size: 13px; color: var(--text-2); margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
-.settings-group { background: var(--glass-strong); border: 1px solid var(--glass-border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md), inset 0 1px 0 var(--glass-shine); margin-bottom: 14px; }
-.settings-item { display: flex; align-items: center; gap: 14px; padding: 15px 18px; border-bottom: 1px solid var(--border-2); transition: background 0.12s; cursor: pointer; touch-action: manipulation; }
-.settings-item:last-child { border-bottom: none; }
-.settings-item:active { background: rgba(79, 179, 232, 0.08); }
-.settings-item-icon { width: 38px; height: 38px; border-radius: 11px; background: linear-gradient(135deg, rgba(122,215,255,0.2), rgba(79,179,232,0.12)); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
-.settings-item-content { flex: 1; min-width: 0; }
-.settings-item-title { font-size: 14px; font-weight: 700; }
-.settings-item-desc { font-size: 12px; color: var(--text-2); margin-top: 3px; font-weight: 500; }
-.settings-group-title { font-size: 12px; font-weight: 800; color: var(--text-2); text-transform: uppercase; letter-spacing: 1.2px; margin: 20px 6px 10px; }
-.settings-item.danger .settings-item-title { color: var(--danger); }
-.segment { display: flex; background: rgba(79, 179, 232, 0.1); border-radius: 11px; padding: 3px; gap: 2px; }
-.segment button { padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: var(--text-2); transition: all 0.18s; touch-action: manipulation; }
-.segment button.active { background: var(--glass-strong); color: var(--accent); box-shadow: 0 2px 6px rgba(79, 179, 232, 0.2); }
-
-/* TOAST */
-#toast {
-  position: fixed; bottom: 24px; left: 50%;
-  transform: translateX(-50%) translateY(120px);
-  padding: 13px 20px;
-  border-radius: 14px;
-  background: var(--glass-strong);
-  color: var(--text);
-  border: 1px solid var(--glass-border);
-  font-size: 13px; font-weight: 700;
-  z-index: 200;
-  transition: transform 0.3s cubic-bezier(.2,.9,.3,1.3);
-  max-width: 90%;
-  text-align: center;
-  box-shadow: var(--shadow-lg), inset 0 1px 0 var(--glass-shine);
-}
-#toast.show { transform: translateX(-50%) translateY(0); }
-
-/* MODAL */
-.modal-backdrop { position: fixed; inset: 0; background: rgba(10, 30, 50, 0.45); display: none; align-items: flex-end; justify-content: center; z-index: 150; animation: fade 0.2s ease; }
-.modal-backdrop.show { display: flex; }
-@keyframes fade { from{opacity:0} to{opacity:1} }
-.modal { background: var(--glass-strong); border: 1px solid var(--glass-border); border-radius: 26px 26px 0 0; width: 100%; max-width: 500px; padding: 20px; max-height: 85vh; overflow-y: auto; animation: slideUp 0.3s cubic-bezier(.2,.9,.3,1.1); box-shadow: 0 -16px 48px rgba(0,0,0,0.2), inset 0 1px 0 var(--glass-shine); }
-@keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
-.modal-handle { width: 38px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 16px; }
-.modal-title { font-size: 17px; font-weight: 800; margin-bottom: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; letter-spacing: -0.3px; }
-.modal-option { padding: 14px 15px; border-radius: 13px; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; transition: background 0.12s; cursor: pointer; margin-bottom: 2px; touch-action: manipulation; }
-.modal-option:active { background: rgba(79, 179, 232, 0.12); }
-.modal-option.danger { color: var(--danger); }
-.modal-input { width: 100%; padding: 13px 15px; border-radius: 13px; border: 1.5px solid var(--glass-border); background: var(--glass); font-size: 14px; outline: none; margin-bottom: 12px; color: var(--text); font-weight: 600; }
-.modal-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
-.modal-actions { display: flex; gap: 10px; margin-top: 8px; }
-.modal-actions .btn { padding: 12px; }
-.btn { padding: 14px 20px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; transition: transform 0.15s; display: flex; align-items: center; justify-content: center; gap: 8px; touch-action: manipulation; }
-.btn:active { transform: scale(0.96); }
-.btn-primary { background: linear-gradient(135deg, #7ad7ff 0%, #4fb3e8 100%); color: #fff; box-shadow: 0 6px 20px rgba(79, 179, 232, 0.4); }
-.btn-outline { background: var(--glass); border: 1.5px solid var(--glass-border); color: var(--text); }
-
-.color-picker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 6px 0 16px; }
-.color-swatch { aspect-ratio: 1; border-radius: 16px; cursor: pointer; border: 2.5px solid transparent; transition: transform 0.15s, border-color 0.15s; position: relative; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(60, 130, 180, 0.15), inset 0 1px 0 rgba(255,255,255,0.85); touch-action: manipulation; }
-.color-swatch::before { content: ''; position: absolute; top: 6%; left: 12%; right: 12%; height: 38%; border-radius: 12px; background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, transparent 100%); pointer-events: none; }
-.color-swatch:active { transform: scale(0.92); }
-.color-swatch.selected { border-color: var(--mint); transform: scale(1.05); box-shadow: 0 0 0 3px rgba(0, 196, 140, 0.3); }
-.color-swatch.selected::after { content: '✓'; font-size: 20px; font-weight: 800; color: #00a86b; position: relative; z-index: 1; }
-.color-swatch[data-color="default"] { background: linear-gradient(160deg, rgba(248,250,252,0.95) 0%, rgba(232,240,246,0.9) 100%); }
-.color-swatch[data-color="yellow"] { background: linear-gradient(160deg, rgba(255,250,205,0.95) 0%, rgba(255,242,168,0.9) 100%); }
-.color-swatch[data-color="green"]  { background: linear-gradient(160deg, rgba(214,248,229,0.95) 0%, rgba(180,240,214,0.9) 100%); }
-.color-swatch[data-color="blue"]   { background: linear-gradient(160deg, rgba(214,238,255,0.95) 0%, rgba(180,220,255,0.9) 100%); }
-.color-swatch[data-color="pink"]   { background: linear-gradient(160deg, rgba(255,222,235,0.95) 0%, rgba(255,200,220,0.9) 100%); }
-.color-swatch[data-color="purple"] { background: linear-gradient(160deg, rgba(235,222,255,0.95) 0%, rgba(215,195,255,0.9) 100%); }
-.color-swatch[data-color="orange"] { background: linear-gradient(160deg, rgba(255,230,205,0.95) 0%, rgba(255,214,168,0.9) 100%); }
-.color-swatch[data-color="mint"]   { background: linear-gradient(160deg, rgba(205,255,240,0.95) 0%, rgba(168,255,225,0.9) 100%); }
-
-.full-loader { position: fixed; inset: 0; background: rgba(10, 30, 50, 0.45); display: none; align-items: center; justify-content: center; z-index: 300; }
-.full-loader.show { display: flex; }
-.spinner { width: 42px; height: 42px; border: 3px solid var(--glass-border); border-top-color: var(--mint); border-radius: 50%; animation: spin 0.7s linear infinite; box-shadow: 0 0 20px rgba(0, 196, 140, 0.5); }
-@keyframes spin { to { transform: rotate(360deg); } }
-.hidden { display: none !important; }
+:root{--crystal-1:#d4f0ff;--crystal-2:#c2e5f7;--crystal-3:#e8f6fc;--crystal-4:#b8e0f5;--bg-base:#e3f2fa;--glass:rgba(255,255,255,0.42);--glass-strong:rgba(255,255,255,0.72);--glass-border:rgba(255,255,255,0.88);--glass-shine:rgba(255,255,255,0.95);--text:#0f2233;--text-2:#57708a;--text-3:#8ba3b8;--accent:#2f8fd8;--accent-2:#4fb3e8;--accent-glow:rgba(79,179,232,0.35);--mint:#00c48c;--mint-light:#22e0a0;--coral:#ff6b8a;--orange:#ffa940;--danger:#ff4d6d;--border:rgba(79,179,232,0.18);--border-2:rgba(0,0,0,0.05);--shadow-sm:0 2px 6px rgba(60,130,180,0.08);--shadow-md:0 6px 18px rgba(60,130,180,0.12);--shadow-lg:0 14px 36px rgba(60,130,180,0.18);--radius:22px;--radius-md:18px;--radius-sm:14px;}
+[data-theme="dark"]{--crystal-1:#1a3a52;--crystal-2:#0f2d42;--crystal-3:#1e4058;--crystal-4:#0a2438;--bg-base:#08161f;--glass:rgba(20,45,65,0.5);--glass-strong:rgba(25,50,72,0.75);--glass-border:rgba(120,200,240,0.18);--glass-shine:rgba(180,230,255,0.15);--text:#eaf6ff;--text-2:#8ab0c8;--text-3:#5a7a92;--accent:#4fb3e8;--accent-2:#7ad7ff;--accent-glow:rgba(79,179,232,0.45);--mint:#22e0a0;--mint-light:#7dffd1;--border:rgba(120,200,240,0.15);--border-2:rgba(255,255,255,0.05);--shadow-sm:0 2px 6px rgba(0,0,0,0.3);--shadow-md:0 6px 18px rgba(0,0,0,0.4);--shadow-lg:0 14px 36px rgba(0,0,0,0.5);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;overscroll-behavior:none;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-base);color:var(--text);-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;user-select:none;letter-spacing:-0.01em;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 50% at 15% 8%,rgba(212,240,255,0.85) 0%,transparent 70%),radial-gradient(ellipse 55% 45% at 85% 25%,rgba(194,229,247,0.75) 0%,transparent 70%),radial-gradient(ellipse 55% 50% at 25% 78%,rgba(232,246,252,0.85) 0%,transparent 70%),radial-gradient(ellipse 60% 50% at 78% 88%,rgba(184,224,245,0.7) 0%,transparent 70%),linear-gradient(160deg,#e8f4fb 0%,#d8ecf7 50%,#e0eef8 100%);z-index:-2;pointer-events:none;}
+[data-theme="dark"] body::before{background:radial-gradient(ellipse 60% 50% at 15% 8%,rgba(26,58,82,0.9) 0%,transparent 70%),radial-gradient(ellipse 55% 45% at 85% 25%,rgba(15,45,66,0.85) 0%,transparent 70%),radial-gradient(ellipse 55% 50% at 25% 78%,rgba(30,64,88,0.85) 0%,transparent 70%),radial-gradient(ellipse 60% 50% at 78% 88%,rgba(10,36,56,0.8) 0%,transparent 70%),linear-gradient(160deg,#08161f 0%,#0a1f2c 50%,#08161f 100%);}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(circle 2px at 20% 30%,rgba(255,255,255,0.9) 0%,transparent 100%),radial-gradient(circle 1.5px at 75% 15%,rgba(255,255,255,0.8) 0%,transparent 100%),radial-gradient(circle 2px at 85% 65%,rgba(255,255,255,0.7) 0%,transparent 100%),radial-gradient(circle 1.5px at 30% 85%,rgba(255,255,255,0.85) 0%,transparent 100%);z-index:-1;pointer-events:none;opacity:0.7;}
+[data-theme="dark"] body::after{opacity:0.25;}
+button,input,textarea{font-family:inherit;font-size:inherit;color:inherit;}
+button{cursor:pointer;border:none;background:none;}
+input,textarea{user-select:text;}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+#app{position:fixed;inset:0;display:flex;flex-direction:column;overflow:hidden;}
+.screen{position:absolute;inset:0;display:none;flex-direction:column;overflow:hidden;animation:fadeSlide 0.28s ease-out;}
+.screen.active{display:flex;}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+#splash{align-items:center;justify-content:center;background:linear-gradient(160deg,#7ad7ff 0%,#4fb3e8 50%,#2f8fd8 100%);}
+.splash-logo{width:120px;height:120px;border-radius:32px;background:linear-gradient(135deg,#fff 0%,#e8f6ff 100%);display:flex;align-items:center;justify-content:center;font-size:60px;box-shadow:0 24px 64px rgba(30,100,150,0.35),inset 0 2px 0 rgba(255,255,255,0.95);animation:pop 0.7s cubic-bezier(.2,.9,.3,1.3);}
+@keyframes pop{0%{transform:scale(0.3);opacity:0;}60%{transform:scale(1.08);opacity:1;}100%{transform:scale(1);}}
+.splash-title{color:#fff;font-size:28px;font-weight:800;margin-top:28px;text-shadow:0 4px 16px rgba(0,0,0,0.2);}
+.splash-sub{color:rgba(255,255,255,0.95);font-size:15px;margin-top:8px;font-weight:500;}
+.splash-loader{margin-top:44px;width:44px;height:4px;border-radius:2px;background:rgba(255,255,255,0.3);overflow:hidden;}
+.splash-loader::after{content:'';display:block;height:100%;width:40%;background:#fff;border-radius:2px;animation:load 1.2s ease infinite;}
+@keyframes load{0%{transform:translateX(-100%);}100%{transform:translateX(350%);}}
+#login{align-items:center;justify-content:center;padding:24px;background:transparent;}
+.login-card{width:100%;max-width:380px;text-align:center;}
+.login-logo{width:96px;height:96px;border-radius:28px;background:linear-gradient(135deg,#7ad7ff 0%,#4fb3e8 100%);display:flex;align-items:center;justify-content:center;font-size:48px;margin:0 auto 28px;box-shadow:0 20px 44px rgba(79,179,232,0.4),inset 0 2px 0 rgba(255,255,255,0.45);}
+.login-title{font-size:28px;font-weight:800;letter-spacing:-0.7px;}
+.login-sub{color:var(--text-2);margin-top:10px;margin-bottom:32px;font-size:15px;font-weight:500;}
+.google-btn{width:100%;padding:16px;border-radius:18px;background:var(--glass-strong);border:1.5px solid var(--glass-border);font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:12px;box-shadow:var(--shadow-md);transition:transform 0.15s;position:relative;overflow:hidden;touch-action:manipulation;}
+.google-btn::before{content:'';position:absolute;top:0;left:0;right:0;height:50%;background:linear-gradient(180deg,rgba(255,255,255,0.5) 0%,transparent 100%);pointer-events:none;}
+.google-btn:active{transform:scale(0.97);}
+.skip-btn{width:100%;padding:15px;margin-top:12px;border-radius:18px;background:transparent;border:1.5px solid var(--glass-border);font-size:14px;font-weight:700;color:var(--text);display:flex;align-items:center;justify-content:center;gap:8px;transition:transform 0.15s,background 0.15s;touch-action:manipulation;}
+.skip-btn:active{transform:scale(0.97);background:var(--glass);}
+.skip-btn .arrow{font-size:16px;opacity:0.7;}
+.skip-hint{font-size:12px;color:var(--text-3);margin-top:10px;font-weight:500;line-height:1.5;}
+.login-terms{font-size:12px;color:var(--text-2);margin-top:24px;line-height:1.6;font-weight:500;}
+.banner-wrap{padding:0 20px 12px;}
+.offline-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:14px;background:rgba(255,169,64,0.15);border:1px solid rgba(255,169,64,0.35);color:#d97706;font-size:11px;font-weight:700;}
+[data-theme="dark"] .offline-pill{background:rgba(255,169,64,0.2);color:#ffb84d;}
+.pending-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:14px;background:rgba(79,179,232,0.15);border:1px solid rgba(79,179,232,0.35);color:#0c7bc4;font-size:11px;font-weight:700;margin-left:6px;}
+[data-theme="dark"] .pending-pill{background:rgba(79,179,232,0.2);color:#7ad7ff;}
+.topbar{padding:18px 20px 12px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));flex-shrink:0;border:2px solid rgba(255,255,255,0.95);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;overflow:hidden;}
+.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.hamburger-btn{width:42px;height:42px;border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:var(--glass-strong);border:1px solid var(--glass-border);box-shadow:var(--shadow-sm);transition:transform 0.12s;flex-shrink:0;touch-action:manipulation;}
+.hamburger-btn:active{transform:scale(0.92);}
+.hamburger-btn span{display:block;width:18px;height:2px;background:var(--text);border-radius:2px;transition:transform 0.25s,opacity 0.2s;}
+.hamburger-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.hamburger-btn.active span:nth-child(2){opacity:0;}
+.hamburger-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+.greeting-wrap{flex:1;min-width:0;}
+.greeting-hi{font-size:12px;color:var(--text-2);font-weight:600;}
+.greeting-name{font-size:19px;font-weight:800;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:-0.3px;}
+.icon-btn{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:var(--glass-strong);border:1px solid var(--glass-border);box-shadow:var(--shadow-sm);transition:transform 0.12s;font-size:17px;flex-shrink:0;touch-action:manipulation;}
+.icon-btn:active{transform:scale(0.92);}
+.sidebar-overlay{position:fixed;inset:0;background:rgba(10,30,50,0.4);opacity:0;visibility:hidden;transition:opacity 0.25s,visibility 0.25s;z-index:90;}
+.sidebar-overlay.show{opacity:1;visibility:visible;}
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:300px;max-width:88vw;background:linear-gradient(165deg,#2d5a7a 0%,#1a3a52 55%,#0e2538 100%);z-index:95;transform:translateX(-100%);transition:transform 0.3s cubic-bezier(.2,.9,.3,1);display:flex;flex-direction:column;overflow:hidden;box-shadow:12px 0 40px rgba(0,0,0,0.3);}
+.sidebar.show{transform:translateX(0);}
+.sidebar-header{padding:28px 22px 20px;display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.sidebar-header .avatar{width:54px;height:54px;border:2px solid rgba(255,255,255,0.3);}
+.sidebar-user{flex:1;min-width:0;}
+.sidebar-name{font-size:16px;font-weight:800;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:-0.3px;}
+.sidebar-email{font-size:12px;color:rgba(255,255,255,0.6);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500;}
+.sidebar-nav{flex:1;overflow-y:auto;padding:14px 12px 30px;}
+.sidebar-item{width:100%;display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:14px;color:rgba(255,255,255,0.78);font-size:14px;font-weight:600;transition:background 0.15s;margin-bottom:3px;text-align:left;touch-action:manipulation;}
+.sidebar-item:hover{background:rgba(255,255,255,0.08);color:#fff;}
+.sidebar-item.active{background:linear-gradient(135deg,rgba(122,215,255,0.4),rgba(79,179,232,0.28));color:#fff;box-shadow:inset 0 0 0 1px rgba(122,215,255,0.5);}
+.sidebar-icon{font-size:18px;width:24px;text-align:center;flex-shrink:0;}
+.sidebar-label{flex:1;}
+.sidebar-count{font-size:11px;padding:3px 9px;border-radius:10px;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.75);font-weight:700;}
+.sidebar-item.active .sidebar-count{background:rgba(255,255,255,0.3);color:#fff;}
+.sidebar-section-title{padding:18px 16px 8px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.3px;color:rgba(255,255,255,0.4);}
+.sidebar-divider{height:1px;background:rgba(255,255,255,0.08);margin:12px 16px;}
+.sidebar-tag{width:100%;display:flex;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;color:rgba(255,255,255,0.75);font-size:13px;font-weight:600;transition:background 0.15s;text-align:left;touch-action:manipulation;}
+.sidebar-tag:hover{background:rgba(255,255,255,0.08);color:#fff;}
+.sidebar-tag.active{background:rgba(122,215,255,0.3);color:#fff;}
+.sidebar-tag-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.sidebar-empty-tags{padding:10px 16px;font-size:12px;color:rgba(255,255,255,0.4);font-style:italic;font-weight:500;}
+.sync-pill{position:fixed;top:14px;left:50%;transform:translateX(-50%) translateY(-70px);padding:9px 16px;border-radius:22px;font-size:12px;font-weight:700;background:var(--glass-strong);color:var(--text);box-shadow:var(--shadow-md);transition:transform 0.3s cubic-bezier(.2,.9,.3,1.2),opacity 0.25s;z-index:100;opacity:0;display:flex;align-items:center;gap:8px;border:1px solid var(--glass-border);}
+.sync-pill.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--text-2);}
+.sync-pill.saving .sync-dot{background:var(--orange);}
+.sync-pill.synced .sync-dot{background:var(--mint);box-shadow:0 0 6px var(--mint);}
+.sync-pill.offline .sync-dot{background:var(--text-3);}
+.sync-pill.failed .sync-dot{background:var(--danger);}
+.search-wrap{padding:0 20px 14px;flex-shrink:0;position:relative;}
+.search-box{width:100%;padding:14px 16px 14px 46px;border-radius:15px;border:1.5px solid var(--glass-border);background:var(--glass-strong);font-size:14px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;color:var(--text);box-shadow:var(--shadow-sm);font-weight:500;}
+.search-box::placeholder{color:var(--text-3);font-weight:500;}
+.search-box:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow),var(--shadow-sm);}
+.search-icon{position:absolute;left:36px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none;opacity:0.55;}
+.page-title-bar{padding:0 22px 14px;display:flex;align-items:center;justify-content:space-between;}
+.page-title{font-size:24px;font-weight:800;letter-spacing:-0.6px;color:var(--text);}
+.notes-scroll{flex:1;overflow-y:auto;padding:0 18px 110px;-webkit-overflow-scrolling:touch;}
+.section-title{font-size:12px;font-weight:800;color:var(--text-2);text-transform:uppercase;letter-spacing:1.2px;margin:20px 4px 12px;}
+.section-title:first-child{margin-top:4px;}
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
+.note-card{border-radius:var(--radius-md);padding:16px;transition:transform 0.15s;position:relative;cursor:pointer;min-height:106px;display:flex;flex-direction:column;border:1px solid var(--glass-border);overflow:hidden;background:var(--glass-strong);box-shadow:0 4px 14px rgba(60,130,180,0.1),inset 0 1px 0 var(--glass-shine);touch-action:manipulation;}
+.note-card::before{content:'';position:absolute;top:0;left:0;right:0;height:48%;background:linear-gradient(180deg,rgba(255,255,255,0.65) 0%,transparent 100%);pointer-events:none;border-radius:inherit;}
+.note-card::after{content:'';position:absolute;top:8%;left:10%;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,1) 0%,rgba(255,255,255,0.4) 40%,transparent 70%);pointer-events:none;opacity:0.85;}
+.note-card:active{transform:scale(0.97);}
+.note-card.pinned{border-color:var(--accent-2);box-shadow:0 6px 20px var(--accent-glow),inset 0 1px 0 var(--glass-shine);}
+.note-card.long-pressed{transform:scale(0.95);border-color:var(--accent);}
+.note-card.pending-sync::after{background:radial-gradient(circle,#22e0a0 0%,rgba(34,224,160,0.4) 40%,transparent 70%);box-shadow:0 0 6px #22e0a0;}
+.note-card[data-color="yellow"]{background:linear-gradient(160deg,rgba(255,250,205,0.85) 0%,rgba(255,242,168,0.75) 100%);border-color:rgba(255,220,120,0.6);}
+.note-card[data-color="green"]{background:linear-gradient(160deg,rgba(214,248,229,0.85) 0%,rgba(180,240,214,0.75) 100%);border-color:rgba(120,220,180,0.55);}
+.note-card[data-color="blue"]{background:linear-gradient(160deg,rgba(214,238,255,0.85) 0%,rgba(180,220,255,0.75) 100%);border-color:rgba(120,190,240,0.55);}
+.note-card[data-color="pink"]{background:linear-gradient(160deg,rgba(255,222,235,0.85) 0%,rgba(255,200,220,0.75) 100%);border-color:rgba(255,170,200,0.55);}
+.note-card[data-color="purple"]{background:linear-gradient(160deg,rgba(235,222,255,0.85) 0%,rgba(215,195,255,0.75) 100%);border-color:rgba(190,170,240,0.55);}
+.note-card[data-color="orange"]{background:linear-gradient(160deg,rgba(255,230,205,0.85) 0%,rgba(255,214,168,0.75) 100%);border-color:rgba(255,190,130,0.55);}
+.note-card[data-color="mint"]{background:linear-gradient(160deg,rgba(205,255,240,0.85) 0%,rgba(168,255,225,0.75) 100%);border-color:rgba(120,235,200,0.55);}
+.note-card[data-color="gray"]{background:linear-gradient(160deg,rgba(235,238,242,0.85) 0%,rgba(215,220,228,0.75) 100%);border-color:rgba(180,190,200,0.5);}
+[data-theme="dark"] .note-card[data-color]{color:#eaf6ff;}
+[data-theme="dark"] .note-card[data-color] .note-preview{color:rgba(234,246,255,0.7);}
+.note-title{font-size:15px;font-weight:800;margin-bottom:6px;line-height:1.35;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word;letter-spacing:-0.2px;position:relative;}
+.note-title:empty::before{content:'Untitled';color:var(--text-3);font-style:italic;font-weight:600;}
+.note-preview{font-size:13px;color:var(--text-2);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;word-break:break-word;flex:1;position:relative;font-weight:500;}
+.note-meta{display:flex;align-items:center;justify-content:space-between;margin-top:10px;font-size:11px;color:var(--text-3);gap:6px;position:relative;font-weight:600;}
+.card-badges{position:absolute;top:10px;right:10px;display:flex;gap:3px;font-size:12px;z-index:2;}
+.note-tag{padding:3px 8px;border-radius:10px;background:rgba(79,179,232,0.12);font-size:10px;font-weight:700;color:var(--accent);display:inline-flex;align-items:center;gap:4px;}
+[data-theme="dark"] .note-tag{background:rgba(122,215,255,0.15);color:var(--accent-2);}
+.empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;}
+.empty-icon{font-size:68px;opacity:0.4;margin-bottom:22px;}
+.empty-title{font-size:17px;font-weight:800;margin-bottom:6px;letter-spacing:-0.3px;}
+.empty-desc{font-size:14px;color:var(--text-2);line-height:1.5;max-width:260px;font-weight:500;}
+.fab{position:fixed;bottom:24px;right:22px;width:60px;height:60px;border-radius:20px;background:linear-gradient(135deg,#22e0a0 0%,#00c48c 50%,#00a86b 100%);color:#fff;font-size:28px;font-weight:300;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,196,140,0.5),0 0 40px rgba(34,224,160,0.3),inset 0 1.5px 0 rgba(255,255,255,0.55);transition:transform 0.15s;z-index:50;overflow:hidden;touch-action:manipulation;}
+.fab::before{content:'';position:absolute;top:0;left:0;right:0;height:50%;background:linear-gradient(180deg,rgba(255,255,255,0.5) 0%,transparent 100%);pointer-events:none;}
+.fab:active{transform:scale(0.9);}
+.editor-topbar{padding:14px 12px 10px;display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.editor-title-input{flex:1;font-size:19px;font-weight:800;padding:8px 6px;border:none;background:transparent;outline:none;color:var(--text);letter-spacing:-0.5px;min-width:0;}
+.editor-title-input::placeholder{color:var(--text-3);opacity:0.7;}
+.save-btn{padding:0 14px;height:42px;border-radius:13px;background:linear-gradient(135deg,#22e0a0 0%,#00c48c 50%,#00a86b 100%);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:5px;box-shadow:0 6px 20px rgba(0,196,140,0.5),inset 0 1.5px 0 rgba(255,255,255,0.5);transition:transform 0.15s;flex-shrink:0;white-space:nowrap;min-width:88px;position:relative;overflow:hidden;touch-action:manipulation;}
+.save-btn::before{content:'';position:absolute;top:0;left:0;right:0;height:55%;background:linear-gradient(180deg,rgba(255,255,255,0.5) 0%,transparent 100%);pointer-events:none;}
+.save-btn:active{transform:scale(0.94);}
+.save-btn.saving{background:linear-gradient(135deg,#ffc266 0%,#ff9f43 50%,#e67e22 100%);}
+.save-btn.saved{background:linear-gradient(135deg,#7dffd1 0%,#22e0a0 50%,#00c48c 100%);box-shadow:0 6px 26px rgba(34,224,160,0.65);}
+.editor-meta{padding:0 20px 10px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-2);flex-shrink:0;flex-wrap:wrap;font-weight:600;}
+.editor-meta .reminder-badge{padding:3px 10px;border-radius:10px;background:rgba(255,169,64,0.15);border:1px solid rgba(255,169,64,0.3);color:#d97706;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:4px;}
+.editor-content{flex:1;overflow-y:auto;padding:16px 20px 80px;font-size:15px;line-height:1.7;outline:none;color:var(--text);-webkit-overflow-scrolling:touch;user-select:text;word-break:break-word;font-weight:500;}
+.editor-content:empty::before{content:'Start writing your thoughts…';color:var(--text-3);opacity:0.6;pointer-events:none;font-weight:500;}
+.editor-content ul,.editor-content ol{padding-left:22px;margin:6px 0;}
+.editor-content li{margin:4px 0;}
+.editor-content p{margin:4px 0;}
+#editor[data-color="yellow"] .editor-content,#editor[data-color="yellow"] .editor-title-input{background:linear-gradient(160deg,rgba(255,250,205,0.5) 0%,rgba(255,242,168,0.35) 100%);}
+#editor[data-color="green"] .editor-content,#editor[data-color="green"] .editor-title-input{background:linear-gradient(160deg,rgba(214,248,229,0.5) 0%,rgba(180,240,214,0.35) 100%);}
+#editor[data-color="blue"] .editor-content,#editor[data-color="blue"] .editor-title-input{background:linear-gradient(160deg,rgba(214,238,255,0.5) 0%,rgba(180,220,255,0.35) 100%);}
+#editor[data-color="pink"] .editor-content,#editor[data-color="pink"] .editor-title-input{background:linear-gradient(160deg,rgba(255,222,235,0.5) 0%,rgba(255,200,220,0.35) 100%);}
+#editor[data-color="purple"] .editor-content,#editor[data-color="purple"] .editor-title-input{background:linear-gradient(160deg,rgba(235,222,255,0.5) 0%,rgba(215,195,255,0.35) 100%);}
+#editor[data-color="orange"] .editor-content,#editor[data-color="orange"] .editor-title-input{background:linear-gradient(160deg,rgba(255,230,205,0.5) 0%,rgba(255,214,168,0.35) 100%);}
+#editor[data-color="mint"] .editor-content,#editor[data-color="mint"] .editor-title-input{background:linear-gradient(160deg,rgba(205,255,240,0.5) 0%,rgba(168,255,225,0.35) 100%);}
+#editor[data-color="gray"] .editor-content,#editor[data-color="gray"] .editor-title-input{background:linear-gradient(160deg,rgba(235,238,242,0.5) 0%,rgba(215,220,228,0.35) 100%);}
+.toolbar{position:fixed;bottom:0;left:0;right:0;height:46px;padding:4px 10px;display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;align-items:center;background:rgba(255,255,255,0.94);border-top:1px solid var(--glass-border);box-shadow:0 -4px 20px rgba(60,130,180,0.1);z-index:40;-webkit-overflow-scrolling:touch;}
+[data-theme="dark"] .toolbar{background:rgba(15,35,52,0.94);}
+.toolbar::-webkit-scrollbar{display:none;}
+.tool-btn{min-width:34px;height:34px;padding:0 8px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-2);transition:background 0.12s,color 0.12s,transform 0.1s;flex-shrink:0;font-weight:700;touch-action:manipulation;user-select:none;-webkit-user-select:none;background:transparent;}
+.tool-btn:active{transform:scale(0.92);}
+.tool-btn.active{background:linear-gradient(135deg,#22e0a0 0%,#00c48c 100%);color:#fff;box-shadow:0 3px 10px rgba(0,196,140,0.4);}
+.tool-divider{width:1px;height:20px;background:var(--border);margin:0 4px;flex-shrink:0;}
+#settings{overflow-y:auto;}
+.settings-header{padding:20px 20px 8px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.settings-title{font-size:24px;font-weight:800;letter-spacing:-0.5px;}
+.settings-body{padding:8px 20px 60px;}
+.profile-card{background:var(--glass-strong);border:1px solid var(--glass-border);border-radius:var(--radius);padding:18px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-md),inset 0 1px 0 var(--glass-shine);margin-bottom:20px;}
+.profile-card .avatar{width:58px;height:58px;font-size:22px;}
+.profile-info{flex:1;min-width:0;}
+.profile-name{font-size:16px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.profile-email{font-size:13px;color:var(--text-2);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500;}
+.settings-group{background:var(--glass-strong);border:1px solid var(--glass-border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md),inset 0 1px 0 var(--glass-shine);margin-bottom:14px;}
+.settings-item{display:flex;align-items:center;gap:14px;padding:15px 18px;border-bottom:1px solid var(--border-2);transition:background 0.12s;cursor:pointer;touch-action:manipulation;}
+.settings-item:last-child{border-bottom:none;}
+.settings-item:active{background:rgba(79,179,232,0.08);}
+.settings-item-icon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,rgba(122,215,255,0.2),rgba(79,179,232,0.12));display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.settings-item-content{flex:1;min-width:0;}
+.settings-item-title{font-size:14px;font-weight:700;}
+.settings-item-desc{font-size:12px;color:var(--text-2);margin-top:3px;font-weight:500;}
+.settings-group-title{font-size:12px;font-weight:800;color:var(--text-2);text-transform:uppercase;letter-spacing:1.2px;margin:20px 6px 10px;}
+.settings-item.danger .settings-item-title{color:var(--danger);}
+.settings-item.success .settings-item-title{color:var(--mint);}
+.segment{display:flex;background:rgba(79,179,232,0.1);border-radius:11px;padding:3px;gap:2px;}
+.segment button{padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700;color:var(--text-2);transition:all 0.18s;touch-action:manipulation;}
+.segment button.active{background:var(--glass-strong);color:var(--accent);box-shadow:0 2px 6px rgba(79,179,232,0.2);}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);padding:13px 20px;border-radius:14px;background:var(--glass-strong);color:var(--text);border:1px solid var(--glass-border);font-size:13px;font-weight:700;z-index:200;transition:transform 0.3s cubic-bezier(.2,.9,.3,1.3);max-width:90%;text-align:center;box-shadow:var(--shadow-lg),inset 0 1px 0 var(--glass-shine);}
+#toast.show{transform:translateX(-50%) translateY(0);}
+.modal-backdrop{position:fixed;inset:0;background:rgba(10,30,50,0.45);display:none;align-items:flex-end;justify-content:center;z-index:150;animation:fade 0.2s ease;}
+.modal-backdrop.show{display:flex;}
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+.modal{background:var(--glass-strong);border:1px solid var(--glass-border);border-radius:26px 26px 0 0;width:100%;max-width:500px;padding:20px;max-height:85vh;overflow-y:auto;animation:slideUp 0.3s cubic-bezier(.2,.9,.3,1.1);box-shadow:0 -16px 48px rgba(0,0,0,0.2),inset 0 1px 0 var(--glass-shine);}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+.modal-handle{width:38px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;}
+.modal-title{font-size:17px;font-weight:800;margin-bottom:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:-0.3px;}
+.modal-option{padding:14px 15px;border-radius:13px;display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;transition:background 0.12s;cursor:pointer;margin-bottom:2px;touch-action:manipulation;}
+.modal-option:active{background:rgba(79,179,232,0.12);}
+.modal-option.danger{color:var(--danger);}
+.modal-input{width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid var(--glass-border);background:var(--glass);font-size:14px;outline:none;margin-bottom:12px;color:var(--text);font-weight:600;}
+.modal-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow);}
+.modal-actions{display:flex;gap:10px;margin-top:8px;}
+.modal-actions .btn{padding:12px;}
+.btn{padding:14px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;transition:transform 0.15s;display:flex;align-items:center;justify-content:center;gap:8px;touch-action:manipulation;flex:1;}
+.btn:active{transform:scale(0.96);}
+.btn-primary{background:linear-gradient(135deg,#7ad7ff 0%,#4fb3e8 100%);color:#fff;box-shadow:0 6px 20px rgba(79,179,232,0.4);}
+.btn-outline{background:var(--glass);border:1.5px solid var(--glass-border);color:var(--text);}
+.color-picker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:6px 0 16px;}
+.color-swatch{aspect-ratio:1;border-radius:16px;cursor:pointer;border:2.5px solid transparent;transition:transform 0.15s,border-color 0.15s;position:relative;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(60,130,180,0.15),inset 0 1px 0 rgba(255,255,255,0.85);touch-action:manipulation;}
+.color-swatch::before{content:'';position:absolute;top:6%;left:12%;right:12%;height:38%;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.85) 0%,transparent 100%);pointer-events:none;}
+.color-swatch:active{transform:scale(0.92);}
+.color-swatch.selected{border-color:var(--mint);transform:scale(1.05);box-shadow:0 0 0 3px rgba(0,196,140,0.3);}
+.color-swatch.selected::after{content:'✓';font-size:20px;font-weight:800;color:#00a86b;position:relative;z-index:1;}
+.color-swatch[data-color="default"]{background:linear-gradient(160deg,rgba(248,250,252,0.95) 0%,rgba(232,240,246,0.9) 100%);}
+.color-swatch[data-color="yellow"]{background:linear-gradient(160deg,rgba(255,250,205,0.95) 0%,rgba(255,242,168,0.9) 100%);}
+.color-swatch[data-color="green"]{background:linear-gradient(160deg,rgba(214,248,229,0.95) 0%,rgba(180,240,214,0.9) 100%);}
+.color-swatch[data-color="blue"]{background:linear-gradient(160deg,rgba(214,238,255,0.95) 0%,rgba(180,220,255,0.9) 100%);}
+.color-swatch[data-color="pink"]{background:linear-gradient(160deg,rgba(255,222,235,0.95) 0%,rgba(255,200,220,0.9) 100%);}
+.color-swatch[data-color="purple"]{background:linear-gradient(160deg,rgba(235,222,255,0.95) 0%,rgba(215,195,255,0.9) 100%);}
+.color-swatch[data-color="orange"]{background:linear-gradient(160deg,rgba(255,230,205,0.95) 0%,rgba(255,214,168,0.9) 100%);}
+.color-swatch[data-color="mint"]{background:linear-gradient(160deg,rgba(205,255,240,0.95) 0%,rgba(168,255,225,0.9) 100%);}
+.full-loader{position:fixed;inset:0;background:rgba(10,30,50,0.45);display:none;align-items:center;justify-content:center;z-index:300;}
+.full-loader.show{display:flex;}
+.spinner{width:42px;height:42px;border:3px solid var(--glass-border);border-top-color:var(--mint);border-radius:50%;animation:spin 0.7s linear infinite;box-shadow:0 0 20px rgba(0,196,140,0.5);}
+@keyframes spin{to{transform:rotate(360deg);}}
+.hidden{display:none!important;}
 </style>
 </head>
 <body>
@@ -608,7 +240,7 @@ input, textarea { user-select: text; }
   <div class="screen active" id="splash">
     <div class="splash-logo">📝</div>
     <div class="splash-title">Notes</div>
-    <div class="splash-sub">Your thoughts, safely synced</div>
+    <div class="splash-sub">Your thoughts, always with you</div>
     <div class="splash-loader"></div>
   </div>
 
@@ -618,30 +250,29 @@ input, textarea { user-select: text; }
       <div class="login-title">Welcome to Notes</div>
       <div class="login-sub">Sign in to sync your notes everywhere</div>
       <button class="google-btn" id="googleSignIn">
-        <svg width="20" height="20" viewBox="0 0 48 48">
-          <path fill="#FFC107" d="M43.6 20.5H42V20.5H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/>
-          <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
-          <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.6 2.4-7.2 2.4-5.3 0-9.7-3.1-11.3-7.6l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
-          <path fill="#1976D2" d="M43.6 20.5H42V20.5H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6.2 5.2C41.9 35.6 44 30.2 44 24c0-1.3-.1-2.3-.4-3.5z"/>
-        </svg>
+        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20.5H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.6 2.4-7.2 2.4-5.3 0-9.7-3.1-11.3-7.6l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20.5H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6.2 5.2C41.9 35.6 44 30.2 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
         Continue with Google
       </button>
-      <div class="login-terms">
-        By continuing, you agree to our Terms of Service and Privacy Policy. Your notes are only visible to you.
-      </div>
+      <button class="skip-btn" id="skipLogin">
+        <span>Skip for now</span><span class="arrow">→</span>
+      </button>
+      <div class="skip-hint">Use offline — notes stay on this device only</div>
+      <div class="login-terms">By continuing, you agree to our Terms of Service and Privacy Policy.</div>
     </div>
   </div>
 
   <div class="screen" id="home">
     <div class="topbar">
-      <div class="hamburger-btn" id="hamburgerBtn">
-        <span></span><span></span><span></span>
-      </div>
+      <div class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></div>
       <div class="greeting-wrap">
         <div class="greeting-hi" id="greetTime">Good day</div>
         <div class="greeting-name" id="homeName">User</div>
       </div>
-      <img class="avatar" id="homeAvatar" alt="">
+      <div class="avatar" id="homeAvatar">👤</div>
+    </div>
+    <div class="banner-wrap" id="bannerWrap" style="display:none;">
+      <span class="offline-pill" id="offlinePill" style="display:none;">📴 Offline mode</span>
+      <span class="pending-pill" id="pendingPill" style="display:none;">☁️ <span id="pendingCount">0</span> pending</span>
     </div>
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
@@ -687,15 +318,47 @@ input, textarea { user-select: text; }
     </div>
     <div class="settings-body">
       <div class="profile-card">
-        <img class="avatar" id="settingsAvatar" alt="">
+        <div class="avatar" id="settingsAvatar">👤</div>
         <div class="profile-info">
-          <div class="profile-name" id="settingsName">User</div>
-          <div class="profile-email" id="settingsEmail">email@example.com</div>
+          <div class="profile-name" id="settingsName">Guest User</div>
+          <div class="profile-email" id="settingsEmail">Offline mode</div>
         </div>
       </div>
 
-      <div class="settings-group-title">Sync & Backup</div>
+      <div class="settings-group-title">Account</div>
       <div class="settings-group">
+        <div class="settings-item success" id="signInFromSettings" style="display:none;">
+          <div class="settings-item-icon">☁️</div>
+          <div class="settings-item-content">
+            <div class="settings-item-title">Sign In to Sync</div>
+            <div class="settings-item-desc">Your local notes will sync to cloud</div>
+          </div>
+        </div>
+        <div class="settings-item" id="syncPendingBtn" style="display:none;">
+          <div class="settings-item-icon">🔄</div>
+          <div class="settings-item-content">
+            <div class="settings-item-title">Sync Pending Notes</div>
+            <div class="settings-item-desc" id="pendingSyncDesc">0 notes waiting to upload</div>
+          </div>
+        </div>
+        <div class="settings-item">
+          <div class="settings-item-icon">💾</div>
+          <div class="settings-item-content">
+            <div class="settings-item-title">Data Mode</div>
+            <div class="settings-item-desc" id="dataModeDesc">Offline — local storage only</div>
+          </div>
+        </div>
+        <div class="settings-item danger" id="signOutBtn" style="display:none;">
+          <div class="settings-item-icon">🚪</div>
+          <div class="settings-item-content">
+            <div class="settings-item-title">Sign Out</div>
+            <div class="settings-item-desc">Notes stay on this device</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-group-title" id="syncGroupTitle" style="display:none;">Sync & Backup</div>
+      <div class="settings-group" id="syncGroup" style="display:none;">
         <div class="settings-item">
           <div class="settings-item-icon">🔄</div>
           <div class="settings-item-content">
@@ -743,15 +406,18 @@ input, textarea { user-select: text; }
             <div class="settings-item-desc" id="storageDesc">0 notes</div>
           </div>
         </div>
-      </div>
-
-      <div class="settings-group-title">Account</div>
-      <div class="settings-group">
-        <div class="settings-item danger" id="signOutBtn">
-          <div class="settings-item-icon">🚪</div>
+        <div class="settings-item" id="exportBtn">
+          <div class="settings-item-icon">📤</div>
           <div class="settings-item-content">
-            <div class="settings-item-title">Sign Out</div>
-            <div class="settings-item-desc">Sign out from this device</div>
+            <div class="settings-item-title">Export Notes</div>
+            <div class="settings-item-desc">Download backup as JSON file</div>
+          </div>
+        </div>
+        <div class="settings-item" id="importBtn">
+          <div class="settings-item-icon">📥</div>
+          <div class="settings-item-content">
+            <div class="settings-item-title">Import Notes</div>
+            <div class="settings-item-desc">Restore from backup file</div>
           </div>
         </div>
       </div>
@@ -763,76 +429,40 @@ input, textarea { user-select: text; }
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-    <img class="avatar" id="sidebarAvatar" alt="">
+    <div class="avatar" id="sidebarAvatar">👤</div>
     <div class="sidebar-user">
-      <div class="sidebar-name" id="sidebarName">User</div>
-      <div class="sidebar-email" id="sidebarEmail">email@example.com</div>
+      <div class="sidebar-name" id="sidebarName">Guest User</div>
+      <div class="sidebar-email" id="sidebarEmail">Offline mode</div>
     </div>
   </div>
   <nav class="sidebar-nav">
-    <button class="sidebar-item active" data-filter="all">
-      <span class="sidebar-icon">📝</span>
-      <span class="sidebar-label">All Notes</span>
-      <span class="sidebar-count" id="countAll">0</span>
-    </button>
-    <button class="sidebar-item" data-filter="favorite">
-      <span class="sidebar-icon">⭐</span>
-      <span class="sidebar-label">Favorites</span>
-      <span class="sidebar-count" id="countFav">0</span>
-    </button>
-    <button class="sidebar-item" data-filter="pinned">
-      <span class="sidebar-icon">📌</span>
-      <span class="sidebar-label">Pinned</span>
-      <span class="sidebar-count" id="countPin">0</span>
-    </button>
-    <button class="sidebar-item" data-filter="recent">
-      <span class="sidebar-icon">🕐</span>
-      <span class="sidebar-label">Recent</span>
-    </button>
-    <button class="sidebar-item" data-filter="reminders">
-      <span class="sidebar-icon">🔔</span>
-      <span class="sidebar-label">Reminders</span>
-      <span class="sidebar-count" id="countRem">0</span>
-    </button>
-    <button class="sidebar-item" data-filter="archived">
-      <span class="sidebar-icon">📦</span>
-      <span class="sidebar-label">Archived</span>
-      <span class="sidebar-count" id="countArch">0</span>
-    </button>
-
+    <button class="sidebar-item active" data-filter="all"><span class="sidebar-icon">📝</span><span class="sidebar-label">All Notes</span><span class="sidebar-count" id="countAll">0</span></button>
+    <button class="sidebar-item" data-filter="favorite"><span class="sidebar-icon">⭐</span><span class="sidebar-label">Favorites</span><span class="sidebar-count" id="countFav">0</span></button>
+    <button class="sidebar-item" data-filter="pinned"><span class="sidebar-icon">📌</span><span class="sidebar-label">Pinned</span><span class="sidebar-count" id="countPin">0</span></button>
+    <button class="sidebar-item" data-filter="recent"><span class="sidebar-icon">🕐</span><span class="sidebar-label">Recent</span></button>
+    <button class="sidebar-item" data-filter="reminders"><span class="sidebar-icon">🔔</span><span class="sidebar-label">Reminders</span><span class="sidebar-count" id="countRem">0</span></button>
+    <button class="sidebar-item" data-filter="archived"><span class="sidebar-icon">📦</span><span class="sidebar-label">Archived</span><span class="sidebar-count" id="countArch">0</span></button>
     <div class="sidebar-divider"></div>
     <div class="sidebar-section-title">Tags</div>
     <div id="sidebarTags"></div>
-
     <div class="sidebar-divider"></div>
-    <button class="sidebar-item" data-filter="trash">
-      <span class="sidebar-icon">🗑️</span>
-      <span class="sidebar-label">Trash</span>
-      <span class="sidebar-count" id="countTrash">0</span>
-    </button>
-    <button class="sidebar-item" id="sidebarSettings">
-      <span class="sidebar-icon">⚙️</span>
-      <span class="sidebar-label">Settings</span>
-    </button>
+    <button class="sidebar-item" data-filter="trash"><span class="sidebar-icon">🗑️</span><span class="sidebar-label">Trash</span><span class="sidebar-count" id="countTrash">0</span></button>
+    <button class="sidebar-item" id="sidebarSettings"><span class="sidebar-icon">⚙️</span><span class="sidebar-label">Settings</span></button>
   </nav>
 </aside>
 
-<div class="sync-pill" id="syncPill">
-  <div class="sync-dot"></div>
-  <span id="syncText">Synced</span>
-</div>
-
+<div class="sync-pill" id="syncPill"><div class="sync-dot"></div><span id="syncText">Synced</span></div>
 <div id="toast"></div>
-<div class="modal-backdrop" id="modalBackdrop">
-  <div class="modal" id="modalContent"></div>
-</div>
+<div class="modal-backdrop" id="modalBackdrop"><div class="modal" id="modalContent"></div></div>
 <div class="full-loader" id="fullLoader"><div class="spinner"></div></div>
+<input type="file" id="importFile" accept=".json" style="display:none">
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
+/* ============ CONFIG ============ */
 const firebaseConfig = {
   apiKey: "AIzaSyCyFBCNPiJubh2w1H5zyMtZSJe0pztyiok",
   authDomain: "all-notes-68a48.firebaseapp.com",
@@ -844,78 +474,60 @@ const firebaseConfig = {
   measurementId: "G-B3YL24M224"
 };
 
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
+let auth = null, db = null, firebaseReady = false;
+try {
+  firebase.initializeApp(firebaseConfig);
+  auth = firebase.auth();
+  db = firebase.firestore();
+  db.enablePersistence({ synchronizeTabs: true }).catch(e => console.warn('Persistence:', e.code));
+  firebaseReady = true;
+} catch (e) { console.warn('Firebase init failed:', e); }
 
-db.enablePersistence({ synchronizeTabs: true }).catch(err => console.warn('Persistence:', err.code));
+/* ============ STORAGE KEYS ============ */
+const STORAGE_NOTES = 'notes_local_offline_v1';
+const STORAGE_CATS = 'notes_categories_offline_v1';
+const STORAGE_MODE = 'notes_data_mode';
 
+/* ============ STATE ============ */
 const State = {
-  user: null, notes: [], activeFilter: 'all', activeTag: null, searchQuery: '',
-  currentNote: null, unsubscribeNotes: null, saveTimer: null, syncStatus: 'synced'
+  user: null,
+  isOfflineMode: false,
+  notes: [],
+  activeFilter: 'all',
+  activeTag: null,
+  searchQuery: '',
+  currentNote: null,
+  unsubscribeNotes: null,
+  saveTimer: null,
+  syncStatus: 'synced'
 };
 
 const unlockedNotes = new Set();
 const notifiedReminders = new Set();
 
 const COLOR_PALETTE = [
-  { name: 'default', hex: '#f8fafc' },
-  { name: 'yellow',  hex: '#fffacd' },
-  { name: 'green',   hex: '#d6f8e5' },
-  { name: 'blue',    hex: '#d6eeff' },
-  { name: 'pink',    hex: '#ffdeeb' },
-  { name: 'purple',  hex: '#ebdeff' },
-  { name: 'orange',  hex: '#ffe6cd' },
-  { name: 'mint',    hex: '#cdfff0' }
+  { name: 'default', hex: '#f8fafc' }, { name: 'yellow', hex: '#fffacd' },
+  { name: 'green', hex: '#d6f8e5' }, { name: 'blue', hex: '#d6eeff' },
+  { name: 'pink', hex: '#ffdeeb' }, { name: 'purple', hex: '#ebdeff' },
+  { name: 'orange', hex: '#ffe6cd' }, { name: 'mint', hex: '#cdfff0' }
 ];
 
-const $ = (sel) => document.querySelector(sel);
-const $$ = (sel) => document.querySelectorAll(sel);
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
 
+/* ============ UTILS ============ */
 function showScreen(id) {
   $$('.screen').forEach(s => s.classList.remove('active'));
   const t = document.getElementById(id);
   if (t) t.classList.add('active');
 }
-
 let toastTimer;
 function toast(msg, duration = 2500) {
   const t = $('#toast');
-  t.textContent = msg;
-  t.classList.add('show');
+  t.textContent = msg; t.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), duration);
 }
-
-function setSyncStatus(status) {
-  State.syncStatus = status;
-  const pill = $('#syncPill');
-  const text = $('#syncText');
-  const statusDesc = $('#syncStatusDesc');
-  pill.classList.remove('saving', 'synced', 'offline', 'failed');
-  pill.classList.add(status);
-  const labels = { saving: 'Saving…', synced: 'Synced', offline: 'Offline', failed: 'Sync failed' };
-  text.textContent = labels[status];
-  if (statusDesc) statusDesc.textContent = labels[status];
-  if (status === 'saving' || status === 'synced') {
-    pill.classList.add('show');
-    setTimeout(() => { if (State.syncStatus === status) pill.classList.remove('show'); }, 1800);
-  } else {
-    pill.classList.add('show');
-  }
-}
-
-function applyTheme(pref) {
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const effective = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
-  document.documentElement.setAttribute('data-theme', effective);
-  localStorage.setItem('theme', pref);
-  $$('#themeSegment button').forEach(b => b.classList.toggle('active', b.dataset.theme === pref));
-}
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  if (localStorage.getItem('theme') === 'system') applyTheme('system');
-});
-
 function formatDate(ts) {
   if (!ts) return '';
   const d = ts.toDate ? ts.toDate() : new Date(ts);
@@ -931,80 +543,55 @@ function formatDateTime(ts) {
   const d = ts.toDate ? ts.toDate() : new Date(ts);
   return d.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
 }
-function stripHtml(html) { const d = document.createElement('div'); d.innerHTML = html || ''; return d.textContent || d.innerText || ''; }
-function escapeHtml(str) { const d = document.createElement('div'); d.textContent = str || ''; return d.innerHTML; }
+function stripHtml(h) { const d = document.createElement('div'); d.innerHTML = h || ''; return d.textContent || ''; }
+function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 9); }
+function tsToMs(v) { return v && v.toDate ? v.toDate().getTime() : (typeof v === 'number' ? v : (v ? new Date(v).getTime() : 0)); }
 
-/* SIDEBAR */
-function openSidebar() {
-  $('#sidebar').classList.add('show');
-  $('#sidebarOverlay').classList.add('show');
-  $('#hamburgerBtn').classList.add('active');
-  refreshSidebar();
-}
-function closeSidebar() {
-  $('#sidebar').classList.remove('show');
-  $('#sidebarOverlay').classList.remove('show');
-  $('#hamburgerBtn').classList.remove('active');
-}
-function refreshSidebar() {
-  const visible = State.notes.filter(n => !n.deleted);
-  $('#countAll').textContent = visible.length;
-  $('#countFav').textContent = visible.filter(n => n.favorite).length;
-  $('#countPin').textContent = visible.filter(n => n.pinned).length;
-  $('#countRem').textContent = visible.filter(n => n.reminder).length;
-  $('#countArch').textContent = visible.filter(n => n.archived).length;
-  $('#countTrash').textContent = State.notes.filter(n => n.deleted).length;
-  const tags = getCategories();
-  const container = $('#sidebarTags');
-  if (tags.length === 0) {
-    container.innerHTML = `<div class="sidebar-empty-tags">No tags yet</div>`;
-  } else {
-    const colors = ['#7ad7ff', '#22e0a0', '#ffa940', '#ff6b8a', '#4fb3e8', '#a78bfa'];
-    container.innerHTML = tags.map((t, i) =>
-      `<button class="sidebar-tag ${State.activeTag === t ? 'active' : ''}" data-tag="${escapeHtml(t)}">
-        <span class="sidebar-tag-dot" style="background:${colors[i % colors.length]}"></span>
-        <span>${escapeHtml(t)}</span>
-      </button>`
-    ).join('');
-    container.querySelectorAll('.sidebar-tag').forEach(el => {
-      el.onclick = () => {
-        State.activeTag = el.dataset.tag;
-        State.activeFilter = 'tag';
-        closeSidebar();
-        updateSidebarActive();
-        updatePageTitle();
-        renderNotes();
-      };
-    });
-  }
-  updateSidebarActive();
-}
-function updateSidebarActive() {
-  $$('.sidebar-item').forEach(el => el.classList.toggle('active', el.dataset.filter === State.activeFilter && State.activeFilter !== 'tag'));
-}
-function updatePageTitle() {
-  const t = {
-    all: 'All Notes', favorite: '⭐ Favorites', pinned: '📌 Pinned',
-    recent: '🕐 Recent', reminders: '🔔 Reminders', archived: '📦 Archived',
-    trash: '🗑️ Trash', tag: `🏷️ ${State.activeTag || ''}`
-  };
-  $('#pageTitle').textContent = t[State.activeFilter] || 'Notes';
+/* ============ LOCAL STORAGE ============ */
+function loadLocalNotes() { try { return JSON.parse(localStorage.getItem(STORAGE_NOTES) || '[]'); } catch { return []; } }
+function saveLocalNotes() { try { localStorage.setItem(STORAGE_NOTES, JSON.stringify(State.notes)); } catch { toast('Storage full'); } }
+function loadLocalCategories() { try { return JSON.parse(localStorage.getItem(STORAGE_CATS) || '[]'); } catch { return []; } }
+function saveLocalCategories(c) { localStorage.setItem(STORAGE_CATS, JSON.stringify(c)); }
+
+/* ============ SYNC STATUS ============ */
+function setSyncStatus(status) {
+  State.syncStatus = status;
+  const pill = $('#syncPill'), text = $('#syncText'), statusDesc = $('#syncStatusDesc');
+  pill.classList.remove('saving', 'synced', 'offline', 'failed');
+  pill.classList.add(status);
+  const labels = { saving: 'Saving…', synced: 'Synced', offline: 'Offline', failed: 'Sync failed' };
+  text.textContent = labels[status];
+  if (statusDesc) statusDesc.textContent = labels[status];
+  if (status === 'saving' || status === 'synced') {
+    pill.classList.add('show');
+    setTimeout(() => { if (State.syncStatus === status) pill.classList.remove('show'); }, 1800);
+  } else pill.classList.add('show');
 }
 
-/* PIN */
-function getPin() { return State.user ? localStorage.getItem('notes_pin_' + State.user.uid) : localStorage.getItem('notes_pin'); }
-function setPin(p) { if (State.user) localStorage.setItem('notes_pin_' + State.user.uid, p); }
+/* ============ THEME ============ */
+function applyTheme(pref) {
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const eff = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+  document.documentElement.setAttribute('data-theme', eff);
+  localStorage.setItem('theme', pref);
+  $$('#themeSegment button').forEach(b => b.classList.toggle('active', b.dataset.theme === pref));
+}
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  if (localStorage.getItem('theme') === 'system') applyTheme('system');
+});
+
+/* ============ PIN ============ */
+function getPin() { return localStorage.getItem('notes_pin'); }
+function setPin(p) { localStorage.setItem('notes_pin', p); }
 
 function promptPin(title, subtitle = '') {
   return new Promise((resolve) => {
     openModal(`
       <div class="modal-title">${escapeHtml(title)}</div>
-      ${subtitle ? `<div style="color:var(--text-2); font-size:13px; margin-bottom:14px;">${escapeHtml(subtitle)}</div>` : ''}
+      ${subtitle ? `<div style="color:var(--text-2);font-size:13px;margin-bottom:14px;">${escapeHtml(subtitle)}</div>` : ''}
       <input type="password" id="pinInput" class="modal-input" placeholder="Enter PIN (min 4 chars)" inputmode="numeric" maxlength="12">
-      <div class="modal-actions">
-        <button class="btn btn-outline" id="modalCancel">Cancel</button>
-        <button class="btn btn-primary" id="modalConfirm">Confirm</button>
-      </div>
+      <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button><button class="btn btn-primary" id="modalConfirm">Confirm</button></div>
     `);
     const input = $('#pinInput');
     setTimeout(() => input.focus(), 100);
@@ -1015,7 +602,7 @@ function promptPin(title, subtitle = '') {
     };
     $('#modalConfirm').onclick = submit;
     $('#modalCancel').onclick = () => { closeModal(); resolve(null); };
-    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
   });
 }
 
@@ -1028,7 +615,7 @@ async function toggleLock(noteId) {
       const entered = await promptPin('Enter PIN to unlock');
       if (!entered || entered !== existing) { if (entered) toast('Wrong PIN'); return; }
     }
-    await updateNote(noteId, { locked: false });
+    await updateNoteField(noteId, { locked: false });
     unlockedNotes.delete(noteId);
     toast('Note unlocked');
   } else {
@@ -1040,12 +627,11 @@ async function toggleLock(noteId) {
       if (confirm !== pin) { toast('PINs do not match'); return; }
       setPin(pin);
     }
-    await updateNote(noteId, { locked: true });
+    await updateNoteField(noteId, { locked: true });
     unlockedNotes.delete(noteId);
     toast('Note locked');
   }
 }
-
 async function requestUnlock(noteId) {
   const n = State.notes.find(x => x.id === noteId);
   if (!n || !n.locked) return true;
@@ -1059,100 +645,322 @@ async function requestUnlock(noteId) {
   return true;
 }
 
-/* CATEGORIES */
+/* ============ CATEGORIES ============ */
 function getCategories() {
-  if (!State.user) return [];
-  try { return JSON.parse(localStorage.getItem('categories_' + State.user.uid) || '[]'); }
-  catch { return []; }
+  return State.isOfflineMode ? loadLocalCategories() : (() => {
+    if (!State.user) return loadLocalCategories();
+    try { return JSON.parse(localStorage.getItem('categories_' + State.user.uid) || '[]'); }
+    catch { return []; }
+  })();
 }
-function saveCategories(c) { if (State.user) localStorage.setItem('categories_' + State.user.uid, JSON.stringify(c)); }
+function saveCategories(cats) {
+  if (State.isOfflineMode) saveLocalCategories(cats);
+  else if (State.user) localStorage.setItem('categories_' + State.user.uid, JSON.stringify(cats));
+}
 
-/* PROMPT */
+/* ============ MODAL ============ */
+function openModal(html) {
+  $('#modalContent').innerHTML = `<div class="modal-handle"></div>${html}`;
+  $('#modalBackdrop').classList.add('show');
+}
+function closeModal() { $('#modalBackdrop').classList.remove('show'); }
+
 function promptInput(title, placeholder = '', val = '') {
   return new Promise((resolve) => {
     openModal(`
       <div class="modal-title">${escapeHtml(title)}</div>
       <input type="text" id="promptInput" class="modal-input" placeholder="${escapeHtml(placeholder)}" value="${escapeHtml(val)}">
-      <div class="modal-actions">
-        <button class="btn btn-outline" id="modalCancel">Cancel</button>
-        <button class="btn btn-primary" id="modalConfirm">OK</button>
-      </div>
+      <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button><button class="btn btn-primary" id="modalConfirm">OK</button></div>
     `);
     const i = $('#promptInput');
     setTimeout(() => { i.focus(); i.select(); }, 100);
     const sub = () => { const v = i.value.trim(); closeModal(); resolve(v || null); };
     $('#modalConfirm').onclick = sub;
     $('#modalCancel').onclick = () => { closeModal(); resolve(null); };
-    i.addEventListener('keydown', (e) => { if (e.key === 'Enter') sub(); });
+    i.addEventListener('keydown', e => { if (e.key === 'Enter') sub(); });
   });
 }
 
-/* ============ AUTH — signInWithPopup ============ */
+/* ============ MERGE OFFLINE NOTES TO CLOUD ============ */
+async function mergeOfflineNotesToCloud(uid) {
+  const offlineNotes = loadLocalNotes();
+  if (offlineNotes.length === 0) return { uploaded: 0, merged: 0 };
+
+  let uploaded = 0, merged = 0;
+
+  for (const note of offlineNotes) {
+    try {
+      const ref = db.collection('users').doc(uid).collection('notes').doc(note.id);
+      const existing = await ref.get();
+      const localUpdated = note.updatedAt || note.createdAt || Date.now();
+
+      if (!existing.exists) {
+        // নতুন নোট — আপলোড
+        await ref.set({
+          title: note.title || '',
+          content: note.content || '',
+          pinned: !!note.pinned,
+          archived: !!note.archived,
+          favorite: !!note.favorite,
+          deleted: !!note.deleted,
+          deletedAt: note.deletedAt ? firebase.firestore.Timestamp.fromMillis(tsToMs(note.deletedAt)) : null,
+          locked: !!note.locked,
+          category: note.category || null,
+          color: note.color || null,
+          reminder: note.reminder ? firebase.firestore.Timestamp.fromMillis(tsToMs(note.reminder)) : null,
+          createdAt: firebase.firestore.Timestamp.fromMillis(tsToMs(note.createdAt) || Date.now()),
+          updatedAt: firebase.firestore.Timestamp.fromMillis(localUpdated)
+        });
+        uploaded++;
+      } else {
+        // একই ID-র নোট আছে — নতুন হলে আপডেট
+        const cloudUpdated = tsToMs(existing.data().updatedAt);
+        if (localUpdated > cloudUpdated) {
+          await ref.update({
+            title: note.title || '',
+            content: note.content || '',
+            pinned: !!note.pinned,
+            archived: !!note.archived,
+            favorite: !!note.favorite,
+            deleted: !!note.deleted,
+            category: note.category || null,
+            color: note.color || null,
+            updatedAt: firebase.firestore.Timestamp.fromMillis(localUpdated)
+          });
+          merged++;
+        }
+      }
+    } catch (err) {
+      console.error('Merge error for note', note.id, err);
+    }
+  }
+
+  // সফলভাবে সব আপলোড হলে লোকাল কপি মুছে দিন
+  if (uploaded + merged > 0 || offlineNotes.length > 0) {
+    localStorage.removeItem(STORAGE_NOTES);
+  }
+
+  return { uploaded, merged };
+}
+
+/* ============ SAVE CLOUD NOTES TO LOCAL (backup) ============ */
+function cacheCloudNotesLocally() {
+  // ক্লাউড মোডেও নোট লোকাল স্টোরেজে রাখুন (সাইন আউটের পর ব্যবহারের জন্য)
+  try {
+    const minimal = State.notes.map(n => ({
+      id: n.id,
+      title: n.title || '',
+      content: n.content || '',
+      pinned: !!n.pinned,
+      archived: !!n.archived,
+      favorite: !!n.favorite,
+      deleted: !!n.deleted,
+      deletedAt: n.deletedAt ? tsToMs(n.deletedAt) : null,
+      locked: !!n.locked,
+      category: n.category || null,
+      color: n.color || null,
+      reminder: n.reminder ? tsToMs(n.reminder) : null,
+      createdAt: tsToMs(n.createdAt),
+      updatedAt: tsToMs(n.updatedAt)
+    }));
+    localStorage.setItem(STORAGE_NOTES, JSON.stringify(minimal));
+  } catch (e) { console.warn('Cache error:', e); }
+}
+
+/* ============ AUTH ============ */
 function signInWithGoogle() {
+  if (!firebaseReady) { toast('Firebase not available'); return; }
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
   $('#fullLoader').classList.add('show');
-
   auth.signInWithPopup(provider)
-    .then((result) => {
-      console.log('✓ Sign-in successful:', result.user.email);
-      // onAuthStateChanged automatically handles the rest
-    })
+    .then(r => console.log('✓ Sign-in:', r.user.email))
     .catch(err => {
       console.error('Sign-in error:', err);
       $('#fullLoader').classList.remove('show');
       if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
-        // Fallback to redirect
-        toast('Popup blocked — trying redirect…', 2000);
-        auth.signInWithRedirect(provider).catch(e2 => {
-          console.error('Redirect fallback failed:', e2);
-          toast('Please allow popups for this site', 4000);
-        });
-      } else if (err.code === 'auth/unauthorized-domain') {
-        toast('Firebase-এ এই ডোমেইন অনুমোদিত নয়। Authorized domains চেক করুন।', 5000);
-      } else if (err.code === 'auth/operation-not-allowed') {
-        toast('Google Sign-In Firebase-এ চালু করা হয়নি।', 5000);
-      } else if (err.code === 'auth/cancelled-popup-request') {
-        // Ignore silent cancels
-      } else {
-        toast('Sign-in failed: ' + err.message, 5000);
-      }
+        toast('Popup blocked — trying redirect…');
+        auth.signInWithRedirect(provider).catch(() => toast('Please allow popups'));
+      } else if (err.code === 'auth/unauthorized-domain') toast('Firebase-এ ডোমেইন অনুমোদিত নয়', 5000);
+      else if (err.code === 'auth/operation-not-allowed') toast('Google Sign-In চালু করা হয়নি', 5000);
+      else if (err.code !== 'auth/cancelled-popup-request') toast('Sign-in failed: ' + err.message, 5000);
     });
 }
 
 function signOut() {
+  // ১. ক্লাউড নোট লোকাল স্টোরেজে সেভ করুন (তাই সাইন আউটের পরে দেখা যাবে)
+  if (State.notes.length > 0) cacheCloudNotesLocally();
+
+  // ২. ক্লাউড থেকে আনসাবস্ক্রাইব
   if (State.unsubscribeNotes) { State.unsubscribeNotes(); State.unsubscribeNotes = null; }
-  auth.signOut().then(() => { State.user = null; State.notes = []; unlockedNotes.clear(); showScreen('login'); });
+
+  // ৩. Firebase থেকে সাইন আউট
+  if (firebaseReady && auth) {
+    auth.signOut().then(() => {
+      State.user = null;
+      State.isOfflineMode = true;
+      localStorage.setItem(STORAGE_MODE, 'offline');
+      State.notes = loadLocalNotes();
+      unlockedNotes.clear();
+
+      updateAccountUI();
+      renderNotes();
+      refreshSidebar();
+      updateStorageInfo();
+      updatePendingIndicator();
+
+      toast('Signed out. ' + State.notes.length + ' notes saved locally.');
+    });
+  }
 }
 
-function onUserSignedIn(user) {
+/* ============ SKIP LOGIN ============ */
+function skipLogin() {
+  State.isOfflineMode = true;
+  State.user = null;
+  localStorage.setItem(STORAGE_MODE, 'offline');
+  State.notes = loadLocalNotes();
+  updateAccountUI();
+  showScreen('home');
+  renderNotes();
+  refreshSidebar();
+  updateStorageInfo();
+  updatePendingIndicator();
+  startReminderChecker();
+  toast('Offline mode — notes stored on this device');
+}
+
+/* ============ ACCOUNT UI ============ */
+function updateAccountUI() {
+  const pendingCount = loadLocalNotes().length;
+
+  if (State.isOfflineMode) {
+    $('#homeName').textContent = 'Offline Mode';
+    $('#homeAvatar').innerHTML = '📴';
+    $('#sidebarName').textContent = 'Offline Mode';
+    $('#sidebarEmail').textContent = 'Not signed in';
+    $('#sidebarAvatar').innerHTML = '📴';
+    $('#settingsName').textContent = 'Guest User';
+    $('#settingsEmail').textContent = 'Offline mode — local storage only';
+    $('#settingsAvatar').innerHTML = '📴';
+    $('#dataModeDesc').textContent = 'Offline — local storage only';
+    $('#offlinePill').style.display = 'inline-flex';
+    $('#signInFromSettings').style.display = 'flex';
+    $('#signOutBtn').style.display = 'none';
+    $('#syncGroupTitle').style.display = 'none';
+    $('#syncGroup').style.display = 'none';
+    $('#syncPendingBtn').style.display = pendingCount > 0 ? 'flex' : 'none';
+    $('#pendingSyncDesc').textContent = pendingCount > 0
+      ? `${pendingCount} note${pendingCount > 1 ? 's' : ''} waiting — sign in to sync`
+      : '0 notes waiting';
+    if (pendingCount > 0) {
+      $('#bannerWrap').style.display = 'block';
+    } else {
+      $('#bannerWrap').style.display = 'block';
+    }
+  } else if (State.user) {
+    const u = State.user;
+    const displayName = u.displayName || u.email || 'User';
+    const initial = displayName.charAt(0).toUpperCase();
+    const photoHTML = u.photoURL
+      ? `<img src="${u.photoURL}" alt="">`
+      : initial;
+
+    $('#homeName').textContent = displayName;
+    $('#homeAvatar').innerHTML = photoHTML;
+    $('#sidebarName').textContent = displayName;
+    $('#sidebarEmail').textContent = u.email || '';
+    $('#sidebarAvatar').innerHTML = photoHTML;
+    $('#settingsName').textContent = displayName;
+    $('#settingsEmail').textContent = u.email || '';
+    $('#settingsAvatar').innerHTML = photoHTML;
+    $('#dataModeDesc').textContent = 'Cloud — synced with your Google account';
+    $('#offlinePill').style.display = 'none';
+    $('#signInFromSettings').style.display = 'none';
+    $('#signOutBtn').style.display = 'flex';
+    $('#syncGroupTitle').style.display = 'block';
+    $('#syncGroup').style.display = 'block';
+    $('#syncPendingBtn').style.display = 'none';
+    $('#bannerWrap').style.display = 'block';
+  }
+}
+
+function updatePendingIndicator() {
+  const count = loadLocalNotes().length;
+  const pendingPill = $('#pendingPill');
+  const pendingCount = $('#pendingCount');
+  if (State.isOfflineMode && count > 0) {
+    pendingPill.style.display = 'inline-flex';
+    pendingCount.textContent = count;
+  } else {
+    pendingPill.style.display = 'none';
+  }
+}
+
+/* ============ SIGN-IN HANDLER ============ */
+async function onUserSignedIn(user) {
   State.user = user;
-  $('#homeAvatar').src = user.photoURL || '';
-  $('#homeName').textContent = user.displayName || user.email || 'User';
-  $('#sidebarAvatar').src = user.photoURL || '';
-  $('#sidebarName').textContent = user.displayName || 'User';
-  $('#sidebarEmail').textContent = user.email || '';
-  $('#settingsAvatar').src = user.photoURL || '';
-  $('#settingsName').textContent = user.displayName || 'User';
-  $('#settingsEmail').textContent = user.email || '';
-  const hour = new Date().getHours();
-  $('#greetTime').textContent = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+  State.isOfflineMode = false;
+  localStorage.setItem(STORAGE_MODE, 'cloud');
 
-  db.collection('users').doc(user.uid).set({
-    displayName: user.displayName || '', email: user.email || '',
-    photoURL: user.photoURL || '', lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-  }, { merge: true }).catch(err => console.warn('Profile save:', err));
-
+  updateAccountUI();
   $('#fullLoader').classList.remove('show');
   showScreen('home');
+
+  // Merge offline notes to cloud
+  const pending = loadLocalNotes();
+  if (pending.length > 0) {
+    setSyncStatus('saving');
+    toast(`Uploading ${pending.length} offline notes…`, 3000);
+    try {
+      const result = await mergeOfflineNotesToCloud(user.uid);
+      if (result.uploaded + result.merged > 0) {
+        toast(`✓ Synced ${result.uploaded} new${result.merged > 0 ? `, merged ${result.merged}` : ''}`, 4000);
+      }
+    } catch (err) {
+      console.error('Merge failed:', err);
+      toast('Some notes could not be synced');
+    }
+  }
+
+  // Save user profile
+  db.collection('users').doc(user.uid).set({
+    displayName: user.displayName || '',
+    email: user.email || '',
+    photoURL: user.photoURL || '',
+    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+  }, { merge: true }).catch(() => {});
+
   subscribeNotes();
   loadLastBackup();
   startReminderChecker();
+  updatePendingIndicator();
 }
 
-/* NOTES SYNC */
+/* ============ MANUAL SYNC PENDING ============ */
+async function syncPendingNotes() {
+  if (!State.user) { toast('Please sign in first'); return; }
+  const pending = loadLocalNotes();
+  if (pending.length === 0) { toast('No pending notes'); return; }
+  setSyncStatus('saving');
+  toast('Uploading…');
+  try {
+    const result = await mergeOfflineNotesToCloud(State.user.uid);
+    setSyncStatus('synced');
+    toast(`✓ Uploaded ${result.uploaded}${result.merged > 0 ? `, merged ${result.merged}` : ''}`);
+    updatePendingIndicator();
+  } catch (err) {
+    console.error(err);
+    setSyncStatus('failed');
+    toast('Sync failed');
+  }
+}
+
+/* ============ NOTES SUBSCRIPTION ============ */
 function subscribeNotes() {
   if (State.unsubscribeNotes) State.unsubscribeNotes();
+  if (!State.user || !firebaseReady) return;
+
   const uid = State.user.uid;
   State.unsubscribeNotes = db.collection('users').doc(uid).collection('notes')
     .orderBy('updatedAt', 'desc')
@@ -1168,6 +976,7 @@ function subscribeNotes() {
       renderNotes();
       updateStorageInfo();
       refreshSidebar();
+      cacheCloudNotesLocally();
 
       const inEditor = $('#editor').classList.contains('active');
       if (snapshot.metadata.hasPendingWrites) {
@@ -1181,16 +990,15 @@ function subscribeNotes() {
     }, (err) => { console.error('Snapshot error:', err); setSyncStatus('failed'); });
 }
 
-/* RENDER */
+/* ============ RENDER NOTES ============ */
 function renderNotes() {
   const scroll = $('#notesScroll');
   const q = State.searchQuery.toLowerCase().trim();
   const filter = State.activeFilter;
   let list = State.notes.slice();
 
-  if (filter === 'trash') {
-    list = list.filter(n => n.deleted);
-  } else {
+  if (filter === 'trash') list = list.filter(n => n.deleted);
+  else {
     list = list.filter(n => !n.deleted && !n.archived);
     if (filter === 'favorite') list = list.filter(n => n.favorite);
     if (filter === 'pinned') list = list.filter(n => n.pinned);
@@ -1198,6 +1006,7 @@ function renderNotes() {
     if (filter === 'archived') list = State.notes.filter(n => !n.deleted && n.archived);
     if (filter === 'tag' && State.activeTag) list = list.filter(n => n.category === State.activeTag);
   }
+
   if (q) {
     list = list.filter(n =>
       (n.title || '').toLowerCase().includes(q) ||
@@ -1205,27 +1014,14 @@ function renderNotes() {
     );
   }
 
-  if (filter === 'recent') {
-    list.sort((a, b) => {
-      const at = a.updatedAt?.toDate ? a.updatedAt.toDate() : new Date(a.updatedAt || 0);
-      const bt = b.updatedAt?.toDate ? b.updatedAt.toDate() : new Date(b.updatedAt || 0);
-      return bt - at;
-    });
-  } else if (filter !== 'trash') {
+  if (filter === 'recent') list.sort((a, b) => tsToMs(b.updatedAt) - tsToMs(a.updatedAt));
+  else if (filter !== 'trash') {
     list.sort((a, b) => {
       if (a.pinned && !b.pinned) return -1;
       if (!a.pinned && b.pinned) return 1;
-      const at = a.updatedAt?.toDate ? a.updatedAt.toDate() : new Date(a.updatedAt || 0);
-      const bt = b.updatedAt?.toDate ? b.updatedAt.toDate() : new Date(b.updatedAt || 0);
-      return bt - at;
+      return tsToMs(b.updatedAt) - tsToMs(a.updatedAt);
     });
-  } else {
-    list.sort((a, b) => {
-      const at = a.deletedAt?.toDate ? a.deletedAt.toDate() : new Date(a.deletedAt || 0);
-      const bt = b.deletedAt?.toDate ? b.deletedAt.toDate() : new Date(b.deletedAt || 0);
-      return bt - at;
-    });
-  }
+  } else list.sort((a, b) => tsToMs(b.deletedAt) - tsToMs(a.deletedAt));
 
   if (list.length === 0) { scroll.innerHTML = emptyState(filter, q); return; }
 
@@ -1261,8 +1057,8 @@ function renderNotes() {
     card.addEventListener('mousedown', start);
     card.addEventListener('mouseup', cancel);
     card.addEventListener('mouseleave', cancel);
-    card.addEventListener('contextmenu', (e) => e.preventDefault());
-    card.addEventListener('click', (e) => {
+    card.addEventListener('contextmenu', e => e.preventDefault());
+    card.addEventListener('click', e => {
       if (lpDone) { e.preventDefault(); e.stopPropagation(); lpDone = false; return; }
       const n = State.notes.find(x => x.id === noteId);
       if (!n) return;
@@ -1284,14 +1080,14 @@ function cardHtml(n) {
   if (n.locked) badges += '<span>🔒</span>';
   if (n.reminder) badges += '<span>🔔</span>';
   const colorAttr = n.color ? ` data-color="${escapeHtml(n.color)}"` : '';
+  const pendingClass = n._pending ? ' pending-sync' : '';
   return `
-    <div class="note-card ${n.pinned ? 'pinned' : ''}" data-id="${n.id}"${colorAttr}>
+    <div class="note-card${n.pinned ? ' pinned' : ''}${pendingClass}" data-id="${n.id}"${colorAttr}>
       ${badges ? `<div class="card-badges">${badges}</div>` : ''}
       <div class="note-title">${title}</div>
       <div class="note-preview">${preview}</div>
       <div class="note-meta"><span>${date}${pending}</span>${tag}</div>
-    </div>
-  `;
+    </div>`;
 }
 
 function emptyState(filter, q) {
@@ -1316,7 +1112,64 @@ function updateStorageInfo() {
   if (el) el.textContent = `${total} note${total !== 1 ? 's' : ''}`;
 }
 
-/* EDITOR */
+/* ============ SIDEBAR ============ */
+function openSidebar() {
+  $('#sidebar').classList.add('show');
+  $('#sidebarOverlay').classList.add('show');
+  $('#hamburgerBtn').classList.add('active');
+  refreshSidebar();
+}
+function closeSidebar() {
+  $('#sidebar').classList.remove('show');
+  $('#sidebarOverlay').classList.remove('show');
+  $('#hamburgerBtn').classList.remove('active');
+}
+function refreshSidebar() {
+  const visible = State.notes.filter(n => !n.deleted);
+  $('#countAll').textContent = visible.length;
+  $('#countFav').textContent = visible.filter(n => n.favorite).length;
+  $('#countPin').textContent = visible.filter(n => n.pinned).length;
+  $('#countRem').textContent = visible.filter(n => n.reminder).length;
+  $('#countArch').textContent = visible.filter(n => n.archived).length;
+  $('#countTrash').textContent = State.notes.filter(n => n.deleted).length;
+
+  const tags = getCategories();
+  const container = $('#sidebarTags');
+  if (tags.length === 0) {
+    container.innerHTML = `<div class="sidebar-empty-tags">No tags yet</div>`;
+  } else {
+    const colors = ['#7ad7ff', '#22e0a0', '#ffa940', '#ff6b8a', '#4fb3e8', '#a78bfa'];
+    container.innerHTML = tags.map((t, i) =>
+      `<button class="sidebar-tag ${State.activeTag === t ? 'active' : ''}" data-tag="${escapeHtml(t)}">
+        <span class="sidebar-tag-dot" style="background:${colors[i % colors.length]}"></span>
+        <span>${escapeHtml(t)}</span>
+      </button>`).join('');
+    container.querySelectorAll('.sidebar-tag').forEach(el => {
+      el.onclick = () => {
+        State.activeTag = el.dataset.tag;
+        State.activeFilter = 'tag';
+        closeSidebar();
+        updateSidebarActive();
+        updatePageTitle();
+        renderNotes();
+      };
+    });
+  }
+  updateSidebarActive();
+}
+function updateSidebarActive() {
+  $$('.sidebar-item').forEach(el => el.classList.toggle('active', el.dataset.filter === State.activeFilter && State.activeFilter !== 'tag'));
+}
+function updatePageTitle() {
+  const t = {
+    all: 'All Notes', favorite: '⭐ Favorites', pinned: '📌 Pinned',
+    recent: '🕐 Recent', reminders: '🔔 Reminders', archived: '📦 Archived',
+    trash: '🗑️ Trash', tag: `🏷️ ${State.activeTag || ''}`
+  };
+  $('#pageTitle').textContent = t[State.activeFilter] || 'Notes';
+}
+
+/* ============ EDITOR ============ */
 async function openEditor(noteId) {
   const n = State.notes.find(x => x.id === noteId);
   if (!n) return;
@@ -1337,7 +1190,6 @@ async function openEditor(noteId) {
   $$('.tool-btn').forEach(b => b.classList.remove('active'));
   showScreen('editor');
 }
-
 function updateReminderBadge(n) {
   const el = $('#editorReminderBadge');
   if (n && n.reminder) {
@@ -1345,7 +1197,6 @@ function updateReminderBadge(n) {
     el.innerHTML = `<span class="reminder-badge">🔔 ${formatDateTime(d)}</span>`;
   } else el.innerHTML = '';
 }
-
 function closeEditor() {
   if (State.saveTimer) { clearTimeout(State.saveTimer); State.saveTimer = null; flushSave(); }
   State.currentNote = null;
@@ -1355,22 +1206,34 @@ function closeEditor() {
 }
 
 async function flushSave() {
-  if (!State.currentNote || !State.user) return;
+  if (!State.currentNote) return;
   const title = $('#editorTitle').value;
   const content = $('#editorContent').innerHTML;
   const note = State.currentNote;
   if (title === (note.title || '') && content === (note.content || '')) return;
-  setSyncStatus('saving');
-  try {
-    await db.collection('users').doc(State.user.uid).collection('notes').doc(note.id)
-      .update({ title, content, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
-    note.title = title;
-    note.content = content;
-    $('#editorStatus').textContent = 'Saved';
-  } catch (err) {
-    console.error('Save error:', err);
-    if (!navigator.onLine) { setSyncStatus('offline'); $('#editorStatus').textContent = 'Will sync when online'; }
-    else setSyncStatus('failed');
+
+  if (State.isOfflineMode) {
+    const n = State.notes.find(x => x.id === note.id);
+    if (n) {
+      n.title = title;
+      n.content = content;
+      n.updatedAt = Date.now();
+      saveLocalNotes();
+    }
+    $('#editorStatus').textContent = 'Saved locally';
+  } else if (State.user && firebaseReady) {
+    setSyncStatus('saving');
+    try {
+      await db.collection('users').doc(State.user.uid).collection('notes').doc(note.id)
+        .update({ title, content, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
+      note.title = title;
+      note.content = content;
+      $('#editorStatus').textContent = 'Saved';
+    } catch (err) {
+      console.error('Save error:', err);
+      if (!navigator.onLine) { setSyncStatus('offline'); $('#editorStatus').textContent = 'Will sync when online'; }
+      else setSyncStatus('failed');
+    }
   }
 }
 
@@ -1387,17 +1250,22 @@ async function saveNow() {
   clearTimeout(State.saveTimer);
   State.saveTimer = null;
   const btn = $('#editorSave');
-  setSyncStatus('saving');
   btn.classList.remove('saved');
   btn.classList.add('saving');
   btn.innerHTML = '⏳ Saving';
-  $('#editorStatus').textContent = 'Saving…';
 
   try {
     await flushSave();
-    if (navigator.onLine) {
+    if (State.isOfflineMode) {
+      btn.classList.remove('saving');
+      btn.classList.add('saved');
+      btn.innerHTML = '✓ Saved';
+      $('#editorStatus').textContent = 'Saved locally';
+      toast('✓ Saved locally');
+      setTimeout(() => { btn.classList.remove('saved', 'saving'); btn.innerHTML = '💾 Save'; }, 1800);
+    } else if (navigator.onLine) {
       btn.innerHTML = '⏳ Syncing';
-      $('#editorStatus').textContent = 'Syncing…';
+      setSyncStatus('saving');
       await db.waitForPendingWrites();
       setSyncStatus('synced');
       btn.classList.remove('saving');
@@ -1405,64 +1273,81 @@ async function saveNow() {
       btn.innerHTML = '✓ Synced';
       $('#editorStatus').textContent = 'Synced to cloud';
       toast('✓ Synced to cloud');
-      setTimeout(() => { btn.classList.remove('saved', 'saving'); btn.innerHTML = '💾 Save'; }, 2000);
+      setTimeout(() => { btn.classList.remove('saved', 'saving'); btn.innerHTML = '💾 Save'; }, 1800);
     } else {
       setSyncStatus('offline');
       btn.classList.remove('saving', 'saved');
       btn.innerHTML = '💾 Save';
       $('#editorStatus').textContent = 'Saved locally — will sync when online';
-      toast('Saved locally. Will sync when online.');
+      toast('Will sync when online');
     }
   } catch (err) {
     console.error('Save error:', err);
     btn.classList.remove('saving', 'saved');
     btn.innerHTML = '💾 Save';
     setSyncStatus('failed');
-    $('#editorStatus').textContent = 'Save failed';
-    toast('Save failed: ' + (err.message || 'Unknown error'));
+    toast('Save failed');
   }
 }
 
-/* CREATE */
+/* ============ CREATE ============ */
 async function createNote() {
-  if (!State.user) return;
-  const ref = db.collection('users').doc(State.user.uid).collection('notes').doc();
-  const now = firebase.firestore.FieldValue.serverTimestamp();
-  const note = {
-    title: '', content: '', pinned: false, archived: false, favorite: false,
-    deleted: false, deletedAt: null, locked: false, category: null, tags: [],
-    color: null, reminder: null,
-    createdAt: now, updatedAt: now
-  };
-  setSyncStatus('saving');
-  try {
-    await ref.set(note);
-    setTimeout(() => openEditor(ref.id), 100);
-  } catch (err) {
-    console.error('Create error:', err);
-    let userMsg = 'Could not create note';
-    if (err.code === 'permission-denied') userMsg = 'Firestore Rules ব্লক করছে।';
-    else if (err.code === 'not-found') userMsg = 'Firestore Database তৈরি হয়নি।';
-    else if (err.code === 'unavailable') userMsg = 'ইন্টারনেট সমস্যা।';
-    else userMsg = 'Error: ' + err.message;
-    toast(userMsg, 5000);
-    setSyncStatus('failed');
+  const now = Date.now();
+  if (State.isOfflineMode) {
+    const n = {
+      id: genId(), title: '', content: '',
+      pinned: false, archived: false, favorite: false,
+      deleted: false, deletedAt: null, locked: false,
+      category: null, color: null, reminder: null,
+      createdAt: now, updatedAt: now
+    };
+    State.notes.unshift(n);
+    saveLocalNotes();
+    updatePendingIndicator();
+    setTimeout(() => openEditor(n.id), 80);
+  } else if (State.user && firebaseReady) {
+    const ref = db.collection('users').doc(State.user.uid).collection('notes').doc();
+    const serverNow = firebase.firestore.FieldValue.serverTimestamp();
+    const note = {
+      title: '', content: '', pinned: false, archived: false, favorite: false,
+      deleted: false, deletedAt: null, locked: false, category: null, tags: [],
+      color: null, reminder: null,
+      createdAt: serverNow, updatedAt: serverNow
+    };
+    setSyncStatus('saving');
+    try {
+      await ref.set(note);
+      setTimeout(() => openEditor(ref.id), 100);
+    } catch (err) {
+      console.error('Create error:', err);
+      toast('Could not create note: ' + (err.code || err.message), 5000);
+      setSyncStatus('failed');
+    }
   }
 }
 
-/* NOTE ACTIONS */
+/* ============ NOTE ACTIONS ============ */
 async function updateNoteField(noteId, fields) {
-  if (!State.user) return;
-  setSyncStatus('saving');
-  try {
-    await db.collection('users').doc(State.user.uid).collection('notes').doc(noteId)
-      .update({ ...fields, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
-  } catch (err) {
-    console.error('Update error:', err);
-    setSyncStatus(navigator.onLine ? 'failed' : 'offline');
+  if (State.isOfflineMode) {
+    const n = State.notes.find(x => x.id === noteId);
+    if (!n) return;
+    Object.assign(n, fields);
+    n.updatedAt = Date.now();
+    saveLocalNotes();
+    renderNotes();
+    refreshSidebar();
+  } else if (State.user && firebaseReady) {
+    setSyncStatus('saving');
+    try {
+      await db.collection('users').doc(State.user.uid).collection('notes').doc(noteId)
+        .update({ ...fields, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
+    } catch (err) {
+      console.error('Update error:', err);
+      setSyncStatus(navigator.onLine ? 'failed' : 'offline');
+    }
   }
 }
-async function updateNote(noteId, fields) { return updateNoteField(noteId, fields); }
+async function updateNote(id, fields) { return updateNoteField(id, fields); }
 
 function deleteNote(id) {
   updateNoteField(id, { deleted: true, deletedAt: new Date() });
@@ -1489,29 +1374,44 @@ function toggleArchive(id) {
   toast(n.archived ? 'Unarchived' : 'Archived');
 }
 async function purgeNote(id) {
-  if (!State.user) return;
-  try {
-    await db.collection('users').doc(State.user.uid).collection('notes').doc(id).delete();
+  if (State.isOfflineMode) {
+    State.notes = State.notes.filter(x => x.id !== id);
+    saveLocalNotes();
+    renderNotes(); refreshSidebar();
     toast('Deleted permanently');
-  } catch (err) { toast('Delete failed'); }
+  } else if (State.user && firebaseReady) {
+    try {
+      await db.collection('users').doc(State.user.uid).collection('notes').doc(id).delete();
+      toast('Deleted permanently');
+    } catch (err) { toast('Delete failed'); }
+  }
 }
 async function duplicateNote(id) {
   const n = State.notes.find(x => x.id === id);
-  if (!n || !State.user) return;
-  try {
-    setSyncStatus('saving');
-    const ref = db.collection('users').doc(State.user.uid).collection('notes').doc();
-    const now = firebase.firestore.FieldValue.serverTimestamp();
-    await ref.set({
-      title: (n.title || 'Untitled') + ' (Copy)', content: n.content || '',
+  if (!n) return;
+  const now = Date.now();
+  if (State.isOfflineMode) {
+    const copy = { ...n, id: genId(), title: (n.title || 'Untitled') + ' (Copy)',
       pinned: false, archived: false, favorite: false, deleted: false, deletedAt: null,
-      locked: false, category: n.category || null, tags: n.tags || [],
-      color: n.color || null, reminder: null, createdAt: now, updatedAt: now
-    });
+      locked: false, reminder: null, createdAt: now, updatedAt: now };
+    State.notes.unshift(copy);
+    saveLocalNotes(); renderNotes(); refreshSidebar();
     toast('Duplicated');
-  } catch (err) { console.error(err); toast('Duplicate failed'); setSyncStatus('failed'); }
+  } else if (State.user && firebaseReady) {
+    try {
+      setSyncStatus('saving');
+      const ref = db.collection('users').doc(State.user.uid).collection('notes').doc();
+      const serverNow = firebase.firestore.FieldValue.serverTimestamp();
+      await ref.set({
+        title: (n.title || 'Untitled') + ' (Copy)', content: n.content || '',
+        pinned: false, archived: false, favorite: false, deleted: false, deletedAt: null,
+        locked: false, category: n.category || null, tags: [],
+        color: n.color || null, reminder: null, createdAt: serverNow, updatedAt: serverNow
+      });
+      toast('Duplicated');
+    } catch (err) { console.error(err); toast('Duplicate failed'); setSyncStatus('failed'); }
+  }
 }
-
 async function shareNote(id) {
   const n = State.notes.find(x => x.id === id);
   if (!n) return;
@@ -1528,11 +1428,11 @@ function copy(text) {
 function fallbackCopy(t) {
   const ta = document.createElement('textarea');
   ta.value = t; document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); toast('Copied'); } catch (e) { toast('Copy failed'); }
+  try { document.execCommand('copy'); toast('Copied'); } catch { toast('Copy failed'); }
   document.body.removeChild(ta);
 }
 
-/* COLOR PICKER */
+/* ============ COLOR PICKER ============ */
 function openColorPicker(id) {
   const n = State.notes.find(x => x.id === id);
   if (!n) return;
@@ -1542,7 +1442,7 @@ function openColorPicker(id) {
   ).join('');
   openModal(`
     <div class="modal-title">🎨 Note Color</div>
-    <div style="color:var(--text-2); font-size:13px; margin-bottom:12px; font-weight:500;">Pick a background color</div>
+    <div style="color:var(--text-2);font-size:13px;margin-bottom:12px;font-weight:500;">Pick a background color</div>
     <div class="color-picker-grid">${sw}</div>
     <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Close</button></div>
   `);
@@ -1563,12 +1463,12 @@ function openColorPicker(id) {
   });
 }
 
-/* REMINDER */
+/* ============ REMINDER ============ */
 function openReminderPicker(id) {
   const n = State.notes.find(x => x.id === id);
   if (!n) return;
   let cur = '';
-  const pad = (x) => String(x).padStart(2, '0');
+  const pad = x => String(x).padStart(2, '0');
   if (n.reminder) {
     const d = n.reminder.toDate ? n.reminder.toDate() : new Date(n.reminder);
     cur = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
@@ -1580,10 +1480,7 @@ function openReminderPicker(id) {
     <div class="modal-title">🔔 Set Reminder</div>
     <input type="datetime-local" id="reminderInput" class="modal-input" value="${cur}">
     ${n.reminder ? `<div class="modal-option danger" data-action="clear">🗑️ Remove reminder</div>` : ''}
-    <div class="modal-actions">
-      <button class="btn btn-outline" id="modalCancel">Cancel</button>
-      <button class="btn btn-primary" id="modalConfirm">Save</button>
-    </div>
+    <div class="modal-actions"><button class="btn btn-outline" id="modalCancel">Cancel</button><button class="btn btn-primary" id="modalConfirm">Save</button></div>
   `);
   $('#modalCancel').onclick = closeModal;
   if (n.reminder) {
@@ -1605,9 +1502,10 @@ function openReminderPicker(id) {
     if (isNaN(d.getTime())) { toast('Invalid date'); return; }
     closeModal();
     notifiedReminders.delete(id);
-    await updateNoteField(id, { reminder: firebase.firestore.Timestamp.fromDate(d) });
+    const reminderVal = State.isOfflineMode ? d.getTime() : firebase.firestore.Timestamp.fromDate(d);
+    await updateNoteField(id, { reminder: reminderVal });
     if (State.currentNote && State.currentNote.id === id) {
-      State.currentNote.reminder = firebase.firestore.Timestamp.fromDate(d);
+      State.currentNote.reminder = reminderVal;
       updateReminderBadge(State.currentNote);
     }
     toast('Reminder set for ' + formatDateTime(d));
@@ -1635,13 +1533,13 @@ function showReminderNotification(n) {
   const title = n.title || 'Untitled note';
   const body = stripHtml(n.content || '').slice(0, 120);
   if ('Notification' in window && Notification.permission === 'granted') {
-    try { new Notification('🔔 ' + title, { body }); } catch (e) {}
+    try { new Notification('🔔 ' + title, { body }); } catch {}
   }
   toast('🔔 Reminder: ' + title, 6000);
   if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
 }
 
-/* MOVE / TAG */
+/* ============ MOVE / TAG ============ */
 function openMoveModal(id) {
   const n = State.notes.find(x => x.id === id);
   if (!n) return;
@@ -1679,9 +1577,10 @@ function openMoveModal(id) {
   });
 }
 
-/* BACKUP */
+/* ============ BACKUP ============ */
 async function backupNow() {
-  if (!State.user) return;
+  if (State.isOfflineMode) { toast('Offline mode — use Export Notes instead'); return; }
+  if (!State.user || !firebaseReady) return;
   setSyncStatus('saving');
   toast('Backing up…');
   try {
@@ -1693,21 +1592,60 @@ async function backupNow() {
 }
 function updateLastBackupTime(date) { const el = $('#lastBackupDesc'); if (el) el.textContent = formatDate(date); }
 function loadLastBackup() {
-  if (!State.user) return;
+  if (!State.user || !firebaseReady) return;
   db.collection('users').doc(State.user.uid).get().then(doc => {
     if (doc.exists && doc.data().lastBackup) updateLastBackupTime(doc.data().lastBackup.toDate());
     else $('#lastBackupDesc').textContent = 'Not yet';
   }).catch(() => {});
 }
 
-/* MODAL */
-function openModal(html) {
-  $('#modalContent').innerHTML = `<div class="modal-handle"></div>${html}`;
-  $('#modalBackdrop').classList.add('show');
+/* ============ EXPORT / IMPORT ============ */
+function exportNotes() {
+  const data = {
+    notes: State.notes,
+    categories: getCategories(),
+    exportedAt: new Date().toISOString(),
+    mode: State.isOfflineMode ? 'offline' : 'cloud'
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `notes-backup-${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('Backup downloaded');
 }
-function closeModal() { $('#modalBackdrop').classList.remove('show'); }
+function importNotes() { $('#importFile').click(); }
 
-/* CONTEXT MENU */
+$('#importFile').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (data.notes && Array.isArray(data.notes)) {
+        const existing = new Set(State.notes.map(n => n.id));
+        let added = 0;
+        data.notes.forEach(n => { if (!existing.has(n.id)) { State.notes.push(n); added++; } });
+        if (State.isOfflineMode) saveLocalNotes();
+        if (data.categories && Array.isArray(data.categories)) {
+          const cats = getCategories();
+          data.categories.forEach(c => { if (!cats.includes(c)) cats.push(c); });
+          saveCategories(cats);
+        }
+        renderNotes(); refreshSidebar(); updateStorageInfo();
+        updatePendingIndicator();
+        toast(`Imported ${added} notes`);
+      } else toast('Invalid backup file');
+    } catch { toast('Could not read file'); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+/* ============ CONTEXT MENU ============ */
 function openContextMenu(id) {
   const n = State.notes.find(x => x.id === id);
   if (!n) return;
@@ -1795,14 +1733,14 @@ function openEditorMore() {
   });
 }
 
-/* TOOLBAR */
+/* ============ TOOLBAR ============ */
 function updateToolbarState() {
   if (!$('#editor').classList.contains('active')) return;
   ['bold', 'italic', 'underline', 'strikeThrough', 'insertUnorderedList', 'insertOrderedList'].forEach(cmd => {
     const btn = document.querySelector(`.tool-btn[data-cmd="${cmd}"]`);
     if (!btn) return;
     let active = false;
-    try { active = document.queryCommandState(cmd); } catch (e) {}
+    try { active = document.queryCommandState(cmd); } catch {}
     btn.classList.toggle('active', active);
   });
 }
@@ -1812,8 +1750,8 @@ function setupToolbar() {
   const tb = $('#editorToolbar');
   if (!tb) return;
   tb.querySelectorAll('.tool-btn').forEach(btn => {
-    btn.addEventListener('touchstart', (e) => { e.preventDefault(); applyFormat(btn.dataset.cmd); }, { passive: false });
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('touchstart', e => { e.preventDefault(); applyFormat(btn.dataset.cmd); }, { passive: false });
+    btn.addEventListener('click', e => {
       e.preventDefault();
       if (e.pointerType === 'touch') return;
       applyFormat(btn.dataset.cmd);
@@ -1836,8 +1774,8 @@ function applyFormat(cmd) {
   scheduleSave();
 }
 
-/* EVENT LISTENERS */
-$('#searchInput').addEventListener('input', (e) => { State.searchQuery = e.target.value; renderNotes(); });
+/* ============ EVENT LISTENERS ============ */
+$('#searchInput').addEventListener('input', e => { State.searchQuery = e.target.value; renderNotes(); });
 $('#hamburgerBtn').addEventListener('click', () => {
   if ($('#sidebar').classList.contains('show')) closeSidebar();
   else openSidebar();
@@ -1855,7 +1793,7 @@ $$('.sidebar-item').forEach(item => {
     renderNotes();
   });
 });
-$('#sidebarSettings').addEventListener('click', () => { closeSidebar(); showScreen('settings'); loadLastBackup(); });
+$('#sidebarSettings').addEventListener('click', () => { closeSidebar(); showScreen('settings'); loadLastBackup(); updateAccountUI(); updatePendingIndicator(); });
 
 $('#editorTitle').addEventListener('input', scheduleSave);
 $('#editorContent').addEventListener('input', scheduleSave);
@@ -1863,29 +1801,44 @@ $('#editorContent').addEventListener('keyup', updateToolbarState);
 $('#editorContent').addEventListener('mouseup', updateToolbarState);
 
 $('#googleSignIn').addEventListener('click', signInWithGoogle);
+$('#skipLogin').addEventListener('click', skipLogin);
 $('#fabNew').addEventListener('click', createNote);
 $('#editorBack').addEventListener('click', closeEditor);
 $('#editorSave').addEventListener('click', saveNow);
 $('#editorMore').addEventListener('click', openEditorMore);
 $('#settingsBack').addEventListener('click', () => showScreen('home'));
+$('#signInFromSettings').addEventListener('click', signInWithGoogle);
+$('#syncPendingBtn').addEventListener('click', syncPendingNotes);
+
 $('#signOutBtn').addEventListener('click', () => {
+  const count = State.notes.filter(n => !n.deleted).length;
   openModal(`
     <div class="modal-title">Sign out?</div>
-    <div style="color:var(--text-2); font-size:14px; margin-bottom:20px; font-weight:500;">Your notes are safely synced. You can sign back in anytime.</div>
+    <div style="color:var(--text-2);font-size:14px;margin-bottom:20px;font-weight:500;line-height:1.5;">
+      Your ${count} note${count !== 1 ? 's' : ''} will stay on this device.<br>
+      You can sign back in anytime — they'll sync automatically.
+    </div>
     <div class="modal-actions">
       <button class="btn btn-outline" id="modalCancel">Cancel</button>
-      <button class="btn btn-primary" id="modalConfirm" style="background:linear-gradient(135deg,#ff4d6d,#ff6b8a); box-shadow:0 6px 20px rgba(255,77,109,0.4);">Sign Out</button>
+      <button class="btn btn-primary" id="modalConfirm" style="background:linear-gradient(135deg,#ff4d6d,#ff6b8a);">Sign Out</button>
     </div>
   `);
   $('#modalCancel').onclick = closeModal;
   $('#modalConfirm').onclick = () => { closeModal(); signOut(); };
 });
+
 $('#backupNowBtn').addEventListener('click', backupNow);
-$('#modalBackdrop').addEventListener('click', (e) => { if (e.target.id === 'modalBackdrop') closeModal(); });
+$('#exportBtn').addEventListener('click', exportNotes);
+$('#importBtn').addEventListener('click', importNotes);
+$('#modalBackdrop').addEventListener('click', e => { if (e.target.id === 'modalBackdrop') closeModal(); });
 $$('#themeSegment button').forEach(btn => btn.addEventListener('click', () => applyTheme(btn.dataset.theme)));
 
-window.addEventListener('online', () => { if (State.user) setSyncStatus('saving'); });
-window.addEventListener('offline', () => setSyncStatus('offline'));
+window.addEventListener('online', () => {
+  if (State.user && !State.isOfflineMode) setSyncStatus('saving');
+});
+window.addEventListener('offline', () => {
+  if (State.user && !State.isOfflineMode) setSyncStatus('offline');
+});
 
 document.addEventListener('backbutton', () => {
   if ($('#modalBackdrop').classList.contains('show')) { closeModal(); return; }
@@ -1894,31 +1847,43 @@ document.addEventListener('backbutton', () => {
   if ($('#settings').classList.contains('active')) { showScreen('home'); return; }
 }, false);
 
-/* BOOT */
+/* ============ BOOT ============ */
 function boot() {
   applyTheme(localStorage.getItem('theme') || 'system');
   setupToolbar();
 
-  // Handle redirect result (in case popup was blocked and redirect happened)
-  auth.getRedirectResult().then(r => {
-    if (r && r.user) console.log('✓ Redirect sign-in:', r.user.email);
-  }).catch(err => {
-    console.error('Redirect result error:', err.code, err.message);
-    $('#fullLoader').classList.remove('show');
-    if (err.code === 'auth/unauthorized-domain') toast('Firebase-এ এই ডোমেইন অনুমোদিত নয়।', 5000);
-    else if (err.code === 'auth/operation-not-allowed') toast('Google Sign-In চালু করা হয়নি।', 5000);
-    else if (err.code !== 'auth/no-auth-event') toast('Sign-in failed: ' + err.message, 5000);
-  });
+  if ('Notification' in window && Notification.permission === 'default') {
+    setTimeout(() => { Notification.requestPermission().catch(() => {}); }, 3000);
+  }
 
-  auth.onAuthStateChanged(user => {
+  const savedMode = localStorage.getItem(STORAGE_MODE);
+
+  if (firebaseReady) {
+    auth.getRedirectResult().then(r => {
+      if (r && r.user) console.log('✓ Redirect sign-in:', r.user.email);
+    }).catch(err => {
+      console.error('Redirect error:', err.code);
+      $('#fullLoader').classList.remove('show');
+    });
+
+    auth.onAuthStateChanged(user => {
+      setTimeout(() => {
+        if (user) {
+          onUserSignedIn(user);
+        } else if (savedMode === 'offline') {
+          skipLogin();
+        } else {
+          showScreen('login');
+          $('#fullLoader').classList.remove('show');
+        }
+      }, 1000);
+    });
+  } else {
     setTimeout(() => {
-      if (user) onUserSignedIn(user);
-      else {
-        showScreen('login');
-        $('#fullLoader').classList.remove('show');
-      }
-    }, 1200);
-  });
+      if (savedMode === 'offline') skipLogin();
+      else showScreen('login');
+    }, 1000);
+  }
 }
 
 boot();
